@@ -8,10 +8,12 @@ RUN dotnet restore
 COPY RazorPageLeifWebsite ./
 RUN dotnet publish $csproj -c Release -o /app/publish
 
+#############################
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
 ENV ASPNETCORE_URLS=http://*:3001
 WORKDIR /app
 COPY --from=build /app/publish .
 COPY ./manifest.json /manifest.json
 EXPOSE 3001
+
 ENTRYPOINT ["dotnet", "RazorPageLeifWebsite.dll"]
