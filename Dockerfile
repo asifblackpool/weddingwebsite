@@ -3,9 +3,9 @@ FROM ${builder_image} AS build
 
 WORKDIR /src
 # The below allows layer caching for the restore.
-COPY leifwebsite/RazorPageLeifWebsite.csproj .
+COPY RazorPageLeifWebsite/RazorPageLeifWebsite.csproj .
 RUN dotnet restore
-COPY leifwebsite ./
+COPY RazorPageLeifWebsite ./
 RUN dotnet publish $csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
