@@ -1,0 +1,67 @@
+﻿:root {
+    --font-headings: 'Libre Baskerville', serif;
+    --font-body:'Cormorant', serif;
+
+    --dark-blue: #041C2C;
+    --white: #ffffff;
+    --pink: #DD3394;
+    --plain-black: #000;
+    --shade-black: #3E3E3E;
+
+    /* Spacing */
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+
+    /* Font sizes */
+    --text-xsm:1.2rem;
+    --text-sm: 1.4rem;
+    --text-base: 1.8rem;
+    --text-lg: 2.2rem;
+    --text-xl: 2.4rem;
+    --text-xxl:2.8rem;
+    /*Html fonts*/
+    --body: 1.8rem;
+    --h1: 6.8rem;
+    --h2: 4.6rem;
+    --h3: 3.0rem;
+    /* line heights*/
+    --h1-line-height: 6.8rem;
+    --h2-line-height: 4.6rem;
+    --h3-line-height: 3.4rem;
+    /* Transitions */
+    --transition-fast: 0.15s;
+    --transition-normal: 0.3s;
+    --full-width: 100%;
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 768px) {
+
+    :root {
+     
+        /* Spacing */
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 2rem;
+        /* Font sizes */
+        --text-sm: 1.2rem;
+        --text-base: 1.6rem;
+        --text-lg: 2rem;
+        --text-xl: 2.4rem;
+        /*Html fonts*/
+        --body: 1.8rem;
+        --h1: 4.4rem;
+        --h2: 3.2rem;
+        --h3: 2.0rem;
+        /* line heights*/
+        --h1-line-height: 5.0rem;
+        --h2-line-height: 3.8rem;
+        --h3-line-height: 2.4rem;
+  
+    }
+}
+
+

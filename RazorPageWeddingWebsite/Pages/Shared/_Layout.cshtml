@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Wedding</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" >
+
+    <link rel="stylesheet" href="~/static/css/bootstrap/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/static/css/site.css" asp-append-version="true" />
+
+    <link rel="icon" type="image/x-icon" href="~/static/favicon.ico">
+</head>
+<body>
+ 
+<header>
+      <div class="header-container">
+            @Html.Partial("_navigation.cshtml")
+      </div>
+</header>
+<main>
+    @await Component.InvokeAsync("Breadcrumb")
+    @RenderBody()
+</main>
+    <footer>
+        <div class="footer-container">
+            <div class="row"><div class="col-md-12"><h3 class="footer-title">Your Blackpool Wedding</h3></div></div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img src="~/static/images/footer/footer-logo@x1.png" alt="blackpool council" class="footer-logo" />
+                    <div class="social-icons">
+                        <a href="#" target="_blank" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank" class="social-icon x-twitter">
+                            <!-- Empty on purpose - we're using CSS content -->
+                        </a>
+                        <a href="#" target="_blank" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <ul class="footer-list">
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Data prorection and privacy</a></li>
+                        <li><a href="#">privacy and cookies</a></li>
+                        <li><a href="#">Terms and conditions</a></li>
+                        <li><a href="#">Blackpool Council companies</a></li>
+                    </ul>
+                    
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p>A big thank you to our photographers who have contributed to the website and our marketing materials</p>
+                    <ul class="footer-list">
+                        <li><a href="#">Photographer link 1</a></li>
+                        <li><a href="#">Photographer link 2</a></li>
+                        <li><a href="#">Photographer link 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>    <script src="~/static/js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>

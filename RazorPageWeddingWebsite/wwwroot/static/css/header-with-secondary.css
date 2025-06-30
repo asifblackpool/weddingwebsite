@@ -1,0 +1,146 @@
+﻿@import './variables.css';
+
+div.home-link-container {
+    display: flex;
+    align-items: center;
+}
+
+h1.home {
+    color:var(--pink);
+    line-height:4.8rem;
+    font-size:4.8rem;
+    position:relative;
+ 
+}
+
+h1.home > a.home-link {
+    text-decoration:none;
+    color:inherit !important;
+}
+
+/* Base styles */
+.hover-panel-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-headings);
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    height:10vh;
+}
+
+.hover-panel-menu li {
+    display: inline-block;
+    position: relative;
+    margin-right: 1.5rem;
+}
+
+.hover-panel-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--shade-black);
+    text-decoration: none;
+    background: transparent;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.hover-panel-menu a:hover {
+   background:transparent;
+}
+
+/* Hover panel styles */
+.hover-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    padding: 1.5rem;
+}
+
+.has-panel:hover .hover-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(5px);
+    z-index:1000;
+}
+
+.panel-content h3 {
+    margin-top: 0;
+    color: black;
+    font-weight:bold;
+    margin-bottom:1rem;
+}
+
+.panel-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+}
+
+.panel-content ul li {
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.panel-content ul a {
+    background: none;
+    padding: 0.5rem 0;
+    color: var(--shade-black);
+}
+
+.panel-content ul a:hover {
+    color: var(--shade-black);
+    background: none;
+    text-decoration: underline;
+}
+
+/* Caret styles */
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+    vertical-align: middle;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #333 transparent transparent transparent;
+    transition: all 0.3s ease;
+}
+
+.has-panel:hover .caret {
+    transform: rotate(180deg);
+    border-color: #2980b9 transparent transparent transparent;
+}
+
+/* Adjust link padding to accommodate caret */
+.has-panel > a {
+    padding-right: 25px !important; /* Make space for caret */
+    position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .caret {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .has-panel:hover .caret {
+        transform: translateY(-50%) rotate(180deg);
+    }
+}

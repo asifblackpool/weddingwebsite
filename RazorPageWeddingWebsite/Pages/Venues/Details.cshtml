@@ -1,0 +1,47 @@
+﻿@page
+@using Blackpool.Zengenti.CMS.Models.Base
+@using Blackpool.Zengenti.CMS.Models.Components
+@using RazorPageWeddingWebsite.Helpers
+@using Blackpool.Zengenti.CMS.Models.Weddings
+@model RazorPageWeddingWebsite.Pages.Venues.DetailsModel;
+@{
+    GettingMarriedVenue? entryModel = (Model != null && Model.Items.Count == 1) ? Model.Items.FirstOrDefault() : null;
+    BaseContentType? link = (entryModel != null && entryModel.VenueLink != null) ? entryModel.VenueLink.LinkedContentPage : null;
+    string buttonUrl = "#";
+    if (entryModel != null && link == null)
+    {
+        buttonUrl = (entryModel.VenueLink != null) ? entryModel.VenueLink.ExternalURL : buttonUrl;
+    }
+
+}
+
+@if (entryModel != null)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="venue-image">
+                <img src="@string.Format("{0}", entryModel.VenueImage != null
+                                    ? ImageHelper.GetImageUrl(entryModel.VenueImage)
+                                    : string.Empty)"
+                     alt="@string.Format("{0}", entryModel.VenueImage != null
+                                    ? entryModel.VenueImage.AltText
+                                    : string.Empty)" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 class="venue-title">@entryModel.PageTitle</h2>
+            <p class="pad-bottom-default shade-black">@entryModel.IntroductionText</p>
+            @Html.Raw(
+                BreadcumbViewComponent.BuildButton(
+                    (entryModel != null && entryModel.VenueLink != null) ? entryModel.VenueLink.ButtonText : string.Empty,
+                    buttonUrl,
+                    "pink-button"
+                )
+            )
+        </div>
+    </div>
+}
+else
+{
+    <h1>Venues listing not found </h1>
+}

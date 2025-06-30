@@ -1,0 +1,45 @@
+﻿@import './variables.css';
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: transparent;
+    border-radius: 0.25rem;
+    font-size: 1.8rem;
+    color:var(--shade-black);
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Separator between items */
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding: 0 0.8rem;
+    color: var(--shade-black); /* Gray separator */
+    content: "|"; /* Default separator */
+    font-family: "Font Awesome 5 Free" !important; /* If using Font Awesome */
+    position:relative;
+    top:-0.25rem;
+}
+
+
+.breadcrumb-item.active {
+    color: #6c757d; /* Gray text for current page */
+}
+
+.breadcrumb-item a {
+    color: var(--shade-black);
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+}
+
+.breadcrumb-item a:hover {
+    color:var(--plain-black);
+    text-decoration: underline;
+}

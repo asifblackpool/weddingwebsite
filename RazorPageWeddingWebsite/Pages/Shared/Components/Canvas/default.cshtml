@@ -1,0 +1,141 @@
+﻿@using Blackpool.Zengenti.CMS.Helpers
+@using Blackpool.Zengenti.CMS.Models.Canvas.Code
+@using Blackpool.Zengenti.CMS.Models.Canvas.Headers
+@using Blackpool.Zengenti.CMS.Models.Canvas.Helpers
+@using Blackpool.Zengenti.CMS.Models.Canvas.Lists
+@using Blackpool.Zengenti.CMS.Models.Canvas.Paragraphs
+@using Blackpool.Zengenti.CMS.Models.GenericTypes
+@using Blackpool.Zengenti.CMS.Models.Weddings
+@using Content.Modelling.Models.Canvas.Helpers
+@using Content.Modelling.Models.Canvas.Images
+@using Newtonsoft.Json
+@using RazorPageWeddingWebsite.Helpers
+@using System.Text
+
+@model SerialisedContent
+
+@if (Model != null && Model.Items.Count > 0)
+{
+    foreach (SerialisedItem item in Model.Items)
+    {
+        //Add Header .. usually H1, H2 tag
+        if (item.ClassName == typeof(TitleHeader).Name)
+        {
+            TitleHeader objItem = SerializationHelper.Deseralize(item);
+            if (objItem.Properties != null && objItem.Properties.level == 1)
+            {
+                <h1 class="h1-title">@objItem.Value</h1>
+            }
+
+            if (objItem.Properties != null && objItem.Properties.level == 2)
+            {
+                <h2 class="h2-title">@objItem.Value</h2>
+            }
+        }
+
+        //Add Text .. usually wrapped P tag
+        if (item.ClassName == typeof(CanvasParagraph).Name)
+        {
+            CanvasParagraph objItem = SerializationHelper.Deseralize(item);
+            <p class="shade-black">@objItem.Value</p>
+
+        }
+
+        //Code .. at the moment using for Iframe
+        if (item.ClassName == typeof(Code).Name)
+        {
+            Code objItem = SerializationHelper.Deseralize(item);
+            if (objItem.Value != null && objItem.Value.Code != null)
+            {
+                @Html.Raw(objItem.Value.Code)
+                <br />
+                <br />
+            }
+        }
+
+        //Add (fragments of) Text .. usually P tag
+        if (item.ClassName == typeof(FragmemtParagraph).Name)
+        {
+            <p>@Html.Raw(ParagraphHelper.FragmentParagraph(NavigationLinkHelper.GetLinkUrl(SerializationHelper.Deseralize(item))))</p>
+
+        }
+
+        //Canvas list item storing a list ..(note list can be simple or complext)
+        if (item.ClassName == typeof(CanvasListItem).Name)
+        {
+            List<CanvasListItem>? items = CanvasListItemHelper.DeserializeListItems(item.Content);
+            if (items != null)
+            {
+                <ul class="shade-black">
+                    @foreach (var canvasItem in items)
+                    {
+                        switch (canvasItem.Content)
+                        {
+                            case SimpleValue simple:
+                                var text = ((SimpleValue)canvasItem.Content);
+                                <li>@text.Text</li>
+                                break;
+                            case ComplexValue complex:
+                                var objFragment = ((ComplexValue)canvasItem.Content);
+                                StringBuilder sb = new StringBuilder();
+                                @Html.Raw(
+                                        ContentFragmentHelper.BuildHtmlFragment(objFragment.Fragments, "<li>{0}</li>")
+                                        )
+                                break;
+                            default:
+                                throw new InvalidOperationException("Unknown content type");
+                        }
+                    }
+                </ul>
+            }
+
+        }
+
+        //
+        if (item.ClassName == typeof(ImageData).Name)
+        {
+            string json = item.Content;
+
+            ImageData? imageData = JsonConvert.DeserializeObject<ImageData>(json);
+            string? currentImageUrl = (imageData != null) ? ImageDataHelper.GetImageUrl(imageData) : string.Empty;
+
+
+            if (imageData != null && imageData.Value != null && currentImageUrl != null)
+            {
+                string imageUrl = ImageHelper.GetImageUrl(currentImageUrl);
+                if (imageData.Value.Asset != null && imageData.Value.Asset.System != null)
+                {
+                    imageData.Value.Asset.System.Uri = imageUrl;
+                }
+                var srcset = new Dictionary<string, string>
+                {
+                    { "/images/small.jpg", "480w" },
+                    { "/images/medium.jpg", "1024w" },
+                    { "/images/large.jpg", "1600w" }
+                };
+
+                /*  bulid responsive image Tag
+                    string html = ImageDataHelper.CreateResponsiveImageTag(
+                    imageData,
+                    srcset,
+                sizes: "(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px"
+                );
+                */
+
+                /* Output:
+                     <img src="/images/medium.jpg" alt="Wedding chapel" width="1024" height="768"
+                     loading="lazy"
+                     srcset="/images/small.jpg 480w, /images/medium.jpg 1024w, /images/large.jpg 1600w"
+                sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px">
+                */
+
+                <div class="img-container">
+                    @Html.Raw(ImageDataHelper.CreateImageTag(imageData, "img-responsive"))
+                </div>
+
+            }
+        }
+
+    }
+}
+

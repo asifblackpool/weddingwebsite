@@ -14,10 +14,10 @@
 
 ## Run it
 
-Change directory to RazorPageLeifExample
+Change directory to RazorPageWeddingWebsite
 
 ```shell
-cd RazorPageLeifExample
+cd RazorPageWeddingWebsite
 ```
 
 Run with hot reloading

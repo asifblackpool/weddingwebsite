@@ -1,0 +1,27 @@
+﻿@using RazorPageWeddingWebsite.Models
+
+@model List<BreadcrumbItem>
+
+@if (Model != null && Model.Any())
+{
+ <div class="breadcrumb-container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            @foreach (var item in Model)
+            {
+                <li class="breadcrumb-item @(item.IsActive ? "active" : "")">
+                    @if (!item.IsActive)
+                    {
+                        <a href="@item.Url">@item.Title</a>
+                    }
+                    else
+                    {
+                        @item.Title
+                    }
+                </li>
+            }
+        </ol>
+    </nav>
+  </div>
+}
+

@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/RazorPageLeifExample/RazorPageLeifExample.csproj",
+                "${workspaceFolder}/RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/RazorPageLeifExample/RazorPageLeifExample.csproj",
+                "${workspaceFolder}/RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/RazorPageLeifExample/RazorPageLeifExample.csproj",
+                "${workspaceFolder}/RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

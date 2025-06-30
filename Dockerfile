@@ -3,9 +3,9 @@ FROM ${builder_image} AS build
 
 WORKDIR /src
 # The below allows layer caching for the restore.
-COPY RazorPageLeifWebsite/RazorPageLeifWebsite.csproj .
+COPY RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj .
 RUN dotnet restore
-COPY RazorPageLeifWebsite ./
+COPY RazorPageWeddingWebsite ./
 RUN dotnet publish $csproj -c Release -o /app/publish
 
 #############################
@@ -16,4 +16,4 @@ COPY --from=build /app/publish .
 COPY ./manifest.json /manifest.json
 EXPOSE 3001
 
-ENTRYPOINT ["dotnet", "RazorPageLeifWebsite.dll"]
+ENTRYPOINT ["dotnet", "RazorPageWeddingWebsite.dll"]

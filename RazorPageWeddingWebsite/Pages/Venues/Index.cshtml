@@ -1,0 +1,57 @@
+﻿@page
+@using Blackpool.Zengenti.CMS.Helpers
+@using Blackpool.Zengenti.CMS.Models.Canvas.Helpers;
+@using Blackpool.Zengenti.CMS.Models.Canvas.Code
+@using Blackpool.Zengenti.CMS.Models.Canvas.Headers
+@using Blackpool.Zengenti.CMS.Models.Canvas.Paragraphs
+@using RazorPageWeddingWebsite.Helpers
+@using Blackpool.Zengenti.CMS.Models.Weddings;
+@using Blackpool.Zengenti.CMS.Models.GenericTypes;
+
+@model RazorPageWeddingWebsite.Pages.Venues.IndexModel
+@{
+    GettingMarried? entryModel = (Model != null && Model.Items.Count == 1) ? Model.Items.FirstOrDefault() : null;
+    SerialisedContent? canvas = (entryModel != null) ? entryModel.GetSerialisedCanvas() : null;
+
+}
+
+@if (entryModel != null && canvas != null)
+{
+
+
+
+    foreach(SerialisedItem item in canvas.Items)
+    {
+        if (item.ClassName == typeof(TitleHeader).Name)
+        {
+            TitleHeader objItem = SerializationHelper.Deseralize(item);
+            <h1 class="h1-title">@objItem.Value</h1>
+        }
+
+        if (item.ClassName == typeof(CanvasParagraph).Name)
+        {
+            CanvasParagraph objItem = SerializationHelper.Deseralize(item);
+            <p class="pad-bottom-default shade-black" style="text-align:center">@objItem.Value</p>
+
+        }
+
+        if (item.ClassName == typeof(Code).Name)
+        {
+            Code objItem = SerializationHelper.Deseralize(item);
+            if (objItem.Value != null && objItem.Value.Code != null)
+            {
+                @Html.Raw(objItem.Value.Code)<br/><br/>
+            }   
+        }
+
+        if (item.ClassName == typeof(FragmemtParagraph).Name)
+        {
+            FragmemtParagraph objItem = SerializationHelper.Deseralize(item);
+       
+            <p class="venues-list">@Html.Raw(ParagraphHelper.FragmentParagraph(NavigationLinkHelper.GetLinkUrl(objItem)))</p>
+
+        }
+
+    }
+}
+
