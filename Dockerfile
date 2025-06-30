@@ -17,7 +17,7 @@ RUN dotnet build -c Debug -o /app/build
 
 # 2. Manually copy the Windows-built DLL
 # Note: Must match your exact runtime identifier (net8.0-windows8.0)
-COPY RazorPageWeddingWebsite/bin/Debug/net8.0-windows8.0/Content.Modelling.dll /app/publish/
+COPY RazorPageWeddingWebsite/sharedDLLs/Content.Modelling.dll /app/publish/
 
 #############################
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
