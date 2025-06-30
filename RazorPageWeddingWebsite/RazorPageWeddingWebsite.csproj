@@ -34,7 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\shared\lgwebsite.data\content.modelling\Content.Modelling.csproj" />
+    <!--ProjectReference Include="..\..\shared\lgwebsite.data\content.modelling\Content.Modelling.csproj" /-->
+    <Reference Include="SharedLib">
+      <HintPath>libs\Content.Modelling.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
   </ItemGroup>
 
 </Project>
