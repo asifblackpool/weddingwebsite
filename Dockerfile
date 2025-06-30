@@ -3,25 +3,26 @@ FROM ${builder_image} AS build
 
 WORKDIR /src
 
-# Copy DLL from parent directory
-COPY ../sharedDLLs/Content.Modelling.dll ./sharedDLLs/
+# 1. Copy ALL shared DLLs first
+COPY ../SharedDLLs/. ./SharedDLLs/
 
-# Verify DLL exists
-RUN ls -la ./sharedDLLs/ && \
-    test -f ./sharedDLLs/Content.Modelling.dll || (echo "ERROR: Missing DLL!" && exit 1)
+# 2. Verify DLLs exist
+RUN ls -la ./SharedDLLs/ && \
+    [ "$(ls -1 ./SharedDLLs/ | wc -l)" -gt 0 ] || { echo "ERROR: Asif: No DLLs found!"; exit 1; }
 
-# Copy web project files
+# 3. Copy web project files
 COPY RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj .
 RUN dotnet restore
 
-# Copy remaining files
+# 4. Copy remaining files
 COPY RazorPageWeddingWebsite/ .
 
-# Build and publish
+# 5. Build and publish
 RUN dotnet publish -c Release -o /app/publish
 
-# Ensure DLL is in output
-RUN cp ./sharedDLLs/Content.Modelling.dll /app/publish/bin/
+# 6. Copy ALL shared DLLs to output bin
+RUN mkdir -p /app/publish/bin && \
+    cp ./SharedDLLs/*.dll /app/publish/bin/
 
 #############################
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
