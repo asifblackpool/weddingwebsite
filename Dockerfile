@@ -15,6 +15,7 @@ WORKDIR /src/RazorPageWeddingWebsite
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
+
 #############################
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
 ENV ASPNETCORE_URLS=http://*:3001
