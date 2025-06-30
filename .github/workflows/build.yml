@@ -63,9 +63,9 @@ jobs:
         id: push-block
         uses: contensis/block-push@v1
         with:
-          block-id: leifwebsite
+          block-id: wedding-website
           alias: blackpool
-          project-id: demoWebsite
+          project-id: lgWebsite
           client-id: ${{ env.CONTENSIS_CLIENT_ID }}
           shared-secret: ${{ env.CONTENSIS_SHARED_SECRET }}
           image-uri: ${{ env.APP_IMAGE }}:build-${{ github.run_number }}
