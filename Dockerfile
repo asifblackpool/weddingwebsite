@@ -2,22 +2,30 @@ ARG builder_image=mcr.microsoft.com/dotnet/sdk:9.0
 FROM ${builder_image} AS build
 
 WORKDIR /src
+
+# 1. Copy only the DLL first (for layer caching)
+COPY ./sharedDLLs/Content.Modelling.dll ./sharedDLLs/
+
+# 2. Verify DLL exists (debug step)
+RUN ls -la ./sharedDLLs/ && \
+    test -f ./sharedDLLs/Content.Modelling.dll || (echo "DLL missing!" && exit 1)
+
 # The below allows layer caching for the restore.
-#COPY RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj .
-#RUN dotnet restore
-#COPY RazorPageWeddingWebsite ./
-#RUN dotnet publish $csproj -c Release -o /app/publish
+COPY RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj .
+RUN dotnet restore
+COPY RazorPageWeddingWebsite ./
+RUN dotnet publish $csproj -c Release -o /app/publish
 
 
 # 1. Copy and build normally (produces DLL in bin/Debug)
-COPY RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj .
-RUN dotnet restore
-COPY RazorPageWeddingWebsite .
-RUN dotnet build -c Debug -o /app/build
+#COPY RazorPageWeddingWebsite/RazorPageWeddingWebsite.csproj .
+#RUN dotnet restore
+#COPY RazorPageWeddingWebsite .
+#RUN dotnet build -c Debug -o /app/build
 
 # 2. Manually copy the Windows-built DLL
 # Note: Must match your exact runtime identifier (net8.0-windows8.0)
-COPY RazorPageWeddingWebsite/sharedDLLs/Content.Modelling.dll /app/publish/
+#COPY RazorPageWeddingWebsite/sharedDLLs/Content.Modelling.dll /app/publish/
 
 #############################
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
