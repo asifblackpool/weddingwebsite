@@ -6,7 +6,7 @@ WORKDIR /src
 
 # Copy the Razor Pages project and the SharedLib DLL
 COPY RazorPageWeddingWebsite/ ./RazorPageWeddingWebsite/
-COPY bin/ ./RazorPageWeddingWebsite/libs/
+COPY shared/ ./RazorPageWeddingWebsite/libs/
 
 # Set working directory to the web project
 WORKDIR /src/RazorPageWeddingWebsite
