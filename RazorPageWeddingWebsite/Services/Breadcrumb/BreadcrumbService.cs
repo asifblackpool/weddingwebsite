@@ -15,7 +15,7 @@ namespace RazorPageWeddingWebsite.Services.Breadcrumb
         private readonly List<BreadcrumbItem> _items = new List<BreadcrumbItem>();
         private bool _autoGenerate = true;
 
-        public void AddItem(string title, string url = null)
+        public void AddItem(string title, string? url = null)
         {
             _items.Add(new BreadcrumbItem { Title = title, Url = url });
             _autoGenerate = false; // Manual addition disables auto-generation
@@ -27,7 +27,11 @@ namespace RazorPageWeddingWebsite.Services.Breadcrumb
             _autoGenerate = true;
         }
 
-        public void EnableAutoGeneration() => _autoGenerate = true;
+        public void EnableAutoGeneration()
+        {
+            _autoGenerate = true;
+        }
+
         public void DisableAutoGeneration() => _autoGenerate = false;
 
         public List<BreadcrumbItem> GetBreadcrumbs(HttpContext context)
@@ -41,9 +45,9 @@ namespace RazorPageWeddingWebsite.Services.Breadcrumb
             {
                 // Auto-generate from route
                 var path = context.Request.Path.Value;
-                var segments = path.Split('/')
+                List<string> segments = (path != null) ? path.Split('/')
                     .Where(s => !string.IsNullOrEmpty(s))
-                    .ToList();
+                    .ToList() : new List<string>();
 
                 string accumulatedPath = "";
 

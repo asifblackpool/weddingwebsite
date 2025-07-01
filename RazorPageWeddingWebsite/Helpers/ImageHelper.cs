@@ -19,7 +19,7 @@ namespace RazorPageWeddingWebsite.Helpers
             return image?.Asset?.Uri;
         }
 
-        public static string GetImageUrl(string? Url)
+        public static string? GetImageUrl(string? Url)
         {
             if (string.IsNullOrEmpty(Url))
             {

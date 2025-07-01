@@ -102,7 +102,7 @@
 
             if (imageData != null && imageData.Value != null && currentImageUrl != null)
             {
-                string imageUrl = ImageHelper.GetImageUrl(currentImageUrl);
+                string? imageUrl = ImageHelper.GetImageUrl(currentImageUrl);
                 if (imageData.Value.Asset != null && imageData.Value.Asset.System != null)
                 {
                     imageData.Value.Asset.System.Uri = imageUrl;
