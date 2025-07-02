@@ -6,6 +6,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPageWeddingWebsite", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Content.Modelling", "..\shared\lgwebsite.data\content.modelling\Content.Modelling.csproj", "{D1F2F3DC-6790-4DD8-A68D-1C908E3E6285}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B426CFD9-8F4E-4D31-8F97-8757096D175F}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

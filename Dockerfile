@@ -1,4 +1,4 @@
-ARG builder_image=mcr.microsoft.com/dotnet/sdk:9.0
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 FROM ${builder_image} AS build
 
 WORKDIR /src
@@ -17,7 +17,7 @@ RUN dotnet publish -c Release -o /app/publish
 
 
 #############################
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 ENV ASPNETCORE_URLS=http://*:3001
 WORKDIR /app
 COPY --from=build /app/publish .
