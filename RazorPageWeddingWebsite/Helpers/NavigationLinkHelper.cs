@@ -13,9 +13,9 @@ namespace RazorPageWeddingWebsite.Helpers
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
                 string? temp = (url != null) ? url.Replace(WebsiteConstants.SITE_VIEW_PATH, string.Empty).Trim() : url;
-                return temp;
+                return url;
             }
-            return url;
+            return WebsiteConstants.SITE_VIEW_PATH + url;
         }
 
         public static FragmemtParagraph GetLinkUrl(FragmemtParagraph fp)
@@ -28,20 +28,20 @@ namespace RazorPageWeddingWebsite.Helpers
                     string? content = val.Type != null ? val.Type.ToString() : string.Empty;
                     if (val.Value != null && ParagraphHelper.CheckListType(content) == StandardListEnum.link)
                     {
-                         string? temp = (val.Properties != null && val.Properties.Link != null && val.Properties.Link.Sys != null)
-                            ? val.Properties.Link.Sys.Uri : string.Empty;
+                        string? temp = (val.Properties != null && val.Properties.Link != null && val.Properties.Link.Sys != null)
+                           ? val.Properties.Link.Sys.Uri : string.Empty;
 
                         if (val.Properties != null && val.Properties.Link != null && val.Properties.Link.Sys != null && temp != null)
                         {
                             temp = temp.Replace(WebsiteConstants.SITE_VIEW_PATH, string.Empty);
                             val.Properties.Link.Sys.Uri = temp;
                         }
-                        
+
                     }
-                    
+
                 }
 
-      
+
             }
             return fp;
         }

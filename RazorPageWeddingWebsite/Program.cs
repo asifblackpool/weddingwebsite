@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Rewrite;
+using RazorPageWeddingWebsite.Constants;
 using RazorPageWeddingWebsite.Middleware;
 using RazorPageWeddingWebsite.Services;
 using RazorPageWeddingWebsite.Services.Breadcrumb;
@@ -20,11 +22,11 @@ builder.Services
     .AddRazorPagesOptions(options =>
     {
         // Override root to always render blog post at '/'
-        options.Conventions.AddPageRoute("/Home/Index", "/");
-        options.Conventions.AddPageRoute("/Home/Details", "/{*slug}");
-        options.Conventions.AddPageRoute("/Venues", "/Venues");
-        options.Conventions.AddPageRoute("/Venues/Details", "Venues/{*slug}");
-        options.Conventions.AddPageRoute("/Ceremonies/Details", "Ceremonies/{*slug}");
+        options.Conventions.AddPageRoute("/Home/Index", WebsiteConstants.SITE_VIEW_PATH);
+        options.Conventions.AddPageRoute("/Home/Details", WebsiteConstants.SITE_VIEW_PATH + "{*slug}");
+        options.Conventions.AddPageRoute("/Venues", WebsiteConstants.SITE_VIEW_PATH + "Venues");
+        options.Conventions.AddPageRoute("/Venues/Details", WebsiteConstants.SITE_VIEW_PATH + "Venues/{*slug}");
+        options.Conventions.AddPageRoute("/Ceremonies/Details", WebsiteConstants.SITE_VIEW_PATH + "Ceremonies/{*slug}");
 
         options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
     });
@@ -47,6 +49,18 @@ if (!app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection(); NO SUPPORT FOR .NET 9,0 
 app.UseStaticFiles();
+
+//add rewrite options 
+// Configure URL rewriting
+var rewriteOptions = new RewriteOptions()
+    // Rewrite root path to your specific page
+    .AddRewrite(@"^$", WebsiteConstants.SITE_VIEW_PATH.TrimEnd('/'), skipRemainingRules: true);
+
+app.UseRewriter(rewriteOptions);
+
+
+
+
 app.UseRouting();
 // app.UseHttpLogging(); NO SUPPORT FOR .NET 9,0 
 app.UseMiddleware<BreadcrumbMiddleware>();
