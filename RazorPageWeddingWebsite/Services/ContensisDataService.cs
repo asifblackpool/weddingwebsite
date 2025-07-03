@@ -38,11 +38,11 @@ namespace RazorPageWeddingWebsite.Services
             _dataLoaded = true;
         }
 
-        private void CheckData(string? path)
+        private void CheckData(string? path, bool ignore = true)
         {
             if (path != null && _path != path)
             {
-                _path += path;
+                _path = (ignore) ? path : _path + path;
             }
 
             if( !_dataLoaded)

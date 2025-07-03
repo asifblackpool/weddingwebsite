@@ -33,7 +33,7 @@ namespace RazorPageWeddingWebsite.Helpers
 
                         if (val.Properties != null && val.Properties.Link != null && val.Properties.Link.Sys != null && temp != null)
                         {
-                            temp = temp.Replace(WebsiteConstants.SITE_VIEW_PATH, string.Empty);
+                            //temp = temp.Replace(WebsiteConstants.SITE_VIEW_PATH, string.Empty);
                             val.Properties.Link.Sys.Uri = temp;
                         }
 
