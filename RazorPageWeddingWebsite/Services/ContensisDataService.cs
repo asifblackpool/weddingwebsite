@@ -6,14 +6,14 @@ using Zengenti.Contensis.Delivery;
 
 namespace RazorPageWeddingWebsite.Services
 {
-    public class BreadcrumbService<T> : IDataService<T> where T : class, new()
+    public class ContensisDataService<T> : IDataService<T> where T : class, new()
     {
         private List<T> _data;
         private string  _path       = WebsiteConstants.SITE_VIEW_PATH;
         private bool    _dataLoaded = false;
 
         // Proper constructor with no return type
-        public BreadcrumbService()
+        public ContensisDataService()
         {
             _data = new List<T>();
         }

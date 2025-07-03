@@ -8,7 +8,7 @@ using Zengenti.Contensis.Delivery;
 var builder = WebApplication.CreateBuilder(args);
 
 // Register generic data service
-builder.Services.AddTransient(typeof(IDataService<>), typeof(BreadcrumbService<>));
+builder.Services.AddTransient(typeof(IDataService<>), typeof(ContensisDataService<>));
 
 // Configure logging
 builder.Services.AddLogging(configure =>
