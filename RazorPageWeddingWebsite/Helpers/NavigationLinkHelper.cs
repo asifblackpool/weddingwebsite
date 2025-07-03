@@ -15,7 +15,7 @@ namespace RazorPageWeddingWebsite.Helpers
                 string? temp = (url != null) ? url.Replace(WebsiteConstants.SITE_VIEW_PATH, string.Empty).Trim() : url;
                 return url;
             }
-            return WebsiteConstants.SITE_VIEW_PATH + url;
+            return url;
         }
 
         public static FragmemtParagraph GetLinkUrl(FragmemtParagraph fp)
