@@ -5,7 +5,7 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-title);
+    font-family: var(--freight-text);
     font-weight: 700;
 }
 
@@ -13,7 +13,6 @@ body, p, li, span {
     font-family: var(--font-body);
     font-weight: 400;
 }
-
 
 body {
 
@@ -38,7 +37,7 @@ body {
 }
 
 .venues-section {
-    padding-bottom:3rem;
+    padding-bottom:0rem;
 }
 
 .pink-button {
@@ -55,9 +54,25 @@ body {
     color: var(--pink);
 }
 
+.white-button {
+    background-color: transparent;
+    color: var(--pink);
+    border-radius: 30px;
+    padding: 1rem;
+    min-width: 170px;
+    border: solid 2px var(--pink);
+}
+
+.white-button:hover {
+    background: var(--pink);
+    color: var(--white);
+    border: solid 2px var(--white);
+}
+
 .block-title, .h1-title {
     color: var(--pink);
     font-size:var(--h1);
+    font-weight:normal;
     line-height:var(--h1-line-height);
     text-align:center;
     padding:4rem 1rem 4rem 1rem;
@@ -85,6 +100,7 @@ body {
     line-height: var(--h3-line-height);
     text-align: left;
     padding-bottom:2rem;  
+    font-weight:normal;
 }
 
 .venues-list {

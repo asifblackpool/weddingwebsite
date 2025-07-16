@@ -4,16 +4,48 @@ using Blackpool.Zengenti.CMS.Models.Weddings;
 using RazorPageWeddingWebsite.Services.Interfaces;
 using Zengenti.Contensis.Delivery;
 using System.Globalization;
+using System.IO;
 
 namespace RazorPageWeddingWebsite.Services.Breadcrumb
 {
 
-
-    // Services/BreadcrumbService.cs
     public class BreadcrumbService
     {
         private readonly List<BreadcrumbItem> _items = new List<BreadcrumbItem>();
         private bool _autoGenerate = true;
+
+        #region filter breadcrumb
+
+        private string[] GetIgnoreListFromPath(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return Array.Empty<string>();
+            }
+
+            // Split by '/' and remove empty entries (like leading/trailing slashes)
+            return path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private List<BreadcrumbItem> FilterBreadcrumbs(List<BreadcrumbItem> breadcrumbs, string[] ignoreList)
+        {
+            if (breadcrumbs == null || ignoreList == null)
+                return breadcrumbs?.ToList() ?? new List<BreadcrumbItem>();
+
+            // Replace hyphens with spaces in ignoreList and convert to lowercase
+            var processedIgnoreList = ignoreList
+                .Select(x => x.Replace("-", " ").ToLowerInvariant())
+                .ToArray();
+
+            return breadcrumbs
+                .Where(b => b.Title != null &&
+                           !processedIgnoreList.Contains(
+                               b.Title.Replace("-", " ").ToLowerInvariant()))
+                .ToList();
+        }
+
+
+        #endregion
 
         public void AddItem(string title, string? url = null)
         {
@@ -39,7 +71,7 @@ namespace RazorPageWeddingWebsite.Services.Breadcrumb
             var finalItems = new List<BreadcrumbItem>();
 
             // Always start with Home
-            finalItems.Add(new BreadcrumbItem { Title = "Home", Url = "/" });
+            finalItems.Add(new BreadcrumbItem { Title = "Home", Url = WebsiteConstants.SITE_VIEW_PATH });
 
             if (_autoGenerate)
             {
@@ -77,8 +109,14 @@ namespace RazorPageWeddingWebsite.Services.Breadcrumb
                 finalItems.Last().Url = null;
             }
 
-            return finalItems;
+          
+            string[] ignoreList = GetIgnoreListFromPath(WebsiteConstants.SITE_VIEW_PATH);
+
+            var filteredBreadcrumbs = FilterBreadcrumbs(finalItems, ignoreList);
+
+            return filteredBreadcrumbs;
         }
+
     }
 
 }

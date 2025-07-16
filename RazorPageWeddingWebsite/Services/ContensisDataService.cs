@@ -27,15 +27,24 @@ namespace RazorPageWeddingWebsite.Services
 
             var node = client.Nodes.GetByPath(_path, null, 1);
 
-            var entryId = (node != null) ? node.EntryId : null;
-            if (entryId != null)
+            try
             {
-                var entry = client.Entries.Get<T>((Guid)entryId, null, 1);
-                _data.Add(entry);
+                var entryId = (node != null) ? node.EntryId : null;
+                if (entryId != null)
+                {
+                    var entry = client.Entries.Get<T>((Guid)entryId, null, 1);
+                    _data.Add(entry);
+
+                }
+
+                _dataLoaded = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
 
             }
 
-            _dataLoaded = true;
         }
 
         private void CheckData(string? path, bool ignore = true)

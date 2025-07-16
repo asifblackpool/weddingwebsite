@@ -1,0 +1,64 @@
+﻿@media (min-width: 992px) {
+    .three-columns {
+        display: flex;
+        flex-direction: row;
+        gap: 0px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .three-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+.column-box {
+    background-color: transparent;
+    /* #f1f1f1; */
+    padding: 20px;
+    min-height: 450px;
+    border-radius: 8px;
+}
+
+div.stories-img {
+    position: relative;
+    width: 100%;
+    /*aspect-ratio: 16/9; /* Your desired ratio */
+    overflow: hidden;
+    height: 400px;
+}
+
+div.stories-img>img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+div.stories-information {
+    text-align: center;
+}
+
+div.stories-information>h2 {
+    text-align: center;
+    padding: 20px 0px;
+}
+
+div.stories-information>p {
+    text-align: center;
+    padding-bottom: 3rem;
+}
+
+div.stories-information>button {
+    text-align: center;
+}
+
+div.center-container {
+    margin: auto;
+    text-align: center;
+    padding: 5rem 0rem 2rem 0rem;
+}

@@ -1,4 +1,5 @@
 @page
+@using Blackpool.Zengenti.CMS.Helpers.Components
 @using RazorPageWeddingWebsite.Helpers
 @using Blackpool.Zengenti.CMS.Models.Weddings
 @model RazorPageWeddingWebsite.Pages.IndexModel
@@ -36,7 +37,7 @@
             <p class="hero-text">@entryModel.HeroText</p>
             @if(entryModel.CTALinks != null)
             {
-                <button onclick="window.location.href='#'" class="pink-button">
+                <button onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CTALinks).Url)'" class="pink-button">
                    @entryModel.CTALinks.ButtonText
                </button>
             }  
@@ -47,17 +48,17 @@
     <div class="venues-section psuedo-wrapper">
         <h1 class="block-title">Explore our Venues</h1>
        <div class="row">
-           <div class="col-md-3 feature-area-details">
+           <div class="col-md-4 feature-area-details">
                 <h3 class="sub-title">@entryModel.FeatureElementHeader</h3>
                 <p class="venue-text">@entryModel.FeatureElementText</p>
                 @if (entryModel.CtaLinks1 != null)
                 {
-                    <button onclick="window.location.href='#'" class="pink-button">
+                    <button  onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CTALinks).Url)'" class="pink-button">
                         @entryModel.CtaLinks1.ButtonText
                     </button>
                 }
             </div>
-           <div class="col-md-5 ">
+           <div class="col-md-4 feature-area-image-box">
                 <div class="feature-area-venue-image">
                    <img src="@string.Format("{0}", entryModel.FeatureImage != null 
                                     ? ImageHelper.GetImageUrl(entryModel.FeatureImage)
@@ -68,8 +69,9 @@
                    />
                </div>
            </div>
-            <div class="col-md-4">
-                <div class="promotion-area-venue-image">
+            <div class="col-md-4 feature-area-image-box">
+                <div class="promotion-area-venue-image"
+                     onclick="window.location.href='@String.Format("{0}", entryModel.PromotionalBannerUri)'">
                     <img src="@string.Format("{0}", entryModel.PromotionalBannerImage != null
                                     ? ImageHelper.GetImageUrl(entryModel.PromotionalBannerImage)
                                     : string.Empty)"
@@ -88,12 +90,8 @@
    </div>
 
    <!--Stories (Section)-->
-   <div class="stories-section psuedo-wrapper">
-        <h1 class="block-title">Real stories</h1>
-        <div class="col-md-4"></div>
-       <div class="col-md-4"></div>
-       <div class="col-md-4"></div>
-   </div>
+    @await Html.PartialAsync("../shared/_story-three-col-box.cshtml")
+
 }
 else
 {

@@ -16,6 +16,7 @@ h1.home {
 h1.home > a.home-link {
     text-decoration:none;
     color:inherit !important;
+    font-weight:normal;
 }
 
 /* Base styles */
@@ -29,7 +30,7 @@ h1.home > a.home-link {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
+    gap: 1rem;
     height:10vh;
 }
 

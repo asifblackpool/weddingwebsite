@@ -2,6 +2,7 @@
 @import './variables.css';
 @import './base.css';
 @import './header-with-secondary.css';
+@import 'stories-home.css';
 @import'./breadcrumb.css';
 @import './social-media.css';
 @import './footer.css';
@@ -17,7 +18,8 @@ main {
 .breadcrumb-container,
 .header-container, 
 .footer-container, 
-.psuedo-wrapper {
+.psuedo-wrapper,
+.custom-container{
     max-width:1440px;
     margin:0 auto;
     width:100%;
@@ -87,6 +89,11 @@ footer {
     max-width:460px;
 }
 
+div.feature-area-image-box {
+    padding-left:0px;
+    padding-right:0px;
+}
+
 div.feature-area-venue-image, 
 div.promotion-area-venue-image{
     position: relative;
@@ -118,6 +125,10 @@ div.venue-image > img {
     width:95%;
 
 }
+
+
+
+
 
 
 

@@ -1,25 +1,22 @@
 ﻿:root {
-    --font-headings: 'Libre Baskerville', serif;
-    --font-body:'Cormorant', serif;
-
+    --freight-text: 'Freight Text Pro', serif;
+    --font-body: 'Baskerville', serif;
     --dark-blue: #041C2C;
     --white: #ffffff;
     --pink: #DD3394;
     --plain-black: #000;
     --shade-black: #3E3E3E;
-
     /* Spacing */
     --space-sm: 0.5rem;
     --space-md: 1rem;
     --space-lg: 2rem;
-
     /* Font sizes */
-    --text-xsm:1.2rem;
+    --text-xsm: 1.2rem;
     --text-sm: 1.4rem;
     --text-base: 1.8rem;
     --text-lg: 2.2rem;
     --text-xl: 2.4rem;
-    --text-xxl:2.8rem;
+    --text-xxl: 2.8rem;
     /*Html fonts*/
     --body: 1.8rem;
     --h1: 6.8rem;

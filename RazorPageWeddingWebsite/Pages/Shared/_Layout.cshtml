@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Wedding</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;700&display=swap" />
+
+    <link rel="stylesheet" href=https://use.typekit.net/yqk1tir.css>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" >
 
     <link rel="stylesheet" href="~/static/css/bootstrap/bootstrap.min.css" asp-append-version="true" />
@@ -17,12 +18,13 @@
  
 <header>
       <div class="header-container">
-            @Html.Partial("_navigation.cshtml")
+            @await Html.PartialAsync("_navigation.cshtml")
       </div>
 </header>
 <main>
     @await Component.InvokeAsync("Breadcrumb")
     @RenderBody()
+  
 </main>
     <footer>
         <div class="footer-container">
