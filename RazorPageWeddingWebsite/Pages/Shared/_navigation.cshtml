@@ -32,8 +32,9 @@
                             var x = subchildren;
                             if (count == 0 && subchildren.Count > 0)
                             {
-                                <li class="nav-item has-panel">
-                                    <a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName <span class="caret"></span></a>
+                                <li class="nav-itemhas-panel">
+                                    <a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName <span
+                                            class="caret"></span></a>
                                     <div class="hover-panel">
                                         <div class="panel-content">
                                             <h3 style="display:none;">@string.Format("Our {0}", item.DisplayName)</h3>
