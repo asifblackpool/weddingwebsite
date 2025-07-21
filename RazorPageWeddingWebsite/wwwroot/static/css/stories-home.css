@@ -1,25 +1,26 @@
 ﻿@media (min-width: 992px) {
-    .three-columns {
-        display: flex;
-        flex-direction: row;
-        gap: 0px;
-    }
+.three-columns {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
 }
 
 @media (max-width: 991.98px) {
     .three-columns {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 26.5px;
     }
 }
 
 .column-box {
     background-color: transparent;
     /* #f1f1f1; */
-    padding: 20px;
+    padding: 0px;
     min-height: 450px;
     border-radius: 8px;
+    width:33.33%;
 }
 
 div.stories-img {
@@ -50,6 +51,7 @@ div.stories-information>h2 {
 
 div.stories-information>p {
     text-align: center;
+    min-height:11rem;
     padding-bottom: 3rem;
 }
 

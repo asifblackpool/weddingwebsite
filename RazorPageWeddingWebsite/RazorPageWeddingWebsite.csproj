@@ -33,6 +33,8 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+
+
   <ItemGroup>
     <!--ProjectReference Include="..\..\shared\lgwebsite.data\content.modelling\Content.Modelling.csproj" /-->
     <Reference Include="SharedLib">

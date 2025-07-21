@@ -14,16 +14,6 @@
     IReadOnlyList<Node> subchildren;
     int count = 0;
 
-    var nodes1 = client.Nodes.GetByPath("residents/life-events/getting-married/stories", null, 1);
-
-    if (nodes1 != null && nodes1.Entry() != null)
-    {
-        var contentEntry = nodes1.Entry();
-
-        // You can now deserialize this into your model (if using JSON.NET):
-        var model = contentEntry.ToModel<GettingMarriedBlog>();
-    }
-
 }
 <div class="row">
     <div class="col-md-6 home-link-container">
@@ -32,43 +22,44 @@
     <div class="col-md-6">
         @if (children != null && children.Count > 0)
         {
-            <!--ul class="top-navigation-list" style="display:none;" ><li><a>txt</a></li></ul -->
-            <ul class="hover-panel-menu">
-                @foreach (var item in children)
-                {
-                    if (item.IncludeInMenu)
+            <nav class="nav-container">
+                <ul class="nav-list hover-panel-menu">
+                    @foreach (var item in children)
                     {
-                        subchildren = item.Children();
-                        var x = subchildren;
-                        if (count == 0 && subchildren.Count > 0)
+                        if (item.IncludeInMenu)
                         {
-                            <li class="has-panel">
-                                <a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName <span class="caret"></span></a>
-                                <div class="hover-panel">
-                                    <div class="panel-content">
-                                        <h3 style="display:none;">@string.Format("Our {0}", item.DisplayName)</h3>
-                                        <p style="display:none;">@string.Format("Explore details about {0}", item.DisplayName)</p>
-                                        <ul>
-                                            @foreach (var subitem in subchildren)
-                                            {
-                                                <li>
-                                                    <a href="@NavigationLinkHelper.GetLinkUrl(subitem.Path)">@subitem.DisplayName</a>
-                                                </li>
-                                            }
-                                        </ul>
-                                        <br /><br />
+                            subchildren = item.Children();
+                            var x = subchildren;
+                            if (count == 0 && subchildren.Count > 0)
+                            {
+                                <li class="nav-item has-panel">
+                                    <a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName <span class="caret"></span></a>
+                                    <div class="hover-panel">
+                                        <div class="panel-content">
+                                            <h3 style="display:none;">@string.Format("Our {0}", item.DisplayName)</h3>
+                                            <p style="display:none;">@string.Format("Explore details about {0}", item.DisplayName)</p>
+                                            <ul>
+                                                @foreach (var subitem in subchildren)
+                                                {
+                                                    <li>
+                                                        <a href="@NavigationLinkHelper.GetLinkUrl(subitem.Path)">@subitem.DisplayName</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                            <br /><br />
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            count++;
-                        }
-                        else
-                        {
-                            <li><a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName</a></li>
+                                </li>
+                                count++;
+                            }
+                            else
+                            {
+                                <li class="nav-item"><a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName</a></li>
+                            }
                         }
                     }
-                }
-            </ul>
+                </ul>
+            </nav>
         }
     </div>
 </div>
@@ -78,6 +69,7 @@
     -->
     .breadcumb-container
     {
-        display: none;
+    display:
+    none;
     }
 </style>

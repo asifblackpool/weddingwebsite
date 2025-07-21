@@ -19,30 +19,46 @@ h1.home > a.home-link {
     font-weight:normal;
 }
 
-/* Base styles */
-.hover-panel-menu {
+.nav-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position:relative;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-headings);
+    align-items: center;
+    height: 10vh;
     list-style: none;
     margin: 0;
     padding: 0;
-    font-family: var(--font-headings);
-    position: relative;
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    height:10vh;
+}
+
+.nav-item a {
+    display: block;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.nav-item a:hover {
+   
+}
+
+/* Base styles */
+.hover-panel-menu {
+
 }
 
 .hover-panel-menu li {
-    display: inline-block;
-    position: relative;
-    margin-right: 1.5rem;
+
 }
 
 .hover-panel-menu a {
     display: block;
-    padding: 10px 15px;
     color: var(--shade-black);
     text-decoration: none;
     background: transparent;
@@ -57,7 +73,7 @@ h1.home > a.home-link {
 /* Hover panel styles */
 .hover-panel {
     position: absolute;
-    top: 100%;
+    top: 55%;
     left: 0;
     width: 300px;
     background: white;

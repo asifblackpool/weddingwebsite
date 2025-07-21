@@ -1,34 +1,34 @@
-
 @import './variables.css';
 @import './base.css';
 @import './header-with-secondary.css';
-@import 'stories-home.css';
+@import './venues-home.css';
+@import './stories-home.css';
 @import'./breadcrumb.css';
 @import './social-media.css';
 @import './footer.css';
 
 
 main {
-    min-height:45vh;
-    background-color:var(--white);
-    padding-bottom:3rem;
+    min-height: 45vh;
+    background-color: var(--white);
+    padding-bottom: 3rem;
 }
 
- main, 
+main,
 .breadcrumb-container,
-.header-container, 
-.footer-container, 
+.header-container,
+.footer-container,
 .psuedo-wrapper,
-.custom-container{
-    max-width:1440px;
-    margin:0 auto;
-    width:100%;
-    border:solid 0px black;
-    height:100%;
+.custom-container {
+    max-width: 1288px;
+    margin: 0 auto;
+    width: 100%;
+    border: solid 0px black;
+    height: 100%;
 }
 
 .footer-container {
-    padding-top:30px;
+    padding-top: 30px;
 }
 
 header {
@@ -37,19 +37,17 @@ header {
 }
 
 footer {
-    
-    min-height:363px;
+
+    min-height: 363px;
     background-color: var(--dark-blue);
-    color:var(--white);
+    color: var(--white);
 }
 
-.psuedo-wrapper {
-    
-}
+.psuedo-wrapper {}
 
 .footer-logo {
-    width:303px;
-    height:59px;
+    width: 303px;
+    height: 59px;
 }
 
 /* colors */
@@ -72,39 +70,40 @@ footer {
 
 .hero-title {
     /* font style should be baskerville*/
-    color:var(--plain-black);
-    font-size:6.6rem;
-    font-weight:bold;
-    padding-bottom:2rem;
-    
+    color: var(--plain-black);
+    font-size: 6.6rem;
+    font-weight: bold;
+    padding-bottom: 2rem;
+
 }
 
-.hero-text, .venue-text {
+.hero-text,
+.venue-text {
     color: var(--plain-black);
     font-size: var(--text-lg);
     padding-bottom: 2rem;
 }
 
 .hero-text {
-    max-width:460px;
+    max-width: 460px;
 }
 
 div.feature-area-image-box {
-    padding-left:0px;
-    padding-right:0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-div.feature-area-venue-image, 
-div.promotion-area-venue-image{
+div.feature-area-venue-image,
+div.promotion-area-venue-image {
     position: relative;
     width: 100%;
     /*aspect-ratio: 16/9; /* Your desired ratio */
     overflow: hidden;
-    height:365px;
+    height: 365px;
 }
 
-div.feature-area-venue-image > img,
-div.promotion-area-venue-image > img{
+div.feature-area-venue-image>img,
+div.promotion-area-venue-image>img {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -114,15 +113,15 @@ div.promotion-area-venue-image > img{
 }
 
 div.promotion-text {
-    position:absolute;
-    color:var(--white);
-    width:100%;
-    text-align:center;
-    top:3rem;
+    position: absolute;
+    color: var(--white);
+    width: 100%;
+    text-align: center;
+    top: 3rem;
 }
 
-div.venue-image > img {
-    width:95%;
+div.venue-image>img {
+    width: 95%;
 
 }
 
@@ -132,8 +131,6 @@ div.venue-image > img {
 
 
 
-@media only screen and (min-width: 768px) {
-}
-@media only screen and (min-width: 1024px) {
- 
-}
+@media only screen and (min-width: 768px) {}
+
+@media only screen and (min-width: 1024px) {}

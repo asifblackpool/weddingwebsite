@@ -30,6 +30,8 @@
     --transition-fast: 0.15s;
     --transition-normal: 0.3s;
     --full-width: 100%;
+
+    --button-width-200: 205px;
 }
 
 @media only screen and (max-width: 1024px) {

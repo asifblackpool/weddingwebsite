@@ -22,6 +22,16 @@ body {
     font-size:1.8rem;
 }
 
+.row {
+    --bs-gutter-x: 0.0rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+}
+
 .clearfix::after {
     content: "";
     clear: both;
@@ -40,6 +50,10 @@ body {
     padding-bottom:0rem;
 }
 
+.width-button-stories {
+    width: var(--button-width-200);
+}
+
 .pink-button {
     background-color: var(--pink);
     color: var(--white);
@@ -52,6 +66,7 @@ body {
 .pink-button:hover {
     background: var(--white);
     color: var(--pink);
+    border:solid 2px var(--pink)
 }
 
 .white-button {
@@ -59,7 +74,7 @@ body {
     color: var(--pink);
     border-radius: 30px;
     padding: 1rem;
-    min-width: 170px;
+    min-width: 174.5px;
     border: solid 2px var(--pink);
 }
 
@@ -101,6 +116,15 @@ body {
     text-align: left;
     padding-bottom:2rem;  
     font-weight:normal;
+}
+
+.sub-title-bold {
+    color: var(--pink);
+    font-size: var(--h3);
+    line-height: var(--h3-line-height);
+    text-align: left;
+    padding-bottom: 2rem;
+    font-weight: bold;
 }
 
 .venues-list {

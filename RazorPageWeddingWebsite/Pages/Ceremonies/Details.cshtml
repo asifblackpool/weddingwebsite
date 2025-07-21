@@ -28,7 +28,9 @@
     }
     catch (Exception ex)
     {
+        var exception = ex;
         <div class="alert alert-danger">@ex.Message</div>
+        <div class="alert alert-danger">@ex.InnerException?.Message</div>
     }
 }
 else

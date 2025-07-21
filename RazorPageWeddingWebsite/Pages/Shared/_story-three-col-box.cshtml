@@ -41,7 +41,7 @@
 
 
 
-<div class="custom-container px-3">
+<div class="custom-container">
     <h1 class="block-title">Real stories</h1>
     <div class="three-columns">
         @foreach (var item in blogEntries)
@@ -58,19 +58,18 @@
                 <div class="stories-information">
                     <h2>@item.PageTitle</h2>
                     <p>@item.GetFirstParagraph</p>
-                    <button onclick="window.location.href='@String.Format("{0}", item.FriendlyUrlPath)'" class="white-button">Find out more</button>
+                    <button onclick="window.location.href='@String.Format("{0}", item.FriendlyUrlPath)'" class="white-button width-button-stories">Find out more</button>
                 </div>
             </div>
         }
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="center-container">
-            <button onclick="window.location.href='#'" class="pink-button">View all our stories</button>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="center-container">
+                <button onclick="window.location.href='#'" class="pink-button width-button-stories">View all real stories</button>
+            </div>
         </div>
-   
-
     </div>
 </div>
+
 

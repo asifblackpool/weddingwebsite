@@ -1,4 +1,5 @@
 ﻿@using Blackpool.Zengenti.CMS.Helpers
+@using Blackpool.Zengenti.CMS.Models.Components;
 @using Blackpool.Zengenti.CMS.Models.Canvas.Code
 @using Blackpool.Zengenti.CMS.Models.Canvas.Headers
 @using Blackpool.Zengenti.CMS.Models.Canvas.Helpers
@@ -8,7 +9,9 @@
 @using Blackpool.Zengenti.CMS.Models.Weddings
 @using Content.Modelling.Models.Canvas.Helpers
 @using Content.Modelling.Models.Canvas.Images
+@using Content.Modelling.Models.Forms
 @using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
 @using RazorPageWeddingWebsite.Helpers
 @using System.Text
 
@@ -16,126 +19,215 @@
 
 @if (Model != null && Model.Items.Count > 0)
 {
-    foreach (SerialisedItem item in Model.Items)
+    try
     {
-        //Add Header .. usually H1, H2 tag
-        if (item.ClassName == typeof(TitleHeader).Name)
+        foreach (SerialisedItem item in Model.Items)
         {
-            TitleHeader objItem = SerializationHelper.Deseralize(item);
-            if (objItem.Properties != null && objItem.Properties.level == 1)
+            //Add Header .. usually H1, H2 tag
+            if (item.ClassName == typeof(TitleHeader).Name)
             {
-                <h1 class="h1-title">@objItem.Value</h1>
+                TitleHeader objItem = SerializationHelper.Deseralize(item);
+                if (objItem.Properties != null && objItem.Properties.level == 1)
+                {
+                    <h1 class="h1-title">@objItem.Value</h1>
+                }
+
+                if (objItem.Properties != null && objItem.Properties.level == 2)
+                {
+                    var x = objItem;
+                    <h2 class="h2-title">@objItem.Value</h2>
+                }
             }
 
-            if (objItem.Properties != null && objItem.Properties.level == 2)
+            //Add Text .. usually wrapped P tag
+            if (item.ClassName == typeof(CanvasParagraph).Name)
             {
-                <h2 class="h2-title">@objItem.Value</h2>
+                CanvasParagraph objItem = SerializationHelper.Deseralize(item);
+                <p class="shade-black">@objItem.Value</p>
+
             }
-        }
 
-        //Add Text .. usually wrapped P tag
-        if (item.ClassName == typeof(CanvasParagraph).Name)
-        {
-            CanvasParagraph objItem = SerializationHelper.Deseralize(item);
-            <p class="shade-black">@objItem.Value</p>
-
-        }
-
-        //Code .. at the moment using for Iframe
-        if (item.ClassName == typeof(Code).Name)
-        {
-            Code objItem = SerializationHelper.Deseralize(item);
-            if (objItem.Value != null && objItem.Value.Code != null)
+            //Code .. at the moment using for Iframe
+            if (item.ClassName == typeof(Code).Name)
             {
-                @Html.Raw(objItem.Value.Code)
-                <br />
-                <br />
+                Code objItem = SerializationHelper.Deseralize(item);
+                if (objItem.Value != null && objItem.Value.Code != null)
+                {
+                    @Html.Raw(objItem.Value.Code)
+                    <br />
+                    <br />
+                }
             }
-        }
 
-        //Add (fragments of) Text .. usually P tag
-        if (item.ClassName == typeof(FragmemtParagraph).Name)
-        {
-            <p>@Html.Raw(ParagraphHelper.FragmentParagraph(NavigationLinkHelper.GetLinkUrl(SerializationHelper.Deseralize(item))))</p>
-
-        }
-
-        //Canvas list item storing a list ..(note list can be simple or complext)
-        if (item.ClassName == typeof(CanvasListItem).Name)
-        {
-            List<CanvasListItem>? items = CanvasListItemHelper.DeserializeListItems(item.Content);
-            if (items != null)
+            //Add (fragments of) Text .. usually P tag
+            if (item.ClassName == typeof(FragmemtParagraph).Name)
             {
-                <ul class="shade-black">
-                    @foreach (var canvasItem in items)
+                <p>@Html.Raw(ParagraphHelper.FragmentParagraph(NavigationLinkHelper.GetLinkUrl(SerializationHelper.Deseralize(item))))</p>
+
+            }
+
+            //Canvas list item storing a list ..(note list can be simple or complex)
+            if (item.ClassName == typeof(CanvasListItem).Name)
+            {
+                JToken token = JToken.Parse(item.Content);
+                List<CanvasListItem>? items = new List<CanvasListItem>();
+                StringBuilder sb = new StringBuilder();
+
+                if (token.Type == JTokenType.Array)
+                {
+                    sb.Append("<ul class=\"shade-black\">");
+                    foreach (JToken jItem in token)
                     {
-                        switch (canvasItem.Content)
+                        // Access properties of each item
+                        string? id = jItem["id"]?.ToString();
+                        string? type = jItem["type"]?.ToString();
+
+                        Console.WriteLine($"ID: {id}, Type: {type}");
+
+                        // Handle the value based on its type
+                        JToken? valueToken = jItem["value"];
+
+                        if (valueToken?.Type == JTokenType.String)
                         {
-                            case SimpleValue simple:
-                                var text = ((SimpleValue)canvasItem.Content);
-                                <li>@text.Text</li>
-                                break;
-                            case ComplexValue complex:
-                                var objFragment = ((ComplexValue)canvasItem.Content);
-                                StringBuilder sb = new StringBuilder();
-                                @Html.Raw(
-                                        ContentFragmentHelper.BuildHtmlFragment(objFragment.Fragments, "<li>{0}</li>")
-                                        )
-                                break;
-                            default:
-                                throw new InvalidOperationException("Unknown content type");
+                            sb.Append(string.Format("<li>{0}</li>", valueToken));
+                        }
+                        else if (valueToken?.Type == JTokenType.Array)
+                        {
+                            sb.Append("<li>");
+                            foreach (var subItem in valueToken)
+                            {
+                                JToken? valueSubToken = subItem["value"];
+                                if (valueSubToken?.Type == JTokenType.String)
+                                {
+                                    sb.Append(string.Format("<p{0}</p>", valueSubToken));
+                                }
+                                else if (valueSubToken?.Type == JTokenType.Array)
+                                {
+                                    sb.Append("<ul>");
+                                    foreach (var subsubItem in valueSubToken)
+                                    {
+                                        JToken? valueSubSubToken = subsubItem["value"];
+                                        if (valueSubSubToken?.Type == JTokenType.String)
+                                        {
+                                            sb.Append(string.Format("<li>{0}</li>", valueSubSubToken));
+                                        }
+                                        else if (valueSubSubToken?.Type == JTokenType.Object)
+                                        {
+                                            sb.Append(string.Format("<li>{0}</li>", valueSubSubToken));
+                                        }
+                                    }
+                                    sb.Append("</ul>");
+                                }
+                            }
+                            sb.Append("</li>");
+                        }
+                        else if (valueToken?.Type == JTokenType.Object)
+                        {
+                            foreach (JProperty prop in valueToken)
+                            {
+                                Console.WriteLine($"- {prop.Name}: {prop.Value}");
+                            }
                         }
                     }
-                </ul>
+                    sb.Append("</ul");
+
+                    @Html.Raw(sb.ToString());
+                }
+                else if (token.Type == JTokenType.Object)
+                {
+                    items = CanvasListItemHelper.DeserializeListItems(item.Content);
+                }
+  
+                if (items != null)
+                {
+                    <ul class="shade-black">
+                        @foreach (var canvasItem in items)
+                        {
+                            switch (canvasItem.Content)
+                            {
+                                case SimpleValue simple:
+                                    var text = ((SimpleValue)canvasItem.Content);
+                                    <li>@text.Text</li>
+                                    break;
+                                case ComplexValue complex:
+                                    var objFragment = ((ComplexValue)canvasItem.Content);
+                             
+                                    @Html.Raw(
+                                            ContentFragmentHelper.BuildHtmlFragment(objFragment.Fragments, "<li>{0}</li>")
+                                            )
+                                    break;
+                                default:
+                                    throw new InvalidOperationException("Unknown content type");
+                            }
+                        }
+                    </ul>
+                }
+
             }
 
-        }
 
-        //
-        if (item.ClassName == typeof(ImageData).Name)
-        {
-            string json = item.Content;
-
-            ImageData? imageData = JsonConvert.DeserializeObject<ImageData>(json);
-            string? currentImageUrl = (imageData != null) ? ImageDataHelper.GetImageUrl(imageData) : string.Empty;
-
-
-            if (imageData != null && imageData.Value != null && currentImageUrl != null)
+            if (item.ClassName == typeof(ImageData).Name)
             {
-                string? imageUrl = ImageHelper.GetImageUrl(currentImageUrl);
-                if (imageData.Value.Asset != null && imageData.Value.Asset.System != null)
+                string json = item.Content;
+
+                ImageData? imageData = JsonConvert.DeserializeObject<ImageData>(json);
+                string? currentImageUrl = (imageData != null) ? ImageDataHelper.GetImageUrl(imageData) : string.Empty;
+
+
+                if (imageData != null && imageData.Value != null && currentImageUrl != null)
                 {
-                    imageData.Value.Asset.System.Uri = imageUrl;
-                }
-                var srcset = new Dictionary<string, string>
+                    string? imageUrl = ImageHelper.GetImageUrl(currentImageUrl);
+                    if (imageData.Value.Asset != null && imageData.Value.Asset.System != null)
+                    {
+                        imageData.Value.Asset.System.Uri = imageUrl;
+                    }
+                    var srcset = new Dictionary<string, string>
                 {
                     { "/images/small.jpg", "480w" },
                     { "/images/medium.jpg", "1024w" },
                     { "/images/large.jpg", "1600w" }
                 };
 
-                /*  bulid responsive image Tag
-                    string html = ImageDataHelper.CreateResponsiveImageTag(
+                        /*  bulid responsive image Tag
+                        string html = ImageDataHelper.CreateResponsiveImageTag(
                     imageData,
                     srcset,
-                sizes: "(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px"
-                );
-                */
+                    sizes: "(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px"
+                         );
+                         */
 
-                /* Output:
-                     <img src="/images/medium.jpg" alt="Wedding chapel" width="1024" height="768"
-                     loading="lazy"
-                     srcset="/images/small.jpg 480w, /images/medium.jpg 1024w, /images/large.jpg 1600w"
-                sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px">
-                */
+                         /* Output:
+                         <img src="/images/medium.jpg" alt="Wedding chapel" width="1024" height="768"
+                         loading="lazy"
+                    srcset="/images/small.jpg 480w, /images/medium.jpg 1024w, /images/large.jpg 1600w"
+                    sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px">
+                    */
 
-                <div class="img-container">
-                    @Html.Raw(ImageDataHelper.CreateImageTag(imageData, "img-responsive"))
-                </div>
+                    <div class="img-container">
+                        @Html.Raw(ImageDataHelper.CreateImageTag(imageData, "img-responsive"))
+                    </div>
 
+                }
+            }
+
+            if (item.ClassName == typeof(WebForms).Name)
+            {
+                var form = JsonConvert.DeserializeObject<WebForms>(item.Content);
+                if (form?.Value?.ContentType?.Id != null)
+                {
+                    @Html.Raw(FormHelper.TagBuilder("lgwebsite", form.Value.ContentType.Id))
+                }
+
+               
+              
             }
         }
-
     }
+    catch (Exception ex)
+    {
+        @Html.Raw(ex.Message)<br/>
+        @Html.Raw(ex.InnerException?.Message)<br />
+    }
+  
 }
 
