@@ -8,10 +8,12 @@
 @import './footer.css';
 
 
+
 main {
     min-height: 45vh;
     background-color: var(--white);
     padding-bottom: 3rem;
+    border: solid 0px red;
 }
 
 main,
