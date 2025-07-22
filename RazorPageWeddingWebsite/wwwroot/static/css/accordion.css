@@ -1,0 +1,39 @@
+﻿
+
+/* Rest of your existing CSS stays the same */
+:root {
+    --accordion-primary-color: #4a6fa5;
+    --accordion- secondary-color: #166088;
+    --accordion-background-color: #f8f9fa;
+    --accordion-text-color: #333;
+    --accordion-border-color: #e0e0e0;
+    --transition-speed: 0.3s;
+}
+
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--accordion-primary-color);
+    transition: transform 0.3s ease;
+    margin-left: 12px;
+}
+
+.accordion-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+
+.accordion-item.active > div {
+    border:solid 1px red;
+}
+
+
+.accordion-header {
+    /* Your existing header styles */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

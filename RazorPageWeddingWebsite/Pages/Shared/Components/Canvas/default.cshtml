@@ -1,4 +1,5 @@
 ﻿@using Blackpool.Zengenti.CMS.Helpers
+@using Blackpool.Zengenti.CMS.Models.Accordions
 @using Blackpool.Zengenti.CMS.Models.Components;
 @using Blackpool.Zengenti.CMS.Models.Canvas.Code
 @using Blackpool.Zengenti.CMS.Models.Canvas.Headers
@@ -6,6 +7,7 @@
 @using Blackpool.Zengenti.CMS.Models.Canvas.Lists
 @using Blackpool.Zengenti.CMS.Models.Canvas.Paragraphs
 @using Blackpool.Zengenti.CMS.Models.GenericTypes
+@using Blackpool.Zengenti.CMS.Models.InlineEntry
 @using Blackpool.Zengenti.CMS.Models.Weddings
 @using Content.Modelling.Models.Canvas.Helpers
 @using Content.Modelling.Models.Canvas.Images
@@ -165,7 +167,6 @@
 
             }
 
-
             if (item.ClassName == typeof(ImageData).Name)
             {
                 string json = item.Content;
@@ -218,8 +219,42 @@
                     @Html.Raw(FormHelper.TagBuilder("lgwebsite", form.Value.ContentType.Id))
                 }
 
-               
+
+
+            }
+
+            if (item.ClassName == typeof(Accordion).Name)
+            {
+                Accordion? accordion = JsonConvert.DeserializeObject<Accordion>(item.Content);
               
+                if (accordion != null)
+                {
+                    List<AccordionContent> accordionList = new List<AccordionContent>();
+
+                    if (accordion != null)
+{
+                        accordionList = accordion.GetSerialisedContent();
+                    }
+                    int counter = 1;
+                    <div class="accordion-container">
+                        <h2>@accordion?.AccordionName</h2>
+                        <div class="accordion">
+                        @foreach (var accordionItem in accordionList)
+                        {
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                        <span>@accordionItem.Title</span>
+                                    <span class="arrow"></span>
+                                </button>
+                                <div class="accordion-content">
+                                        @Html.Raw(accordionItem.Body)
+                                </div>
+                            </div>
+                            counter++;
+                        }
+                        </div>
+                    </div>
+                }
             }
         }
     }
