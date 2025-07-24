@@ -1,0 +1,40 @@
+﻿/* Information Panel */
+
+.info-panel {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background-color: #f5f5f5; /* Light grey background */
+    border-left: 4px solid #4CAF50; /* Green accent border */
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+}
+
+.info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4CAF50; /* Green circle */
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.info-content h3 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.info-content p {
+    margin: 0;
+    color: #555;
+    line-height: 1.5;
+}

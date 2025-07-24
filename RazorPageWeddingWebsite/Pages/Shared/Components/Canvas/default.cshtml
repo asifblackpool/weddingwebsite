@@ -1,16 +1,17 @@
 ﻿@using Blackpool.Zengenti.CMS.Helpers
 @using Blackpool.Zengenti.CMS.Models.Accordions
+@using Blackpool.Zengenti.CMS.Models.Canvas.Tables
 @using Blackpool.Zengenti.CMS.Models.Components;
 @using Blackpool.Zengenti.CMS.Models.Canvas.Code
 @using Blackpool.Zengenti.CMS.Models.Canvas.Headers
 @using Blackpool.Zengenti.CMS.Models.Canvas.Helpers
 @using Blackpool.Zengenti.CMS.Models.Canvas.Lists
 @using Blackpool.Zengenti.CMS.Models.Canvas.Paragraphs
+@using Blackpool.Zengenti.CMS.Models.Canvas.Panels;
 @using Blackpool.Zengenti.CMS.Models.GenericTypes
 @using Blackpool.Zengenti.CMS.Models.InlineEntry
 @using Blackpool.Zengenti.CMS.Models.Weddings
-@using Content.Modelling.Models.Canvas.Helpers
-@using Content.Modelling.Models.Canvas.Images
+@using Blackpool.Zengenti.CMS.Models.Canvas.Images
 @using Content.Modelling.Models.Forms
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Linq
@@ -36,8 +37,17 @@
 
                 if (objItem.Properties != null && objItem.Properties.level == 2)
                 {
-                    var x = objItem;
                     <h2 class="h2-title">@objItem.Value</h2>
+                }
+
+                if (objItem.Properties != null && objItem.Properties.level == 3)
+                {
+                    <h3 class="h3-title">@objItem.Value</h3>
+                }
+
+                if (objItem.Properties != null && objItem.Properties.level == 4)
+                {
+                    <h4 class="h3=4-title">@objItem.Value</h4>
                 }
             }
 
@@ -101,7 +111,7 @@
                                 JToken? valueSubToken = subItem["value"];
                                 if (valueSubToken?.Type == JTokenType.String)
                                 {
-                                    sb.Append(string.Format("<p{0}</p>", valueSubToken));
+                                    sb.Append(string.Format("<p>{0}</p>", valueSubToken));
                                 }
                                 else if (valueSubToken?.Type == JTokenType.Array)
                                 {
@@ -218,15 +228,11 @@
                 {
                     @Html.Raw(FormHelper.TagBuilder("lgwebsite", form.Value.ContentType.Id))
                 }
-
-
-
             }
 
             if (item.ClassName == typeof(Accordion).Name)
             {
-                Accordion? accordion = JsonConvert.DeserializeObject<Accordion>(item.Content);
-              
+                Accordion? accordion = JsonConvert.DeserializeObject<Accordion>(item.Content);      
                 if (accordion != null)
                 {
                     List<AccordionContent> accordionList = new List<AccordionContent>();
@@ -255,6 +261,28 @@
                         </div>
                     </div>
                 }
+            }
+
+            if (item.ClassName == typeof(CanvasPanelComplex).Name)
+            {
+                CanvasPanelComplex? cp = JsonConvert.DeserializeObject<CanvasPanelComplex>(item.Content);
+                @Html.Raw(PanelHelper.BuildPanel(cp))
+            }
+
+            if (item.ClassName == typeof(Table).Name)
+            {
+                var settings = new JsonSerializerSettings
+                            {
+                                MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+                                MissingMemberHandling = MissingMemberHandling.Ignore,
+                                Converters = { new TableComponentConverter() }
+                            };
+                var table = JsonConvert.DeserializeObject<Table>(item.Content, settings);
+                if (table != null)
+                {
+                    @Html.Raw(TableHelper.BuildHtmlTable(table))
+                }
+            
             }
         }
     }

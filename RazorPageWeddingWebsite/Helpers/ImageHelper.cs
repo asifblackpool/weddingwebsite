@@ -1,5 +1,5 @@
 ﻿
-using Content.Modelling.Models.Canvas.Images;
+using Blackpool.Zengenti.CMS.Models.Canvas.Images;
 using Zengenti.Contensis.Delivery;
 
 namespace RazorPageWeddingWebsite.Helpers
