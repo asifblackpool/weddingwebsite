@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Blackpool.Zengenti.CMS.Models.Weddings.Base;
+@using RazorPageWeddingWebsite.Models;
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,6 +30,8 @@
     </header>
     <main>
         @await Component.InvokeAsync("Breadcrumb")
+        @await Component.InvokeAsync("Title")
+     
         @RenderBody()
 
     </main>

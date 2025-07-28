@@ -18,11 +18,12 @@ public class IndexModel : BasePageModel<GettingMarriedHome>
     public override async Task OnGetAsync() // Default handler
     {
         ViewData["Title"] = "Homepage";
-        ViewData["Model"] = null;
+      
 
         await base.OnGetAsync();
         Items = Items.Take(1).ToList();
-        LogAction("Getting Married Home data loaded");
+    
+      LogAction("Getting Married Home data loaded");
     }
 
     public async void OnGetFeatured()

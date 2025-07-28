@@ -1,4 +1,5 @@
-﻿@using Zengenti;
+﻿@using RazorPageWeddingWebsite.Constants
+@using Zengenti;
 @using Zengenti.Contensis.Delivery;
 @using RazorPageWeddingWebsite.Helpers;
 @using Blackpool.Zengenti.CMS.Models.Weddings;
@@ -8,7 +9,7 @@
     var client = ContensisClient.Create();
 
     // Get our blog node and its children
-    var nodes = client.Nodes.GetByPath("residents/life-events/getting-married", null, 1);
+    var nodes = client.Nodes.GetByPath(WebsiteConstants.SITE_VIEW_PATH, null, 1);
     // Get children of that node
     var children = nodes.Children();
     IReadOnlyList<Node> subchildren;
@@ -17,7 +18,7 @@
 }
 <div class="row">
     <div class="col-md-6 home-link-container">
-        <h1 class="home"><a href="/" class="home-link">Your Blackpool Wedding</a></h1>
+        <h1 class="home"><a href="@NavigationLinkHelper.GetHomeLink()" class="home-link">Your Blackpool Wedding</a></h1>
     </div>
     <div class="col-md-6">
         @if (children != null && children.Count > 0)

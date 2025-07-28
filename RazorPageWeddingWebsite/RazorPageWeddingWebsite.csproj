@@ -43,4 +43,36 @@
     </Reference>
   </ItemGroup>
 
+<Target Name="CopyRequiredDlls" BeforeTargets="BeforeBuild">
+  <PropertyGroup>
+    <!-- Adjust these paths to match your exact structure -->
+    <SourceDllPath>C:\Development\Projects\repositories\shared\lgwebsite.data\content.modelling\bin\$(Configuration)\net8.0\Content.Modelling.dll</SourceDllPath>
+    <Destination1>C:\Development\Projects\repositories\weddingwebsite\shared</Destination1>
+    <Destination2>C:\Development\Projects\repositories\weddingwebsite\RazorPageWeddingWebsite\libs</Destination2>
+  </PropertyGroup>
+
+  <!-- Create directories if they don't exist -->
+  <MakeDir Directories="$(Destination1);$(Destination2)" 
+           Condition="!Exists('$(Destination1)') or !Exists('$(Destination2)')" />
+
+  <Message Text="Attempting to copy from $(SourceDllPath)" Importance="high" />
+  
+  <Copy SourceFiles="$(SourceDllPath)" 
+        DestinationFolder="$(Destination1)" 
+        SkipUnchangedFiles="true"
+        Condition="Exists('$(SourceDllPath)')">
+    <Output TaskParameter="CopiedFiles" PropertyName="CopiedFiles1" />
+  </Copy>
+  
+  <Copy SourceFiles="$(SourceDllPath)" 
+        DestinationFolder="$(Destination2)" 
+        SkipUnchangedFiles="true"
+        Condition="Exists('$(SourceDllPath)')">
+    <Output TaskParameter="CopiedFiles" PropertyName="CopiedFiles2" />
+  </Copy>
+
+  <Message Text="Copied to shared: @(CopiedFiles1)" Importance="high" Condition="'@(CopiedFiles1)' != ''" />
+  <Message Text="Copied to libs: @(CopiedFiles2)" Importance="high" Condition="'@(CopiedFiles2)' != ''" />
+  <Warning Text="Source DLL not found at $(SourceDllPath)" Condition="!Exists('$(SourceDllPath)')" />
+</Target>
 </Project>

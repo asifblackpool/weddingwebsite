@@ -22,10 +22,10 @@
 
     foreach(SerialisedItem item in canvas.Items)
     {
-        if (item.ClassName == typeof(TitleHeader).Name)
+        if (item.ClassName == typeof(HeadingComponent).Name)
         {
-            TitleHeader objItem = SerializationHelper.Deseralize(item);
-            <h1 class="h1-title">@objItem.Value</h1>
+            HeadingComponent objItem = SerializationHelper.Deseralize(item);
+            <h1 class="h1-title">@objItem.TextValue</h1>
         }
 
         if (item.ClassName == typeof(CanvasParagraph).Name)

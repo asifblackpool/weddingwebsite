@@ -45,6 +45,7 @@ namespace RazorPageWeddingWebsite.Models
             _logger.LogInformation($"Loading {PageType} data");
             Items = await _dataService.GetAllAsync();
             ViewData["Title"] = $"{PageType}s - {DateTime.Now.Year}";
+            StoreModel(Items);
         }
 
         public virtual async Task OnGetByPathAsync(string path)
@@ -52,6 +53,25 @@ namespace RazorPageWeddingWebsite.Models
             _logger.LogInformation($"Loading {PageType} data");
             Items = await _dataService.GetAllAsync(path);
             ViewData["Title"] = $"{PageType}s - {DateTime.Now.Year}";
+            StoreModel(Items);
+       
+        }
+
+        private void StoreModel(List<T> items)
+        {
+            ViewData["Model"] = (items != null && items.Count > 0) ? items.Take(1).FirstOrDefault() : null;
+            var temp = ViewData["Model"];
+        }
+
+        private void StoreTitle(List<T> items)
+        {
+            ViewData["Title"] = $"{PageType}s - {DateTime.Now.Year}";
+            var temp = (items != null && items.Count > 0) ? items.Take(1).FirstOrDefault() : null;
+            if (temp != null)
+            {
+                ViewData["Title"] = null;
+            }
+            
         }
 
         // Shared method

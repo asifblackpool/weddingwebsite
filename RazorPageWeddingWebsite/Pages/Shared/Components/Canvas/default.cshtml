@@ -27,28 +27,18 @@
         foreach (SerialisedItem item in Model.Items)
         {
             //Add Header .. usually H1, H2 tag
-            if (item.ClassName == typeof(TitleHeader).Name)
+            if (item.ClassName == typeof(HeadingComponent).Name)
             {
-                TitleHeader objItem = SerializationHelper.Deseralize(item);
-                if (objItem.Properties != null && objItem.Properties.level == 1)
+                var settings = new JsonSerializerSettings
                 {
-                    <h1 class="h1-title">@objItem.Value</h1>
-                }
+                    Converters = { new HeadingComponentConverter() }
+                };
 
-                if (objItem.Properties != null && objItem.Properties.level == 2)
+                HeadingComponent? objItem = JsonConvert.DeserializeObject<HeadingComponent>(item.Content, settings);
+                if (objItem != null)
                 {
-                    <h2 class="h2-title">@objItem.Value</h2>
-                }
-
-                if (objItem.Properties != null && objItem.Properties.level == 3)
-                {
-                    <h3 class="h3-title">@objItem.Value</h3>
-                }
-
-                if (objItem.Properties != null && objItem.Properties.level == 4)
-                {
-                    <h4 class="h3=4-title">@objItem.Value</h4>
-                }
+                    @Html.Raw(objItem.ToHtml())
+                }   
             }
 
             //Add Text .. usually wrapped P tag
@@ -238,28 +228,12 @@
                     List<AccordionContent> accordionList = new List<AccordionContent>();
 
                     if (accordion != null)
-{
+                    {
                         accordionList = accordion.GetSerialisedContent();
+                        string accordionname = (accordion.AccordionName != null) ? accordion.AccordionName : string.Empty;
+                        @Html.RenderAccordion(accordionname, accordionList);
                     }
-                    int counter = 1;
-                    <div class="accordion-container">
-                        <h2>@accordion?.AccordionName</h2>
-                        <div class="accordion">
-                        @foreach (var accordionItem in accordionList)
-                        {
-                            <div class="accordion-item">
-                                <button class="accordion-header">
-                                        <span>@accordionItem.Title</span>
-                                    <span class="arrow"></span>
-                                </button>
-                                <div class="accordion-content">
-                                        @Html.Raw(accordionItem.Body)
-                                </div>
-                            </div>
-                            counter++;
-                        }
-                        </div>
-                    </div>
+                   
                 }
             }
 
@@ -282,7 +256,21 @@
                 {
                     @Html.Raw(TableHelper.BuildHtmlTable(table))
                 }
-            
+            }
+
+            if (item.ClassName == typeof(AccordionContent).Name)
+            {
+                var result = JsonConvert.DeserializeObject<AccordionContent>(item.Content);
+                if (result != null)
+                {
+                    List<AccordionContent> accordionList = new List<AccordionContent>();
+                    accordionList.Add(result);
+                    string accordionname = string.Empty;
+                    @Html.RenderAccordion(accordionname, accordionList);
+                    
+                
+                }
+
             }
         }
     }

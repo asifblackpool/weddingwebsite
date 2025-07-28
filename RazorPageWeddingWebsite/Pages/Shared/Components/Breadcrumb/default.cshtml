@@ -1,7 +1,11 @@
 ﻿@using RazorPageWeddingWebsite.Models
+@using RazorPageWeddingWebsite.Helpers;
 
 @model List<BreadcrumbItem>
 
+@{
+    int counter = 0;
+}
 @if (Model != null && Model.Any())
 {
  <div class="breadcrumb-container">
@@ -12,13 +16,15 @@
                 <li class="breadcrumb-item @(item.IsActive ? "active" : "")">
                     @if (!item.IsActive)
                     {
-                        <a href="@item.Url">@item.Title</a>
+                        <a href="@string.Format("{0}", (counter == 0) ? NavigationLinkHelper.GetHomeLink() : item.Url)">@item.Title</a>
                     }
                     else
                     {
                         @item.Title
                     }
+                
                 </li>
+                counter++;
             }
         </ol>
     </nav>

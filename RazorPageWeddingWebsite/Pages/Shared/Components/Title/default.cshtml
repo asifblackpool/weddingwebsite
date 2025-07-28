@@ -1,0 +1,9 @@
+﻿
+@using RazorPageWeddingWebsite.Models
+
+@model LayoutModel
+
+@if(Model != null && !Model.IsHomePage)
+{
+    <h1 class="@Model.HeaderClass">@Model.Title</h1>
+}
