@@ -1,5 +1,6 @@
 ﻿@using Blackpool.Zengenti.CMS.Helpers
 @using Blackpool.Zengenti.CMS.Models.Accordions
+@using Blackpool.Zengenti.CMS.Models.Canvas.Images.Base
 @using Blackpool.Zengenti.CMS.Models.Canvas.Tables
 @using Blackpool.Zengenti.CMS.Models.Components;
 @using Blackpool.Zengenti.CMS.Models.Canvas.Code
@@ -12,6 +13,7 @@
 @using Blackpool.Zengenti.CMS.Models.InlineEntry
 @using Blackpool.Zengenti.CMS.Models.Weddings
 @using Blackpool.Zengenti.CMS.Models.Canvas.Images
+@using Content.Modelling.Models.Canvas.Images
 @using Content.Modelling.Models.Forms
 @using Newtonsoft.Json
 @using Newtonsoft.Json.Linq
@@ -267,10 +269,54 @@
                     accordionList.Add(result);
                     string accordionname = string.Empty;
                     @Html.RenderAccordion(accordionname, accordionList);
-                    
-                
+                }
+            }
+
+            if (item.ClassName == typeof(LeftAlignedImage).Name)
+            {
+                string? tempUrl = null;
+                var settings = new JsonSerializerSettings
+                            {
+                                Converters = new List<JsonConverter> { new CmsImageConverter() },
+                                NullValueHandling = NullValueHandling.Ignore
+                            };
+                var result = JsonConvert.DeserializeObject<LeftAlignedImage>(item.Content, settings);
+
+                if (result != null && result.Image != null)
+                {
+                    if (result?.Image?.Asset?.Sys?.Uri != null)
+                    {
+                        tempUrl = ImageHelper.GetImageUrl(result.Image.Asset.Sys.Uri);
+                    }
+                    if (tempUrl != null && result?.Image?.Asset?.Sys != null)
+                    {
+                        result.Image.Asset.Sys.Uri = tempUrl;
+                    }
+
+                    result.ToHtml();
+                }
+            }
+            if (item.ClassName == typeof(RightAlignedImage).Name)
+            {
+                string? tempUrl = null;
+                var settings = new JsonSerializerSettings
+                {
+                    Converters = new List<JsonConverter> { new CmsImageConverter() },
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+                var result = JsonConvert.DeserializeObject<RightAlignedImage>(item.Content, settings);
+
+      
+                if (result?.Image?.Asset?.Sys?.Uri != null)
+                {
+                    tempUrl = ImageHelper.GetImageUrl(result.Image.Asset.Sys.Uri);
+                }
+                if (tempUrl != null && result?.Image?.Asset?.Sys != null)
+                {
+                    result.Image.Asset.Sys.Uri = tempUrl;
                 }
 
+                @Html.Raw(result.ToHtml())
             }
         }
     }

@@ -55,7 +55,7 @@
                 <p class="venue-text">@entryModel.FeatureElementText</p>
                 @if (entryModel.CtaLinks1 != null)
                 {
-                    <button onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CTALinks).Url)'"
+                    <button onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CtaLinks1).Url)'"
                             class="pink-button">
                         @entryModel.CtaLinks1.ButtonText
                     </button>

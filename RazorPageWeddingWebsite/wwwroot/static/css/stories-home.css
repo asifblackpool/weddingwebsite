@@ -42,6 +42,8 @@ div.stories-img>img {
 
 div.stories-information {
     text-align: center;
+    display:inline-flex;
+    flex-direction:column;
 }
 
 div.stories-information>h2 {
@@ -53,10 +55,12 @@ div.stories-information>p {
     text-align: center;
     min-height:11rem;
     padding-bottom: 3rem;
+    flex-grow:1;
 }
 
 div.stories-information>button {
     text-align: center;
+    margin:auto;
 }
 
 div.center-container {
