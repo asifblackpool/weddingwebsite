@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPageWeddingWebsite.Helpers;
-using RazorPageWeddingWebsite.Models;
+using RazorPageWeddingWebsite.Core.Models;
 using Blackpool.Zengenti.CMS.Models.Weddings;
 using RazorPageWeddingWebsite.Services.Interfaces;
 using Zengenti;
 using Zengenti.Contensis.Delivery;
 using RazorPageWeddingWebsite.Services.Breadcrumb;
+using RazorPageWeddingWebsite.Core.Interfaces;
 
 namespace RazorPageWeddingWebsite.Pages.Ceremonies
 {
@@ -13,10 +14,9 @@ namespace RazorPageWeddingWebsite.Pages.Ceremonies
     {
 
         public DetailsModel(ILogger<BasePageModel<GettingMarried>> logger,
-                          IDataService<GettingMarried> dataService, BreadcrumbService breadcrumb) : base(logger, dataService, breadcrumb) { }
-        // Set the model
-        //public IEnumerable<Zengenti.Contensis.Delivery.Node> BlogNodes { get; set; }  // <-- Add this property
-
+                            IDataService<GettingMarried> dataService,
+                            IContentRepository contentRepository, BreadcrumbService breadcrumb) : base(logger, dataService, contentRepository, breadcrumb) { }
+        
         public override async Task OnGetAsync()
         {
             ViewData["Title"] = "Ceremonies details page";

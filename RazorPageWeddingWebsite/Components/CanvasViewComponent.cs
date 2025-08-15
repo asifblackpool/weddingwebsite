@@ -1,19 +1,19 @@
-﻿using Blackpool.Zengenti.CMS.Models.Weddings;
+﻿using Blackpool.Zengenti.CMS.Models.GenericTypes;
+using Blackpool.Zengenti.CMS.Models.Weddings;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RazorPageWeddingWebsite.Components
 {
     public class CanvasViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(GettingMarried model)
+        public IViewComponentResult Invoke(SerialisedContent content)
         {
             // You can modify the model here if needed
-            if (model != null)
+            if (content != null)
             {
-                var x = model.Canvas;
-                return View(model.GetSerialisedCanvas());
-            }
 
+                return View(content);
+            }
             return View();
         }
 

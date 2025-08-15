@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPageWeddingWebsite.Helpers;
-using RazorPageWeddingWebsite.Models;
 using Blackpool.Zengenti.CMS.Models.Weddings;
 using RazorPageWeddingWebsite.Services.Interfaces;
-using Zengenti;
-using Zengenti.Contensis.Delivery;
 using RazorPageWeddingWebsite.Services.Breadcrumb;
+using RazorPageWeddingWebsite.Core.Models;
+using RazorPageWeddingWebsite.Core.Interfaces;
 
 namespace RazorPageWeddingWebsite.Pages.Venues
 {
@@ -13,9 +12,8 @@ namespace RazorPageWeddingWebsite.Pages.Venues
     {
 
         public DetailsModel(ILogger<BasePageModel<GettingMarriedVenue>> logger,
-                          IDataService<GettingMarriedVenue> dataService, BreadcrumbService breadcrumb) : base(logger, dataService, breadcrumb) { }
-        // Set the model
-        //public IEnumerable<Zengenti.Contensis.Delivery.Node> BlogNodes { get; set; }  // <-- Add this property
+                            IDataService<GettingMarriedVenue> dataService,
+                            IContentRepository contentRepository, BreadcrumbService breadcrumb) : base(logger, dataService, contentRepository, breadcrumb) { }
 
         public override async Task OnGetAsync()
         {

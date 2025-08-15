@@ -1,10 +1,10 @@
-﻿namespace RazorPageWeddingWebsite.Models
+﻿namespace RazorPageWeddingWebsite.Core.Models
 {
     public class Product
     {
         public Product()
         {
-            
+
         }
 
         public int Id { get; set; }

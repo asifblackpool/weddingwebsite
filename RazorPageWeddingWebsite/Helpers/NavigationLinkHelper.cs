@@ -30,23 +30,23 @@ namespace RazorPageWeddingWebsite.Helpers
             return url;
         }
 
-        public static FragmemtParagraph GetLinkUrl(FragmemtParagraph fp)
+        public static FragmentParagraph GetLinkUrl(FragmentParagraph fp)
         {
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
                 if (fp.Value != null && fp.Value.Count > 0)
                 {
-                    Values val = fp.Value.First();
+                    var val = fp.Value.First();
                     string? content = val.Type != null ? val.Type.ToString() : string.Empty;
                     if (val.Value != null && ParagraphHelper.CheckListType(content) == StandardListEnum.link)
                     {
-                        string? temp = (val.FragmentProperties != null && val.FragmentProperties.Link != null )
-                           ? val.FragmentProperties.Link.Properties?.Link?.System?.Uri : string.Empty;
+                        string? temp = (val.Properties != null && val.Properties.Link != null )
+                           ? val.Properties.Link?.System?.Uri : string.Empty;
 
-                        if (val.FragmentProperties != null && val.FragmentProperties.Link != null && val.FragmentProperties.Link!= null && temp != null)
+                        if (val.Properties != null && val.Properties.Link != null && val.Properties.Link.System != null && temp != null)
                         {
                             //temp = temp.Replace(WebsiteConstants.SITE_VIEW_PATH, string.Empty);
-                            ContentLink? linktoChange = val.FragmentProperties.Link?.Properties?.Link;
+                            ContentLink? linktoChange = val.Properties?.Link;
                             if (linktoChange != null && linktoChange.System != null)
                             {
                                 linktoChange.System.Uri = temp;

@@ -3,49 +3,64 @@ using System.ComponentModel.DataAnnotations;
 using Zengenti.Contensis.Delivery;
 
 
-namespace RazorPageWeddingWebsite.Helpers;
-
-//Add Enum File Extension
-public enum FILE_Extension
+namespace RazorPageWeddingWebsite.Helpers
 {
-    [Display(Name = "aspx page", Description = ".aspx")]
-    ASPX = 1,
-    [Display(Name = "html page", Description = ".html")]
-    HTML = 2,
-    [Display(Name = "jpg image", Description = ".jpg")]
-    JPEG = 3
-}
 
-public static class EnumerationExtension
-{
-    public static string Description(this Enum value)
+    //Add Enum File Extension
+    public enum FILE_Extension
     {
-        // get attributes  
-        var field = value.GetType().GetField(value.ToString());
-        var attributes = (field != null) ? field.GetCustomAttributes(false) : null;
+        [Display(Name = "aspx page", Description = ".aspx")]
+        ASPX = 1,
+        [Display(Name = "html page", Description = ".html")]
+        HTML = 2,
+        [Display(Name = "jpg image", Description = ".jpg")]
+        JPEG = 3
+    }
 
-        // Description is in a hidden Attribute class called DisplayAttribute
-        // Not to be confused with DisplayNameAttribute
-        dynamic? displayAttribute = null;
-
-        if (attributes != null && attributes.Any())
+    public static class EnumerationExtension
+    {
+        public static string Description(this Enum value)
         {
-            displayAttribute = attributes.ElementAt(0);
+            // get attributes  
+            var field = value.GetType().GetField(value.ToString());
+            var attributes = (field != null) ? field.GetCustomAttributes(false) : null;
+
+            // Description is in a hidden Attribute class called DisplayAttribute
+            // Not to be confused with DisplayNameAttribute
+            dynamic? displayAttribute = null;
+
+            if (attributes != null && attributes.Any())
+            {
+                displayAttribute = attributes.ElementAt(0);
+            }
+
+            // return description
+            return displayAttribute?.Description ?? "Description Not Found";
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static string LimitWords(this string text, int maxWords, string suffix = "...")
+        {
+            if (string.IsNullOrWhiteSpace(text) || maxWords <= 0)
+                return string.Empty;
+
+            var words = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (words.Length <= maxWords)
+                return text;
+
+            return string.Join(" ", words.Take(maxWords)) + suffix;
         }
 
-        // return description
-        return displayAttribute?.Description ?? "Description Not Found";
+
+        public static string? RemoveFileExtension(this string path, FILE_Extension extensiontype)
+        {
+            string description = extensiontype.Description();
+            string temp = path.Contains(description) ? path.Replace(description, string.Empty) : path;
+            return temp.Trim().ToLower();
+        }
     }
-}
 
-
-public static class BreadcrumbMiddleware
-{
-
-    public static string? RemoveFileExtension(this string path, FILE_Extension extensiontype)
-    {
-        string description = extensiontype.Description();
-        string temp = path.Contains(description) ? path.Replace(description, string.Empty) : path;
-        return temp.Trim().ToLower();
-    }
 }

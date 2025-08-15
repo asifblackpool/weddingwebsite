@@ -44,9 +44,9 @@
             }   
         }
 
-        if (item.ClassName == typeof(FragmemtParagraph).Name)
+        if (item.ClassName == typeof(FragmentParagraph).Name)
         {
-            FragmemtParagraph objItem = SerializationHelper.Deseralize(item);
+            FragmentParagraph objItem = SerializationHelper.Deseralize(item);
        
             <p class="venues-list">@Html.Raw(ParagraphHelper.FragmentParagraph(NavigationLinkHelper.GetLinkUrl(objItem)))</p>
 

@@ -1,5 +1,4 @@
-﻿
-using Blackpool.Zengenti.CMS.Models.Canvas.Images;
+﻿using Blackpool.Zengenti.CMS.Models.Canvas.Images;
 using Zengenti.Contensis.Delivery;
 
 namespace RazorPageWeddingWebsite.Helpers
@@ -53,7 +52,6 @@ namespace RazorPageWeddingWebsite.Helpers
             return (Url  == null) ? string.Empty : Url;
         }
     }
-
 
 }
 

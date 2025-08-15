@@ -1,330 +1,37 @@
-﻿@using Blackpool.Zengenti.CMS.Helpers
-@using Blackpool.Zengenti.CMS.Models.Accordions
-@using Blackpool.Zengenti.CMS.Models.Canvas.Images.Base
-@using Blackpool.Zengenti.CMS.Models.Canvas.Tables
-@using Blackpool.Zengenti.CMS.Models.Components;
-@using Blackpool.Zengenti.CMS.Models.Canvas.Code
-@using Blackpool.Zengenti.CMS.Models.Canvas.Headers
-@using Blackpool.Zengenti.CMS.Models.Canvas.Helpers
-@using Blackpool.Zengenti.CMS.Models.Canvas.Lists
-@using Blackpool.Zengenti.CMS.Models.Canvas.Paragraphs
-@using Blackpool.Zengenti.CMS.Models.Canvas.Panels;
-@using Blackpool.Zengenti.CMS.Models.GenericTypes
-@using Blackpool.Zengenti.CMS.Models.InlineEntry
-@using Blackpool.Zengenti.CMS.Models.Weddings
-@using Blackpool.Zengenti.CMS.Models.Canvas.Images
-@using Content.Modelling.Models.Canvas.Images
-@using Content.Modelling.Models.Forms
-@using Newtonsoft.Json
-@using Newtonsoft.Json.Linq
-@using RazorPageWeddingWebsite.Helpers
-@using System.Text
+﻿
+@using Blackpool.Zengenti.CMS.Models.GenericTypes;
+@using RazorPageWeddingWebsite.Core.Services.ContentHandling
 
 @model SerialisedContent
-
-@if (Model != null && Model.Items.Count > 0)
+@inject ContentHandlerFactory HandlerFactory
+@{
+    bool showHandler = false;
+}
+@if (Model?.Items?.Count > 0)
 {
-    try
+    <div class="content-container">
+    @foreach (var item in Model.Items)
     {
-        foreach (SerialisedItem item in Model.Items)
+        try 
         {
-            //Add Header .. usually H1, H2 tag
-            if (item.ClassName == typeof(HeadingComponent).Name)
-            {
-                var settings = new JsonSerializerSettings
+                @if (showHandler)
                 {
-                    Converters = { new HeadingComponentConverter() }
-                };
-
-                HeadingComponent? objItem = JsonConvert.DeserializeObject<HeadingComponent>(item.Content, settings);
-                if (objItem != null)
-                {
-                    @Html.Raw(objItem.ToHtml())
-                }   
-            }
-
-            //Add Text .. usually wrapped P tag
-            if (item.ClassName == typeof(CanvasParagraph).Name)
-            {
-                CanvasParagraph objItem = SerializationHelper.Deseralize(item);
-                <p class="shade-black">@objItem.Value</p>
-
-            }
-
-            //Code .. at the moment using for Iframe
-            if (item.ClassName == typeof(Code).Name)
-            {
-                Code objItem = SerializationHelper.Deseralize(item);
-                if (objItem.Value != null && objItem.Value.Code != null)
-                {
-                    @Html.Raw(objItem.Value.Code)
                     <br />
-                    <br />
+                    @Html.Raw(item.ClassName)
+                    <br/>
                 }
-            }
-
-            //Add (fragments of) Text .. usually P tag
-            if (item.ClassName == typeof(FragmemtParagraph).Name)
-            {
-                <p>@Html.Raw(ParagraphHelper.FragmentParagraph(NavigationLinkHelper.GetLinkUrl(SerializationHelper.Deseralize(item))))</p>
-
-            }
-
-            //Canvas list item storing a list ..(note list can be simple or complex)
-            if (item.ClassName == typeof(CanvasListItem).Name)
-            {
-                JToken token = JToken.Parse(item.Content);
-                List<CanvasListItem>? items = new List<CanvasListItem>();
-                StringBuilder sb = new StringBuilder();
-
-                if (token.Type == JTokenType.Array)
-                {
-                    sb.Append("<ul class=\"shade-black\">");
-                    foreach (JToken jItem in token)
-                    {
-                        // Access properties of each item
-                        string? id = jItem["id"]?.ToString();
-                        string? type = jItem["type"]?.ToString();
-
-                        Console.WriteLine($"ID: {id}, Type: {type}");
-
-                        // Handle the value based on its type
-                        JToken? valueToken = jItem["value"];
-
-                        if (valueToken?.Type == JTokenType.String)
-                        {
-                            sb.Append(string.Format("<li>{0}</li>", valueToken));
-                        }
-                        else if (valueToken?.Type == JTokenType.Array)
-                        {
-                            sb.Append("<li>");
-                            foreach (var subItem in valueToken)
-                            {
-                                JToken? valueSubToken = subItem["value"];
-                                if (valueSubToken?.Type == JTokenType.String)
-                                {
-                                    sb.Append(string.Format("<p>{0}</p>", valueSubToken));
-                                }
-                                else if (valueSubToken?.Type == JTokenType.Array)
-                                {
-                                    sb.Append("<ul>");
-                                    foreach (var subsubItem in valueSubToken)
-                                    {
-                                        JToken? valueSubSubToken = subsubItem["value"];
-                                        if (valueSubSubToken?.Type == JTokenType.String)
-                                        {
-                                            sb.Append(string.Format("<li>{0}</li>", valueSubSubToken));
-                                        }
-                                        else if (valueSubSubToken?.Type == JTokenType.Object)
-                                        {
-                                            sb.Append(string.Format("<li>{0}</li>", valueSubSubToken));
-                                        }
-                                    }
-                                    sb.Append("</ul>");
-                                }
-                            }
-                            sb.Append("</li>");
-                        }
-                        else if (valueToken?.Type == JTokenType.Object)
-                        {
-                            foreach (JProperty prop in valueToken)
-                            {
-                                Console.WriteLine($"- {prop.Name}: {prop.Value}");
-                            }
-                        }
-                    }
-                    sb.Append("</ul");
-
-                    @Html.Raw(sb.ToString());
+                var handler = HandlerFactory.GetHandler(item.ClassName);
+            @await handler.HandleAsync(item)
+        }
+        catch (Exception ex)
+        {
+            <div class="error-alert">
+                @ex.Message
+                @if (ex.InnerException != null) {
+                    <br/><small>@ex.InnerException.Message</small>
                 }
-                else if (token.Type == JTokenType.Object)
-                {
-                    items = CanvasListItemHelper.DeserializeListItems(item.Content);
-                }
-  
-                if (items != null)
-                {
-                    <ul class="shade-black">
-                        @foreach (var canvasItem in items)
-                        {
-                            switch (canvasItem.Content)
-                            {
-                                case SimpleValue simple:
-                                    var text = ((SimpleValue)canvasItem.Content);
-                                    <li>@text.Text</li>
-                                    break;
-                                case ComplexValue complex:
-                                    var objFragment = ((ComplexValue)canvasItem.Content);
-                             
-                                    @Html.Raw(
-                                            ContentFragmentHelper.BuildHtmlFragment(objFragment.Fragments, "<li>{0}</li>")
-                                            )
-                                    break;
-                                default:
-                                    throw new InvalidOperationException("Unknown content type");
-                            }
-                        }
-                    </ul>
-                }
-
-            }
-
-            if (item.ClassName == typeof(ImageData).Name)
-            {
-                string json = item.Content;
-
-                ImageData? imageData = JsonConvert.DeserializeObject<ImageData>(json);
-                string? currentImageUrl = (imageData != null) ? ImageDataHelper.GetImageUrl(imageData) : string.Empty;
-
-
-                if (imageData != null && imageData.Value != null && currentImageUrl != null)
-                {
-                    string? imageUrl = ImageHelper.GetImageUrl(currentImageUrl);
-                    if (imageData.Value.Asset != null && imageData.Value.Asset.System != null)
-                    {
-                        imageData.Value.Asset.System.Uri = imageUrl;
-                    }
-                    var srcset = new Dictionary<string, string>
-                {
-                    { "/images/small.jpg", "480w" },
-                    { "/images/medium.jpg", "1024w" },
-                    { "/images/large.jpg", "1600w" }
-                };
-
-                        /*  bulid responsive image Tag
-                        string html = ImageDataHelper.CreateResponsiveImageTag(
-                    imageData,
-                    srcset,
-                    sizes: "(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px"
-                         );
-                         */
-
-                         /* Output:
-                         <img src="/images/medium.jpg" alt="Wedding chapel" width="1024" height="768"
-                         loading="lazy"
-                    srcset="/images/small.jpg 480w, /images/medium.jpg 1024w, /images/large.jpg 1600w"
-                    sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1600px">
-                    */
-
-                    <div class="img-container">
-                        @Html.Raw(ImageDataHelper.CreateImageTag(imageData, "img-responsive"))
-                    </div>
-
-                }
-            }
-
-            if (item.ClassName == typeof(WebForms).Name)
-            {
-                var form = JsonConvert.DeserializeObject<WebForms>(item.Content);
-                if (form?.Value?.ContentType?.Id != null)
-                {
-                    @Html.Raw(FormHelper.TagBuilder("lgwebsite", form.Value.ContentType.Id))
-                }
-            }
-
-            if (item.ClassName == typeof(Accordion).Name)
-            {
-                Accordion? accordion = JsonConvert.DeserializeObject<Accordion>(item.Content);      
-                if (accordion != null)
-                {
-                    List<AccordionContent> accordionList = new List<AccordionContent>();
-
-                    if (accordion != null)
-                    {
-                        accordionList = accordion.GetSerialisedContent();
-                        string accordionname = (accordion.AccordionName != null) ? accordion.AccordionName : string.Empty;
-                        @Html.RenderAccordion(accordionname, accordionList);
-                    }
-                   
-                }
-            }
-
-            if (item.ClassName == typeof(CanvasPanelComplex).Name)
-            {
-                CanvasPanelComplex? cp = JsonConvert.DeserializeObject<CanvasPanelComplex>(item.Content);
-                @Html.Raw(PanelHelper.BuildPanel(cp))
-            }
-
-            if (item.ClassName == typeof(Table).Name)
-            {
-                var settings = new JsonSerializerSettings
-                            {
-                                MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
-                                MissingMemberHandling = MissingMemberHandling.Ignore,
-                                Converters = { new TableComponentConverter() }
-                            };
-                var table = JsonConvert.DeserializeObject<Table>(item.Content, settings);
-                if (table != null)
-                {
-                    @Html.Raw(TableHelper.BuildHtmlTable(table))
-                }
-            }
-
-            if (item.ClassName == typeof(AccordionContent).Name)
-            {
-                var result = JsonConvert.DeserializeObject<AccordionContent>(item.Content);
-                if (result != null)
-                {
-                    List<AccordionContent> accordionList = new List<AccordionContent>();
-                    accordionList.Add(result);
-                    string accordionname = string.Empty;
-                    @Html.RenderAccordion(accordionname, accordionList);
-                }
-            }
-
-            if (item.ClassName == typeof(LeftAlignedImage).Name)
-            {
-                string? tempUrl = null;
-                var settings = new JsonSerializerSettings
-                            {
-                                Converters = new List<JsonConverter> { new CmsImageConverter() },
-                                NullValueHandling = NullValueHandling.Ignore
-                            };
-                var result = JsonConvert.DeserializeObject<LeftAlignedImage>(item.Content, settings);
-
-                if (result != null && result.Image != null)
-                {
-                    if (result?.Image?.Asset?.Sys?.Uri != null)
-                    {
-                        tempUrl = ImageHelper.GetImageUrl(result.Image.Asset.Sys.Uri);
-                    }
-                    if (tempUrl != null && result?.Image?.Asset?.Sys != null)
-                    {
-                        result.Image.Asset.Sys.Uri = tempUrl;
-                    }
-
-                    result.ToHtml();
-                }
-            }
-            if (item.ClassName == typeof(RightAlignedImage).Name)
-            {
-                string? tempUrl = null;
-                var settings = new JsonSerializerSettings
-                {
-                    Converters = new List<JsonConverter> { new CmsImageConverter() },
-                    NullValueHandling = NullValueHandling.Ignore
-                };
-                var result = JsonConvert.DeserializeObject<RightAlignedImage>(item.Content, settings);
-
-      
-                if (result?.Image?.Asset?.Sys?.Uri != null)
-                {
-                    tempUrl = ImageHelper.GetImageUrl(result.Image.Asset.Sys.Uri);
-                }
-                if (tempUrl != null && result?.Image?.Asset?.Sys != null)
-                {
-                    result.Image.Asset.Sys.Uri = tempUrl;
-                }
-
-                @Html.Raw(result.ToHtml())
-            }
+            </div>
         }
     }
-    catch (Exception ex)
-    {
-        @Html.Raw(ex.Message)<br/>
-        @Html.Raw(ex.InnerException?.Message)<br />
-    }
-  
+    </div>
 }
-

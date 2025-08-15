@@ -26,7 +26,7 @@ namespace RazorPageWeddingWebsite.Components
                 var breadcrumbs = _breadcrumbService.GetBreadcrumbs(_httpContextAccessor.HttpContext);
                 return View(breadcrumbs);
             }
-            return View(new List<Models.BreadcrumbItem>());
+            return View(new List<Core.Models.BreadcrumbItem>());
         }
     }
 

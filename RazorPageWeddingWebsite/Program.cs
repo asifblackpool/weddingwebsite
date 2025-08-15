@@ -1,5 +1,16 @@
 using Microsoft.AspNetCore.Rewrite;
 using RazorPageWeddingWebsite.Constants;
+using RazorPageWeddingWebsite.Core.Interfaces;
+using RazorPageWeddingWebsite.Core.Services.ContentHandling;
+using RazorPageWeddingWebsite.Core.Services.ContentProcessing.Interfaces;
+using RazorPageWeddingWebsite.Core.Services.Processors;
+using RazorPageWeddingWebsite.Helpers;
+using RazorPageWeddingWebsite.Helpers.Html;
+using RazorPageWeddingWebsite.Helpers.Interfaces;
+using RazorPageWeddingWebsite.Helpers.Renderers;
+using RazorPageWeddingWebsite.Helpers.Serialisation;
+using RazorPageWeddingWebsite.Helpers.Wrappers;
+using RazorPageWeddingWebsite.Infrastructure.Repositories;
 using RazorPageWeddingWebsite.Middleware;
 using RazorPageWeddingWebsite.Services;
 using RazorPageWeddingWebsite.Services.Breadcrumb;
@@ -7,10 +18,37 @@ using RazorPageWeddingWebsite.Services.Interfaces;
 using Zengenti.Contensis.Delivery;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Register generic data service
 builder.Services.AddTransient(typeof(IDataService<>), typeof(ContensisDataService<>));
+
+// Register IContensisClient as a singleton
+builder.Services.AddSingleton<IContensisClient>(sp =>
+{
+    var realClient = ContensisClient.Create();
+    return new ContensisClientWrapper(realClient);
+});
+
+//register repositories
+builder.Services.AddTransient<IContentRepository, ContensisContentRepository>();
+
+//register helpers
+builder.Services.AddScoped<ISerializationHelper, SerializationHelper>();
+builder.Services.AddScoped<IPanelHelper, PanelHelperWrapper>();
+builder.Services.AddScoped<IParagraphHelper, ParagraphHelperWrapper>();
+builder.Services.AddScoped<INavigationLinkHelper, NavigationLinkHelperWrapper> ();
+builder.Services.AddScoped<IFormHelper, FormHelperWrapper>();
+builder.Services.AddScoped<IContentFragmentHelper, ContentFragmentHelper>();
+builder.Services.AddScoped<IImageHelper, ImageHelperWrapper>();
+builder.Services.AddScoped<ITableHelper, TableHelperWrapper>();
+builder.Services.AddScoped<IAccordionRenderer, AccordionRenderer>();
+builder.Services.AddScoped<IBgCtaLinkRenderer, BgCtaLinkRenderer>();
+
+//Processors
+builder.Services.AddScoped<ITextProcessor, HtmlTextProcessor>();
+
 
 // Configure logging
 builder.Services.AddLogging(configure =>
@@ -26,9 +64,15 @@ builder.Services
         // Override root to always render blog post at '/'
         options.Conventions.AddPageRoute("/Home/Index", WebsiteConstants.SITE_VIEW_PATH);
         options.Conventions.AddPageRoute("/Home/Details", WebsiteConstants.SITE_VIEW_PATH + "{*slug}");
+
         options.Conventions.AddPageRoute("/Venues/Index", WebsiteConstants.SITE_VIEW_PATH + "Venues");
         options.Conventions.AddPageRoute("/Venues/Details", WebsiteConstants.SITE_VIEW_PATH + "Venues/{*slug}");
+
         options.Conventions.AddPageRoute("/Ceremonies/Details", WebsiteConstants.SITE_VIEW_PATH + "Ceremonies/{*slug}");
+
+
+        options.Conventions.AddPageRoute("/Stories/Index", WebsiteConstants.SITE_VIEW_PATH + "stories");
+        options.Conventions.AddPageRoute("/Stories/Details", WebsiteConstants.SITE_VIEW_PATH + "stories/{*slug}");
 
         options.Conventions.Add(new GlobalHeaderPageApplicationModelConvention());
     });
@@ -36,6 +80,7 @@ builder.Services
 builder.Services.AddScoped<BreadcrumbService>();
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddContentHandlers();
 
 var app = builder.Build();
 

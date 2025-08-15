@@ -1,4 +1,4 @@
-﻿namespace RazorPageWeddingWebsite.Models
+﻿namespace RazorPageWeddingWebsite.Core.Models
 {
     // Models/LayoutModel.cs
     public class LayoutModel

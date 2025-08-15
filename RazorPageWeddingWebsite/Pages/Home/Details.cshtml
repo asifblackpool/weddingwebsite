@@ -23,7 +23,7 @@
     @try
     {
    
-        @await Component.InvokeAsync("Canvas", entryModel)
+        @await Component.InvokeAsync("Canvas", entryModel.GetSerialisedCanvas())
     }
     catch (Exception ex)
     {

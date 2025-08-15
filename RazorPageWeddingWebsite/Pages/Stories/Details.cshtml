@@ -1,0 +1,28 @@
+﻿@page
+@using Blackpool.Zengenti.CMS.Models.Base
+@using Blackpool.Zengenti.CMS.Models.Components
+@using RazorPageWeddingWebsite.Helpers
+@using Blackpool.Zengenti.CMS.Models.Weddings
+@model RazorPageWeddingWebsite.Pages.Stories.DetailsModel;
+
+@{
+
+    GettingMarriedBlog? entryModel = (Model != null && Model.Items.Count == 1) ? Model.Items.FirstOrDefault() : null;
+}
+
+@if (entryModel != null)
+{
+    @try
+    {
+
+        @await Component.InvokeAsync("Canvas", entryModel?.GetSerialisedCanvas())
+    }
+    catch (Exception ex)
+    {
+                <div class="alert alert-danger">@ex.Message</div>
+    }
+}
+else
+{
+    <h1>Stories not found </h1>
+}

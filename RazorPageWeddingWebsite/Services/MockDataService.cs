@@ -1,4 +1,5 @@
-﻿using RazorPageWeddingWebsite.Models;
+﻿using RazorPageWeddingWebsite.Core.Models;
+using RazorPageWeddingWebsite.Models;
 using RazorPageWeddingWebsite.Services.Interfaces;
 using System.Reflection;
 

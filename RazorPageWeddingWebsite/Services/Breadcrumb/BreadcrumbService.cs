@@ -1,8 +1,5 @@
 ﻿using RazorPageWeddingWebsite.Constants;
-using RazorPageWeddingWebsite.Models;
-using Blackpool.Zengenti.CMS.Models.Weddings;
-using RazorPageWeddingWebsite.Services.Interfaces;
-using Zengenti.Contensis.Delivery;
+using RazorPageWeddingWebsite.Core.Models;
 using System.Globalization;
 using System.IO;
 
