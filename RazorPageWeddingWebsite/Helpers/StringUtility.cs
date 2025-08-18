@@ -54,6 +54,19 @@ namespace RazorPageWeddingWebsite.Helpers
             return string.Join(" ", words.Take(maxWords)) + suffix;
         }
 
+        public static string LimitWordsWithQuotations(this string text, int maxWords, string suffix = " ...")
+        {
+            if (string.IsNullOrWhiteSpace(text) || maxWords <= 0)
+                return string.Empty;
+
+            var words = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (words.Length <= maxWords)
+                return string.Format("\"{0}\"", text);
+
+            return string.Format("\"{0}\"", string.Join(" ", words.Take(maxWords))) + suffix;
+        }
+
 
         public static string? RemoveFileExtension(this string path, FILE_Extension extensiontype)
         {

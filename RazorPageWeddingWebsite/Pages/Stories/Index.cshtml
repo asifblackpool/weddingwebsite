@@ -16,77 +16,80 @@
 
 @if (blogs.Count > 0)
 {
-<style type="text/css">
-    /* Grid spacing and structure */
-    .custom-grid {
-        --column-gap: 30px;
-        --row-gap: 30px;
-    }
-    .custom-grid .row {
-        margin-right: calc(-0.5 * var(--column-gap));
-        margin-left: calc(-0.5 * var(--column-gap));
-        margin-bottom: calc(-1 * var(--row-gap));
-    }
-    .custom-grid .col-md-4 {
-        padding-right: calc(0.5 * var(--column-gap));
-        padding-left: calc(0.5 * var(--column-gap));
-        margin-bottom: var(--row-gap);
-    }
-    
-    /* Card styling */
-    .fixed-height-card {
-        border: 1px solid black !important;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    /* Desktop-specific height */
-    @@media (min-width: 768px) {
-        .fixed-height-card {
-            height: 411px !important;
+    <style type="text/css">
+        /* Grid spacing and structure */
+        .custom-grid {
+            --column-gap: 30px;
+            --row-gap: 30px;
         }
-        .fixed-height-card .card-img-top {
-            height: 180px; /* Adjust image height proportionally */
-            object-fit: cover;
-        }
-        .fixed-height-card .card-body {
-            flex: 1;
-            overflow-y: auto; /* Allows scrolling if content overflows */
-        }
-    }
-    
-    /* Mobile behavior */
-    @@media (max-width: 767.98px) {
-        .fixed-height-card {
-            height: auto !important;
-        }
-    }
-</style>
 
-<div class="container my-5 custom-grid">
-    <div class="row">
-            @foreach(var item in blogs)
+        .custom-grid .row {
+            margin-right: calc(-0.5 * var(--column-gap));
+            margin-left: calc(-0.5 * var(--column-gap));
+            margin-bottom: calc(-1 * var(--row-gap));
+        }
+
+        .custom-grid .col-md-4 {
+            padding-right: calc(0.5 * var(--column-gap));
+            padding-left: calc(0.5 * var(--column-gap));
+            margin-bottom: var(--row-gap);
+        }
+
+        /* Card styling */
+        .fixed-height-card {
+            border: 1px solid black !important;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Desktop-specific height */
+        @@media (min-width: 768px) {
+            .fixed-height-card {
+                height: 411px !important;
+            }
+
+            .fixed-height-card .card-img-top {
+                height: 180px;
+                /* Adjust image height proportionally */
+                object-fit: cover;
+            }
+
+            .fixed-height-card .card-body {
+                flex: 1;
+                overflow-y: auto;
+                /* Allows scrolling if content overflows */
+            }
+        }
+
+        /* Mobile behavior */
+        @@media (max-width: 767.98px) {
+            .fixed-height-card {
+                height: auto !important;
+            }
+        }
+    </style>
+
+    <div class="container my-5 custom-grid">
+        <div class="row">
+            @foreach (var item in blogs)
             {
                 <div class="col-md-4">
                     <div class="card fixed-height-card text-center">
-                        <img class="card-img-top"
-                             src="@string.Format("{0}", item.GetFirstImage != null
-                                        ? ImageHelper.GetImageUrl(item.GetFirstImage)
-                                        : string.Empty)"
-                             alt="@string.Format("{0}", item.GetFirstImage != null
-                                        ? item.GetFirstImage.Value?.AltText
-                                        : string.Empty)" />
-                        <div class="card-body">
-                            <h5 class="card-title">@item.PageTitle</h5>
-                            <p class="card-text">@item?.GetFirstParagraph?.LimitWords(45)</p>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="@String.Format("{0}", item.FriendlyUrlPath)" class="btn btn-primary">Learn More</a>
-                        </div>
-                    </div>
+                        <img class="card-img-top" src="@string.Format("{0}", item.GetFirstImage != null
+                                                                                          ? ImageHelper.GetImageUrl(item.GetFirstImage)
+                                                                                          : string.Empty)" alt="@string.Format("{0}", item.GetFirstImage != null
+                                                                                                 ? item.GetFirstImage.Value?.AltText
+                                                                                                 : string.Empty)" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.PageTitle</h5>
+                    <p class="card-text">@item?.GetFirstParagraph?.LimitWordsWithQuotations(45)</p>
                 </div>
-            }
+                <div class="card-footer bg-transparent">
+                    <a href="@String.Format("{0}", item?.FriendlyUrlPath)" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+                }
+        </div>
     </div>
-</div>
 }
-
