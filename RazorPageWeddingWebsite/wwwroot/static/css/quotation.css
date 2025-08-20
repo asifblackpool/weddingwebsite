@@ -1,0 +1,48 @@
+﻿.quote-block {
+    max-width: 600px;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.quote {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #333;
+    font-weight: 500;
+    font-style: italic;
+    text-align: center;
+    position: relative;
+    padding: 0 30px;
+    display:inline-block;
+    margin-left:0px;
+    margin-right:0px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+/* Quotation marks - FIXED */
+.quote::before,
+.quote::after {
+    font-size: 4rem;
+    color: #8e2de2;
+    opacity: 0.3;
+    position: absolute;
+    line-height: 1;
+}
+
+.quote::before {
+    content: "“";
+    top: 12px;
+    left: 0px;
+}
+
+.quote::after {
+    content: "”";
+    bottom: -3px;
+    right: 8px;
+}
+
+

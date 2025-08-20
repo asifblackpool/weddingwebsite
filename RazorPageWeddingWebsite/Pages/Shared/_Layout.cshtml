@@ -31,10 +31,9 @@
     <main>
         @await Component.InvokeAsync("Breadcrumb")
         @await Component.InvokeAsync("Title")
-     
         @RenderBody()
-
     </main>
+    @await Html.PartialAsync("_imageStrip.cshtml")
     <footer>
         <div class="footer-container">
             <div class="row">

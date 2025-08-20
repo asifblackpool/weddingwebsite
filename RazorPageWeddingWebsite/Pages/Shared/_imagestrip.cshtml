@@ -1,0 +1,30 @@
+﻿@using RazorPageWeddingWebsite.Constants
+@using Zengenti;
+@using Zengenti.Contensis.Delivery;
+@using RazorPageWeddingWebsite.Helpers;
+@using Blackpool.Zengenti.CMS.Models.Weddings;
+
+
+@{
+
+    List<Image>? multipleImages = (ViewData["ImageStrip"] == null) ? new List<Image>()
+    : ViewData["ImageStrip"] as List<Image>;
+    int counter = 1;
+
+}
+
+
+@if (multipleImages != null && multipleImages?.Count > 0)
+{
+    <div class="row image-strip-container">
+        @foreach (var item in multipleImages)
+        {
+            string? ImgUrl = (item != null) ? ImageHelper.GetImageUrl(item) : "#";
+            <div class="col-md-4 image-box">
+                <img src="@ImgUrl" alt="@item?.AltText" class="img-fluid" />
+            </div>
+            counter++;
+            if (counter > 3) { break; }
+        }
+    </div>
+}

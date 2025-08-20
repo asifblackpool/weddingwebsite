@@ -20,7 +20,7 @@
                     @Html.Raw(item.ClassName)
                     <br/>
                 }
-                var handler = HandlerFactory.GetHandler(item.ClassName);
+            var handler = HandlerFactory.GetHandler(item.ClassName);
             @await handler.HandleAsync(item)
         }
         catch (Exception ex)

@@ -1,4 +1,5 @@
 ﻿using Blackpool.Zengenti.CMS.Models.Interfaces;
+using Blackpool.Zengenti.CMS.Models.Weddings;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPageWeddingWebsite.Core.Interfaces;
 using RazorPageWeddingWebsite.Helpers;
@@ -49,18 +50,23 @@ namespace RazorPageWeddingWebsite.Core.Models
         {
             _logger.LogInformation($"Loading {PageType} data");
             Items = await _dataService.GetAllAsync();
+            Reset();
+
             ViewData["Title"] = $"{PageType}s - {DateTime.Now.Year}";
             StoreModel(Items);
             StoreTitle(Items);
+            StoreImageStrip(Items);
         }
 
         public virtual async Task OnGetByPathAsync(string path)
         {
             _logger.LogInformation($"Loading {PageType} data");
             Items = await _dataService.GetAllAsync(path);
+            Reset();
             ViewData["Title"] = $"{PageType}s - {DateTime.Now.Year}";
             StoreModel(Items);
             StoreTitle(Items);
+            StoreImageStrip(Items);
 
         }
 
@@ -100,6 +106,27 @@ namespace RazorPageWeddingWebsite.Core.Models
 
             }
 
+        }
+
+        private void StoreImageStrip(List<T> items)
+
+
+        {
+            var temp = (items != null && items.Count > 0) ? items.Take(1).FirstOrDefault() : null;
+            if (temp != null)
+            {
+                if (temp is GettingMarried married && married.MultipleImage != null)
+                {
+                    ViewData["ImageStrip"] = married.MultipleImage;
+                }
+            }
+        }
+
+        private void Reset()
+        {
+            ViewData["Title"] = null;
+            ViewData["Model"] = null;
+            ViewData["ImageStrip"] = null;
         }
     }
 }
