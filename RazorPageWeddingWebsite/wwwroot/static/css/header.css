@@ -1,9 +1,9 @@
 ﻿@import './variables.css';
 
 div.navigation-container {
-   border:solid 1px red;
-   position:relative;
-   top:25px;
+    border: solid 1px red;
+    position: relative;
+    top: 25px;
 }
 
 div.home-link-container {
@@ -69,6 +69,7 @@ ul.top-navigation-list>li>a {
     color: #333;
     font-weight: 500;
 }
+
 
 .nav-item a:hover {
     color: #007bff;
