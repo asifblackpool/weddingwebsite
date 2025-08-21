@@ -69,6 +69,12 @@ body {
     border:solid 2px var(--pink)
 }
 
+a.pink-button {
+    display: inline-block;
+    text-align: center;
+    margin: 3rem 0px;
+}
+
 .white-button {
     background-color: transparent;
     color: var(--pink);

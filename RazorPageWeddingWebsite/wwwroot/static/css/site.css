@@ -34,12 +34,20 @@ main,
     height: 100%;
 }
 
+main {
+    background-image: url('/static/images/navigation/menu-decroration.png');
+    background-position: top 5px left 0; /* 5px gap from top, 0 from left */
+    background-size: 100% 10px; /* 100% width, 10px height */
+    background-repeat: no-repeat; /* Prevents repeating */
+    padding-top: 20px; /* Creates space for content below image */
+}
+
 .footer-container {
     padding-top: 30px;
 }
 
 header {
-    min-height: 158px;
+    min-height: 150px;
     background-color: var(--white);
 }
 
@@ -60,6 +68,10 @@ footer {
 /* colors */
 .shade-black {
     color: var(--shade-black);
+}
+
+ul.shade-black {
+  padding-bottom:0rem;
 }
 
 
