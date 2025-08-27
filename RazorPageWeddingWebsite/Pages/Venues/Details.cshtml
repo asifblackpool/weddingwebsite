@@ -9,15 +9,20 @@
     BaseContentType? link = (entryModel != null && entryModel.VenueLink != null) ? entryModel.VenueLink.LinkedContentPage :
     null;
     string buttonUrl = "#";
+    string? title = null;
     if (entryModel != null && link != null)
     {
         buttonUrl = (link?.Sys != null) ? link.Sys.Uri : buttonUrl;
-        if (buttonUrl == "#")
-        {
-            buttonUrl = (entryModel.VenueLink != null) ? entryModel.VenueLink.ExternalURL : buttonUrl;
-        }
+        title = (entryModel?.PageTitle != null) ? entryModel?.PageTitle : entryModel?.Title;
     }
 
+    //sanity check 
+    if (buttonUrl == "#")
+    {
+        buttonUrl = (entryModel?.VenueLink != null) ? entryModel.VenueLink.ExternalURL : buttonUrl;
+    }
+
+ 
 }
 
 @if (entryModel != null)

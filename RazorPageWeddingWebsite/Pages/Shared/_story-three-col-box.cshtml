@@ -42,17 +42,18 @@
 
 
 <div class="custom-container">
-    <h1 class="block-title">Real stories</h1>
+    <h2 class="block-title">Real stories</h2>
     <div class="three-columns">
         @foreach (var item in blogEntries)
         {
             <div class="flex-fill column-box">
                 <div class="stories-img">
-                <img src="@string.Format("{0}", item.GetFirstImage != null
-                   ? ImageHelper.GetImageUrl(item.GetFirstImage) 
-                   : string.Empty)" alt="@string.Format("{0}", item.GetFirstImage != null
-                                                                                                                                                                                ? item.GetFirstImage.Value?.AltText
-                                                                                                                                                                                   : string.Empty)" />
+                    <img src="@string.Format("{0}", item.GetFirstImage != null
+                                            ? ImageHelper.GetImageUrl(item.GetFirstImage) 
+                                            : string.Empty)"
+                    alt="@string.Format("{0}", item.GetFirstImage != null
+                                                                                                                                                                                                    ? item.GetFirstImage.Value?.AltText
+                                                                                                                                                                                                       : string.Empty)" />
             </div>
             <div class="stories-information">
                 <h2>@item.PageTitle</h2>
@@ -66,7 +67,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="center-container">
-                <button onclick="window.location.href='#'" class="pink-button width-button-stories">View all real
+                <button
+                    onclick="window.location.href='@string.Format("{0}stories", Constants.WebsiteConstants.SITE_VIEW_PATH)' class="
+                    pink-button width-button-stories">View all real
                     stories</button>
             </div>
         </div>

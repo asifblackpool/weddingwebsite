@@ -45,21 +45,24 @@
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <img src="~/static/images/footer/footer-logo@x1.png" alt="blackpool council" class="footer-logo" />
                     <div class="social-icons">
-                        <a href="#" target="_blank" class="social-icon">
+                        <a href="https://www.facebook.com/YourBlackpoolWedding/" target="_blank" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" target="_blank" class="social-icon">
+                        <a href="https://www.instagram.com/yourblackpoolwedding/" target="_blank" class="social-icon">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <ul class="footer-list">
-                        <li><a href="#">Accessibility</a></li>
-                        <li><a href="#">Contact us</a></li>
-                        <li><a href="#">Privacy and cookies</a></li>
-                        <li><a href="#">Terms and conditions</a></li>
-                        <li><a href="#">Blackpool Council companies</a></li>
+                        <li><a href="https://www.blackpool.gov.uk/Accessibility.aspx">Accessibility</a></li>
+                        <li><a href="@string.Format("{0}stories", Constants.WebsiteConstants.SITE_VIEW_PATH)">Contact
+                                us</a></li>
+                        <li><a href="https://www.blackpool.gov.uk/Privacy-policy-and-cookies.aspx">Privacy and
+                                cookies</a></li>
+                        <li><a href="https://www.blackpool.gov.uk/Disclaimer.aspx">Terms and conditions</a></li>
+                        <li><a href="https://www.blackpool.gov.uk/Your-Council/The-Council/Council-companies.aspx">Blackpool
+                                Council companies</a></li>
                     </ul>
 
                 </div>
@@ -67,9 +70,9 @@
                     <p>A big thank you to our photographers who have contributed to the website and our marketing
                         materials</p>
                     <ul class="footer-list">
-                        <li><a href="#">Photographer link 1</a></li>
-                        <li><a href="#">Photographer link 2</a></li>
-                        <li><a href="#">Photographer link 2</a></li>
+                        <li>
+                            <a href="http://www.blackpoolweddingchapelphotographer.co.uk/">Ashley Barnard</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -78,13 +81,14 @@
     <script type="text/javascript" src="~/static/js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/static/js/services/accordionservices.js"></script>
     <script type="text/javascript" src="~/static/js/services/equalheightservices.js"></script>
-    <script type="module" crossorigin="anonymous" src="https://cms-blackpool.cloud.contensis.com/app/ui/forms/forms.js"></script>
+    <script type="module" crossorigin="anonymous"
+        src="https://cms-blackpool.cloud.contensis.com/app/ui/forms/forms.js"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize with default selector
             accordionservices.init();
             equalheightservices.init();
-       
+
 
             // Or with custom selector
             // accordionService.init('.custom-accordion-item');
@@ -95,7 +99,7 @@
         });
 
 
-     </script>
+    </script>
 </body>
 
 </html>
