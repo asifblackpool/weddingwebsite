@@ -28,7 +28,6 @@
     top:-0.25rem;
 }
 
-
 .breadcrumb-item.active {
     color: #6c757d; /* Gray text for current page */
 }
@@ -37,6 +36,11 @@
     color: var(--shade-black);
     text-decoration: none;
     transition: color 0.15s ease-in-out;
+    text-transform: lowercase;
+}
+
+.breadcrumb-item a::first-letter {
+    text-transform:uppercase;
 }
 
 .breadcrumb-item a:hover {

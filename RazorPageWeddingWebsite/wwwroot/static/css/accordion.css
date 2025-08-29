@@ -1,17 +1,15 @@
 ﻿
-
 /* Rest of your existing CSS stays the same */
 :root {
-    --accordion-primary-color: #4a6fa5;
-    --accordion- secondary-color: #166088;
-    --accordion-background-color: #f8f9fa;
-    --accordion-text-color: #333;
+    --accordion-primary-color: #DD3394;
+    --accordion-secondary-color: #166088;
+    --accordion-background-color:transparent;
+    --accordion-text-color: #3E3E3E;
     --accordion-border-color: #e0e0e0;
     --transition-speed: 0.3s;
 }
 
-
-.arrow {
+.arrow-original {
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
@@ -21,19 +19,69 @@
     margin-left: 12px;
 }
 
-.accordion-item.active .arrow {
-    transform: rotate(180deg);
+.accordion {
+    background-color:var(--accordion-background-color) !important;
 }
 
+.accordion-item {
+    background-color:var(--accordion-background-color) !important;
+    border-left:solid 0px red;
+    border-right:solid 0px red;
+}
+
+.accordion-item.active .arrow {
+    /* transform: rotate(180deg); */
+}
 
 .accordion-item.active > div {
-    border:solid 1px red;
+    border:solid 0px red;
+}
+
+.accordion-header {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: var(--accordion-background-color);
+    padding: 0;
+    border-top:solid 1px grey;
+}
+
+.accordion .accordion-item:last-child {
+    border-bottom: solid 1px grey;
+}
+
+/* First span (text block) */
+.accordion-header span:first-child {
+    display: block;
+    height: 65px;
+    width: 100%;
+    line-height: 1.4;
+    padding-top:25px;
+    box-sizing: border-box;
+    color: var(--accordion-primary-color);
+    font-size:1.8em;
+}
+
+/* Second span (arrow block) */
+span.arrow {
+    display: block;
+    width: 90%;
+    height: 2em;
+    line-height: 2em; /* vertically center text */
+    box-sizing: border-box;
+    text-align: left;
+    position:relative;
+    top:0.4em;
+    font-size:1.4em;
+    margin-bottom:0.8em;
+    color:var(--accordion-text-color);
+    font-size:2.4rem;
 }
 
 
-.accordion-header {
-    /* Your existing header styles */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+span.arrow strong {
+    font-weight:normal;
+    font-size:2.2rem;
 }

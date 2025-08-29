@@ -11,12 +11,13 @@ h1, h2, h3, h4, h5, h6 {
 
 body, p, li, span {
     font-family: var(--font-body);
+    color:var(--shade-black);
     font-weight: 400;
 }
 
 body {
 
-    background-color: var(--white);
+    background-color: var(--cream);
     width: var(--full-width);
     border: solid 0px red;
     font-size:1.8rem;
@@ -48,6 +49,36 @@ body {
 
 .venues-section {
     padding-bottom:0rem;
+    padding-top:4rem;
+}
+
+.flex-left {
+    display: inline-flex;
+    justify-content: left;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.with-arrow {
+    position: relative;
+    padding-right: 2rem; /* make space for the arrow */
+    font-size: 16px;
+    cursor: pointer;
+    background-color:transparent; /* pink example */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px !important;
+}
+
+/* Add arrow using ::after */
+.with-arrow::after {
+    content: "→"; /* right arrow */
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
 }
 
 .width-button-stories {
@@ -73,6 +104,7 @@ a.pink-button {
     display: inline-block;
     text-align: center;
     margin: 3rem 0px;
+    text-decoration:none;
 }
 
 .white-button {
@@ -82,6 +114,8 @@ a.pink-button {
     padding: 1rem;
     min-width: 174.5px;
     border: solid 2px var(--pink);
+    display:inline-block;
+    text-decoration:none;
 }
 
 .white-button:hover {
@@ -90,16 +124,16 @@ a.pink-button {
     border: solid 2px var(--white);
 }
 
-.block-title, .h1-title {
+.block-title, .h1-title, h1.regular-header {
     color: var(--pink);
     font-size:var(--h1);
     font-weight:normal;
     line-height:var(--h1-line-height);
     text-align:center;
-    padding:4rem 1rem 4rem 1rem;
+    padding:0rem 1rem 4rem 1rem;
 }
 
-.h2-title {
+.h2-title, h2.heading-level-2 {
     color: var(--pink);
     font-size: var(--h2);
     line-height: var(--h2-line-height);
@@ -112,7 +146,7 @@ a.pink-button {
     font-size: var(--h2);
     line-height: var(--h2-line-height);
     text-align: left;
-    padding: 3rem 1rem 3rem 0rem;
+    padding: 0rem 1rem 3rem 0rem;
 }
 
 .sub-title {
@@ -152,5 +186,11 @@ a.pink-button {
 .pad-bottom-default {
     padding-bottom: var(--space-lg);
 }
+
+p > a, li > a {
+    color: var(--shade-black);
+}
+
+
 
 

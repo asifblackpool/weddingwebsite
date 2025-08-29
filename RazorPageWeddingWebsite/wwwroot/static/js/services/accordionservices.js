@@ -8,6 +8,8 @@
             item.classList.remove('active');
             const content = item.querySelector('.accordion-content');
             if (content) {
+                var span = item.querySelector('span.arrow');
+                span.innerHTML = "+ <strong>Show</strong>";
                 content.style.display = 'none';
             }
         });
@@ -22,7 +24,10 @@
         if (!isActive && content) {
             item.classList.add('active');
             //content.style.maxHeight = content.scrollHeight + 'px';
+            var span = item.querySelector('span.arrow');
+            span.innerHTML = "- <strong>Hide</strong>";
             content.style.display = 'block';
+       
         }
     }
 

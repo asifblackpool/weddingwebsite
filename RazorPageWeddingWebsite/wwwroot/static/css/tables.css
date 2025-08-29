@@ -1,0 +1,25 @@
+﻿@import './variables.css';
+
+.data-table {
+    width: 100%; /* full width on desktop */
+    border-collapse: collapse; /* merge borders */
+    margin-bottom:5rem;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #ccc; /* grey border */
+    padding: 10px;
+    text-align: left;
+}
+
+.data-table th {
+    color: var(--pink);
+    font-size:1.2em;
+    font-weight: bold;
+    background-color:lightgray;
+}
+
+caption {
+    caption-side:top;
+}

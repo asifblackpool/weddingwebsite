@@ -3,9 +3,12 @@
     --font-body: 'Baskerville', serif;
     --dark-blue: #041C2C;
     --white: #ffffff;
+    --offwhite: #f2f2f2;
+    --cream: var(--offwhite);
     --pink: #DD3394;
     --plain-black: #000;
     --shade-black: #3E3E3E;
+    --subtle-dark:
     /* Spacing */
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -30,7 +33,6 @@
     --transition-fast: 0.15s;
     --transition-normal: 0.3s;
     --full-width: 100%;
-
     --button-width-200: 205px;
 }
 

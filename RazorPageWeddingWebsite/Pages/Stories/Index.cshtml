@@ -16,58 +16,6 @@
 
 @if (blogs.Count > 0)
 {
-    <style type="text/css">
-        /* Grid spacing and structure */
-        .custom-grid {
-            --column-gap: 30px;
-            --row-gap: 30px;
-        }
-
-        .custom-grid .row {
-            margin-right: calc(-0.5 * var(--column-gap));
-            margin-left: calc(-0.5 * var(--column-gap));
-            margin-bottom: calc(-1 * var(--row-gap));
-        }
-
-        .custom-grid .col-md-4 {
-            padding-right: calc(0.5 * var(--column-gap));
-            padding-left: calc(0.5 * var(--column-gap));
-            margin-bottom: var(--row-gap);
-        }
-
-        /* Card styling */
-        .fixed-height-card {
-            border: 1px solid black !important;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Desktop-specific height */
-        @@media (min-width: 768px) {
-            .fixed-height-card {
-                height: 411px !important;
-            }
-
-            .fixed-height-card .card-img-top {
-                height: 180px;
-                /* Adjust image height proportionally */
-                object-fit: cover;
-            }
-
-            .fixed-height-card .card-body {
-                flex: 1;
-                overflow-y: auto;
-                /* Allows scrolling if content overflows */
-            }
-        }
-
-        /* Mobile behavior */
-        @@media (max-width: 767.98px) {
-            .fixed-height-card {
-                height: auto !important;
-            }
-        }
-    </style>
 
     <div class="container my-5 custom-grid">
         <div class="row">
@@ -85,7 +33,7 @@
                     <p class="card-text">@item?.GetFirstParagraph?.LimitWordsWithQuotations(45)</p>
                 </div>
                 <div class="card-footer bg-transparent">
-                    <a href="@String.Format("{0}", item?.FriendlyUrlPath)" class="btn btn-primary">Learn More</a>
+                    <a href="@String.Format("{0}", item?.FriendlyUrlPath)" class="white-button width-button-stories">Find out more</a>
                 </div>
             </div>
         </div>

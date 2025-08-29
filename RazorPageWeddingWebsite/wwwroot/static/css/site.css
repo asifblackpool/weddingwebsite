@@ -4,8 +4,11 @@
 @import './breadcrumb.css';
 @import './venues-home.css';
 @import './stories-home.css';
+@import './stories-landing.css';
 @import './canvas.css';
 @import './accordion.css';
+@import './tables.css';
+@import './form.css';
 @import './panels.css';
 @import './social-media.css';
 @import './quotation.css';
@@ -16,7 +19,7 @@
 
 main {
     min-height: 45vh;
-    background-color: var(--white);
+    background-color: var(--cream);
     padding-bottom: 3rem;
     border: solid 0px red;
 }
@@ -48,7 +51,7 @@ main {
 
 header {
     min-height: 150px;
-    background-color: var(--white);
+    background-color: var(--cream);
 }
 
 footer {
@@ -74,6 +77,13 @@ ul.shade-black {
   padding-bottom:0rem;
 }
 
+ul.shade-black ul li {
+    list-style: none; 
+    padding-left: 0; 
+    margin-left: 0; 
+    left:-20px;
+    position:relative;
+}
 
 /* home page related */
 .hero-banner-information {
@@ -144,10 +154,14 @@ div.venue-image>img {
 
 }
 
+.image-text-component.row {
+    display: flex;
+    gap: 30px; /* 30px only between children */
+}
 
-
-
-
+.image-text-component .col-md-6 {
+    flex: 1; /* ensure both take equal width */
+}
 
 
 @media only screen and (min-width: 768px) {}

@@ -1,0 +1,67 @@
+﻿@import './variables.css';
+
+.custom-grid {
+    --column-gap: 30px;
+    --row-gap: 30px;
+}
+
+.custom-grid .row {
+    margin-right: calc(-0.5 * var(--column-gap));
+    margin-left: calc(-0.5 * var(--column-gap));
+    margin-bottom: calc(-1 * var(--row-gap));
+}
+
+.card-title {
+    color: var(--shade-black);
+    font-size: 1.5em;
+    padding: 0.7em 0em;
+}
+
+.card-footer {
+    position: relative;
+    top: -0.6em;
+    border-top: 0px;
+}
+
+.custom-grid .col-md-4 {
+    padding-right: calc(0.5 * var(--column-gap));
+    padding-left: calc(0.5 * var(--column-gap));
+    margin-bottom: var(--row-gap);
+}
+
+/* Card styling */
+.fixed-height-card {
+    border: 0px solid black !important;
+    display: flex;
+    flex-direction: column;
+    background-color:transparent;
+}
+
+/* Desktop-specific height */
+@media (min-width: 768px) {
+    .fixed-height-card {
+        height: 517px !important;
+    }
+
+    .fixed-height-card .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .fixed-height-card .card-body {
+        flex: 1;
+        overflow-y: auto;
+        /* Allows scrolling if content overflows */
+    }
+}
+
+/* Mobile behavior */
+@@media (max-width: 767.98px) {
+    .fixed-height-card {
+        height: auto !important;
+    }
+}
+
+

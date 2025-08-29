@@ -74,6 +74,16 @@ namespace RazorPageWeddingWebsite.Helpers
             string temp = path.Contains(description) ? path.Replace(description, string.Empty) : path;
             return temp.Trim().ToLower();
         }
+
+        public static string CapitalizeFirstLetter(this string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return input;
+
+            input = input.Trim();
+
+            return char.ToUpper(input[0]) + input.Substring(1).ToLower();
+        }
     }
 
 }

@@ -38,8 +38,8 @@
             @if (entryModel.CTALinks != null)
             {
                 <button onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CTALinks).Url)'"
-                    class="pink-button">
-                    @entryModel.CTALinks.ButtonText
+                    class="pink-button with-arrow flex-left">
+                    &nbsp;&nbsp;&nbsp;@entryModel.CTALinks.ButtonText?.Trim()
                 </button>
             }
         </div>

@@ -16,11 +16,11 @@
                 <li class="breadcrumb-item @(item.IsActive ? "active" : "")">
                     @if (!item.IsActive)
                     {
-                        <a href="@string.Format("{0}", (counter == 0) ? NavigationLinkHelper.GetHomeLink() : item.Url)">@item.Title</a>
+                            <a href="@string.Format("{0}", (counter == 0) ? NavigationLinkHelper.GetHomeLink() : item.Url)">@item.Title.CapitalizeFirstLetter()</a>
                     }
                     else
                     {
-                        @item.Title
+                        @item.Title.CapitalizeFirstLetter();
                     }
                 
                 </li>

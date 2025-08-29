@@ -1,0 +1,133 @@
+﻿@import './variables.css';
+
+/* ====== 1) Container layout ====== */
+.form-outer-container {
+    display: flex;
+    flex-direction: column; /* mobile: stacked */
+    gap: 20px;
+    padding: 30px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top:0;
+    background: var(--cream);
+}
+
+/* ====== 2) Left column content ====== */
+.left-col-text h2,
+.left-col-text p,
+.left-col-text a {
+    margin: 0;
+    padding: 0rem 0rem 4rem 0rem;
+    display: inline-block;/* each element on its own line */
+    margin-bottom: 10px;
+    width:100%;
+}
+
+.left-col-text a {
+    display:inline;
+}
+
+.form-field-label {
+    color:var(--shade-black);
+    font-size:1.8rem;
+}
+
+/* ====== 3) Desktop layout ====== */
+@media (min-width: 992px) {
+    .form-outer-container {
+        flex-direction: row; /* two columns side by side */
+        gap: 32px;
+    }
+
+    .left-col-text {
+        flex: 1; /* 50% width */
+    }
+
+    [data-contensis-form-id="weddingEnquiry"] {
+        flex: 1; /* 50% width */
+        align-self: flex-start; /* align top with left column */
+    }
+}
+
+/* ====== 4) Form layout ====== */
+.contensis-form {
+    padding: 30px;
+    box-sizing: border-box;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    background-color: #E6E8E9;
+}
+
+/* Inline form fields (2 per row) */
+.form-fields-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Inputs & Address field */
+.form-text-input,
+.form-email-input,
+.form-tel-input,
+#contensis-form-weddingEnquiry-1-address {
+    width: 100%;
+    height: 50px; /* requirement 6 */
+    border: 1px solid #ccc;
+    border-radius: 40px; /* requirement 6 */
+    padding: 0 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+/* Message field (full width) */
+.form-field:has(#contensis-form-weddingEnquiry-1-howCanWeHelp) {
+    grid-column: 1 / -1; /* span full width */
+}
+
+#contensis-form-weddingEnquiry-1-howCanWeHelp {
+    width: 100%;
+    height: 205px; /* requirement 4 */
+    border: 1px solid #ccc;
+    border-radius: 40px; /* match other inputs */
+    padding: 12px 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom:3rem;
+}
+
+/* Submit button */
+.form-button--submit {
+    background-color: var(--pink);
+    color: var(--white);
+    min-width: 175px;
+    height: 50px;
+    border: none;
+    border-radius: 20px; /* requirement 7 */
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* center text */
+    transition: background 0.3s ease;
+}
+
+
+
+/* ====== 5) Mobile adjustments ====== */
+@media (max-width: 991.98px) {
+    .form-outer-container {
+        flex-direction: column;
+    }
+
+    .form-fields-container {
+        grid-template-columns: 1fr; /* stack fields on mobile */
+    }
+
+    .left-col-text h2,
+    .left-col-text p,
+    .left-col-text a {
+        margin-bottom: 16px;
+    }
+}

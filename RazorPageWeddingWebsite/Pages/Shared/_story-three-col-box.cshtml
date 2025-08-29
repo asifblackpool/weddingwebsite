@@ -10,6 +10,7 @@
     var blogEntries = new List<GettingMarriedBlog>();
     var client = ContensisClient.Create();
     var nodes = client.Nodes.GetByPath("residents/life-events/getting-married/stories", null, 2);
+    var storiesUrl = Constants.WebsiteConstants.SITE_VIEW_PATH + "stories";
 
 
     if (nodes != null && nodes.Entry() != null)
@@ -67,10 +68,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="center-container">
-                <button
-                    onclick="window.location.href='@string.Format("{0}stories", Constants.WebsiteConstants.SITE_VIEW_PATH)' class="
-                    pink-button width-button-stories">View all real
-                    stories</button>
+                <button onclick="window.location.href='@storiesUrl'" class="pink-button width-button-stories">View all real stories</button>
             </div>
         </div>
     </div>

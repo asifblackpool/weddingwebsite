@@ -33,11 +33,11 @@ namespace RazorPageWeddingWebsite.Helpers.Html
         {
             var builder = new HtmlContentBuilder();
             builder.AppendHtml("<span>");
-            builder.Append(counter.ToString());
-            builder.Append(". ");
+            //builder.Append(counter.ToString());
+            builder.Append(" ");
             builder.Append(System.Net.WebUtility.HtmlEncode(title));
             builder.AppendHtml("</span>");
-            builder.AppendHtml("<span class='arrow'></span>");
+            builder.AppendHtml("<span class='arrow'>+ Show</span>");
             return builder;
         }
     }

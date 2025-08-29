@@ -1,4 +1,5 @@
-﻿using Blackpool.Zengenti.CMS.Models.Components;
+﻿using Blackpool.Zengenti.CMS.Helpers;
+using Blackpool.Zengenti.CMS.Models.Components;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Net.NetworkInformation;
@@ -54,18 +55,19 @@ public static class AccordionHelper
             header.Attributes.Add("aria-controls", $"accordion-content-{index}");
 
             var titleSpan = new TagBuilder("span");
-            titleSpan.InnerHtml.Append(item.Title);
+            titleSpan.InnerHtml.Append(item.Title.SafeString());
             header.InnerHtml.AppendHtml(titleSpan);
 
             var arrowSpan = new TagBuilder("span");
             arrowSpan.AddCssClass("arrow");
+            arrowSpan.InnerHtml.Append("+ <strong>Show</strong>");   // ✅ use Append, not direct assignmen
             header.InnerHtml.AppendHtml(arrowSpan);
 
             // Create content div
             var content = new TagBuilder("div");
             content.AddCssClass("accordion-content");
             content.Attributes.Add("id", $"accordion-content-{index}");
-            content.InnerHtml.AppendHtml(item.Body);
+            content.InnerHtml.AppendHtml(item.Body.SafeString());
 
             itemContainer.InnerHtml.AppendHtml(header);
             itemContainer.InnerHtml.AppendHtml(content);
