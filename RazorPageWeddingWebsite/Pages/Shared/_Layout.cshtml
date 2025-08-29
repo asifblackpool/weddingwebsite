@@ -90,9 +90,12 @@
             // Initialize with default selector
             accordionservices.init();
             equalheightservices.init();
-            formservices.init();
             headerservices.init();
 
+            // Only run formservices on pages with /contact in the URL
+            if (window.location.pathname.toLowerCase().includes('/contact')) {
+                formservices.init();
+            }
 
             // Or with custom selector
             // accordionService.init('.custom-accordion-item');

@@ -36,6 +36,7 @@ builder.Services.AddTransient<IContentRepository, ContensisContentRepository>();
 
 //register helpers
 builder.Services.AddScoped<ISerializationHelper, SerializationHelper>();
+builder.Services.AddScoped<ICanvasPanelHelper, CanvasPanelHelperWrapper>();
 builder.Services.AddScoped<IPanelHelper, PanelHelperWrapper>();
 builder.Services.AddScoped<IParagraphHelper, ParagraphHelperWrapper>();
 builder.Services.AddScoped<INavigationLinkHelper, NavigationLinkHelperWrapper> ();

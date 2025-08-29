@@ -129,16 +129,16 @@ a.pink-button {
     font-size:var(--h1);
     font-weight:normal;
     line-height:var(--h1-line-height);
-    text-align:center;
-    padding:0rem 1rem 4rem 1rem;
+    text-align:left;
+    padding:0rem 1rem 4rem 0rem;
 }
 
 .h2-title, h2.heading-level-2 {
     color: var(--pink);
     font-size: var(--h2);
     line-height: var(--h2-line-height);
-    text-align: center;
-    padding: 3rem 1rem 3rem 1rem;
+    text-align: left;
+    padding: 3rem 1rem 3rem 0rem;
 }
 
 .venue-title {

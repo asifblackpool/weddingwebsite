@@ -58,9 +58,14 @@ public static class AccordionHelper
             titleSpan.InnerHtml.Append(item.Title.SafeString());
             header.InnerHtml.AppendHtml(titleSpan);
 
+            var strongTag = new TagBuilder("strong");
+            strongTag.InnerHtml.Append("Show");
+
             var arrowSpan = new TagBuilder("span");
             arrowSpan.AddCssClass("arrow");
-            arrowSpan.InnerHtml.Append("+ <strong>Show</strong>");   // ✅ use Append, not direct assignmen
+
+            arrowSpan.InnerHtml.Append("+ ");
+            arrowSpan.InnerHtml.AppendHtml(strongTag);   // ✅ use Append, not direct assignmen
             header.InnerHtml.AppendHtml(arrowSpan);
 
             // Create content div
