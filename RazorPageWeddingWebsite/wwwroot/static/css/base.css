@@ -6,7 +6,7 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--freight-text);
-    font-weight: 700;
+    font-weight: 400;
 }
 
 body, p, li, span {
@@ -130,7 +130,7 @@ a.pink-button {
     font-weight:normal;
     line-height:var(--h1-line-height);
     text-align:left;
-    padding:0rem 1rem 4rem 0rem;
+    padding:0rem 1rem 1rem 0rem;
 }
 
 .h2-title, h2.heading-level-2 {
@@ -138,7 +138,23 @@ a.pink-button {
     font-size: var(--h2);
     line-height: var(--h2-line-height);
     text-align: left;
-    padding: 3rem 1rem 3rem 0rem;
+    padding: 2rem 1rem 2rem 0rem;
+}
+
+h3.heading-level-3 {
+    color: var(--pink);
+    font-size: var(--h3);
+    line-height: var(--h3-line-height);
+    text-align: left;
+    padding: 2rem 1rem 2rem 0rem;
+}
+
+h4.heading-level-4 {
+    color: var(--pink);
+    font-size: var(--h4);
+    line-height: var(--h4-line-height);
+    text-align: left;
+    padding: 2rem 1rem 2rem 0rem;
 }
 
 .venue-title {
@@ -185,6 +201,11 @@ a.pink-button {
 
 .pad-bottom-default {
     padding-bottom: var(--space-lg);
+}
+
+p.lead-paragraph {
+    font-size:var(--text-xl);
+    margin-bottom:5rem;
 }
 
 p > a, li > a {

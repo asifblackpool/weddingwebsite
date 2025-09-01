@@ -27,9 +27,22 @@ namespace RazorPageWeddingWebsite.Core.Services.ContentHandling.Handlers
         {
             var objItem = await _serializer.DeserializeAsync<CanvasParagraph>(item);
 
-            var processedText = await _textProcessor.ProcessAsync(objItem?.Value);
+            if (objItem != null)
+            {
+                var processedText = await _textProcessor.ProcessAsync(objItem?.Value);
+                if (objItem?.Properties != null && objItem.Properties.ParagraphType == "lead")
+                {
+                    return new HtmlString($"<p class=\"shade-black lead-paragraph\">{processedText}</p>");
+                }
+                else
+                {
+                    return new HtmlString($"<p class=\"shade-black\">{processedText}</p>");
+                }
 
-            return new HtmlString($"<p class=\"shade-black\">{processedText}</p>");
+            }
+
+
+            return new HtmlString($"");
         }
     }
 }

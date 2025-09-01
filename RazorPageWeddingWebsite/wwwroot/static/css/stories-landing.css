@@ -34,7 +34,8 @@
     border: 0px solid black !important;
     display: flex;
     flex-direction: column;
-    background-color:transparent;
+    background-color: #F9FAFA;
+    padding-top: 1.5rem;
 }
 
 /* Desktop-specific height */

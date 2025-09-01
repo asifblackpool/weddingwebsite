@@ -49,7 +49,8 @@ namespace RazorPageWeddingWebsite.Core.Services.ContentHandling.Handlers
 
                     if (token.Type == JTokenType.Array)
                     {
-                        htmlContent.AppendHtml(await HandleArrayTokenAsync(token));
+                        var html = await HandleArrayTokenAsync(token);
+                        htmlContent.AppendHtml(html);
                     }
                     else if (token.Type == JTokenType.Object)
                     {
@@ -75,15 +76,18 @@ namespace RazorPageWeddingWebsite.Core.Services.ContentHandling.Handlers
 
         private async Task<IHtmlContent> HandleArrayTokenAsync(JToken token)
         {
+            await Task.CompletedTask;
+            
             var ul = new TagBuilder("ul");
             ul.AddCssClass("shade-black");
 
             foreach (JToken jItem in token)
             {
                 JToken? valueToken = jItem["value"];
+                var html = CanvasListItemRenderer.RenderTextWithLinks(valueToken);
 
                 var li = new TagBuilder("li");
-                li.InnerHtml.AppendHtml(await ProcessValueTokenAsync(valueToken));
+                li.InnerHtml.AppendHtml(html);
                 ul.InnerHtml.AppendHtml(li);
             }
 

@@ -25,10 +25,12 @@
     --h1: 6.8rem;
     --h2: 4.6rem;
     --h3: 3.0rem;
+    --h4: 2.2rem;
     /* line heights*/
     --h1-line-height: 6.8rem;
     --h2-line-height: 4.6rem;
     --h3-line-height: 3.4rem;
+    --h4-line-height: 2.4rem;
     /* Transitions */
     --transition-fast: 0.15s;
     --transition-normal: 0.3s;
