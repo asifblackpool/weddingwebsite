@@ -40,6 +40,13 @@
                 <button onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CTALinks).Url)'"
                     class="pink-button with-arrow flex-left">
                     &nbsp;&nbsp;&nbsp;@entryModel.CTALinks.ButtonText?.Trim()
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg"
+                         width="20" height="13" viewBox="0 0 20 13" fill="none">
+                        <!-- Shaft: slightly extended to meet arrowhead tip -->
+                        <line x1="5" y1="6.345" x2="18.75" y2="6.345" stroke="currentColor" stroke-width="1" />
+                        <!-- Arrowhead -->
+                        <line x1="13.5" y1="0" x2="20" y2="6.345" stroke="currentColor" stroke-width="1" />
+                        <line x1="13.5" y1="12.69" x2="20" y2="6.345" stroke="currentColor" stroke-width="1" />
                 </button>
             }
         </div>
@@ -80,7 +87,7 @@
                                                                                          : string.Empty)" />
                     <div class="promotion-text">
                         <h3 class="sub-title text-center" style="color:#fff;">@entryModel.PromotionalBannerTitle</h3>
-                        <p>@entryModel.PromotionalBannerText</p>
+                        <p style="color:#fff;font-size:2.2rem;">@entryModel.PromotionalBannerText</p>
                     </div>
                 </div>
             </div>

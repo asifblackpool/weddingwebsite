@@ -59,27 +59,41 @@ body {
     gap: 10px;
 }
 
-.with-arrow {
+.with-arrow1 {
     position: relative;
     padding-right: 2rem; /* make space for the arrow */
     font-size: 16px;
     cursor: pointer;
     background-color:transparent; /* pink example */
     color: white;
-    border: none;
-    border-radius: 8px;
     padding: 10px 20px !important;
+    gap:2px;
+    text-align:center;
 }
 
-/* Add arrow using ::after */
-.with-arrow::after {
-    content: "→"; /* right arrow */
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 22px;
+.with-arrow {
+    color: white;
+    background-color:transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 1em 2em;
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    transition: color 0.3s ease;
+    font-size:1em
 }
+
+    .with-arrow:hover {
+        color: hotpink; /* shaft + arrowhead change color */
+    }
+
+.arrow {
+    display: inline-block;
+}
+
 
 .width-button-stories {
     width: var(--button-width-200);

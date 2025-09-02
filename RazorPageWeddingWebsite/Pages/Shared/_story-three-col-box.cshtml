@@ -10,7 +10,7 @@
     var blogEntries = new List<GettingMarriedBlog>();
     var client = ContensisClient.Create();
     var nodes = client.Nodes.GetByPath("residents/life-events/getting-married/stories", null, 2);
-    var storiesUrl = Constants.WebsiteConstants.SITE_VIEW_PATH + "stories";
+    var storiesUrl = string.Format("/{0}", Constants.WebsiteConstants.SITE_VIEW_PATH + "stories");
 
 
     if (nodes != null && nodes.Entry() != null)
