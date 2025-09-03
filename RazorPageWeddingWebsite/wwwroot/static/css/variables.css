@@ -1,9 +1,9 @@
 ﻿:root {
     --freight-text: 'Freight Text Pro', serif;
-    --font-body: 'Baskerville', serif;
+    --baskerville-text: 'Baskerville', serif;
     --dark-blue: #041C2C;
-    --white: #ffffff;
-    --offwhite: #fcf6ed;
+    --white: #FFF;
+    --offwhite: #FCF6ED;
     --cream: #FCF6ED;
     --pink: #DD3394;
     --plain-black: #000;

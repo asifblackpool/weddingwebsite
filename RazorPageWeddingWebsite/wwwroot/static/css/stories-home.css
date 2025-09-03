@@ -17,10 +17,11 @@
 .column-box {
     background-color: transparent;
     /* #f1f1f1; */
-    padding: 0px;
+    padding: 2rem;
     min-height: 450px;
     border-radius: 8px;
     width:33.33%;
+    background-color:var(--white);
 }
 
 div.stories-img {
@@ -28,7 +29,7 @@ div.stories-img {
     width: 100%;
     /*aspect-ratio: 16/9; /* Your desired ratio */
     overflow: hidden;
-    height: 400px;
+    height: 220px;
 }
 
 div.stories-img>img {
@@ -53,8 +54,7 @@ div.stories-information>h2 {
 
 div.stories-information>p {
     text-align: center;
-    min-height:11rem;
-    padding-bottom: 3rem;
+    display:inline-block;
     flex-grow:1;
 }
 

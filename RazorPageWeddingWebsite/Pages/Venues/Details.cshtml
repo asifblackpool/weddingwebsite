@@ -28,28 +28,30 @@
 @if (entryModel != null)
 {
     <h1 class="page-title">@entryModel.Title</h1>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="venue-image">
-                <img src="@string.Format("{0}", entryModel.VenueImage != null
-                                                         ? ImageHelper.GetImageUrl(entryModel.VenueImage)
-                                                         : string.Empty)" alt="@string.Format("{0}", entryModel.VenueImage != null
-                                                                                         ? entryModel.VenueImage.AltText
-                                                                                         : string.Empty)" />
+    <div class="content-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="venue-image">
+                    <img src="@string.Format("{0}", entryModel.VenueImage != null
+                                                             ? ImageHelper.GetImageUrl(entryModel.VenueImage)
+                                                             : string.Empty)" alt="@string.Format("{0}", entryModel.VenueImage != null
+                                                                                             ? entryModel.VenueImage.AltText
+                                                                                             : string.Empty)" />
+            </div>
+        </div>
+            <div class="col-md-6">
+                <h2 class="venue-title">@entryModel.PageTitle</h2>
+                <p class="pad-bottom-default shade-black">@entryModel.IntroductionText</p>
+                @Html.Raw(
+                        ButtonHelper.BuildButton(
+                        (entryModel != null && entryModel.VenueLink != null) ? entryModel.VenueLink.ButtonText : string.Empty,
+                        buttonUrl,
+                        "pink-button"
+                        )
+                        )
+            </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <h2 class="venue-title">@entryModel.PageTitle</h2>
-        <p class="pad-bottom-default shade-black">@entryModel.IntroductionText</p>
-        @Html.Raw(
-                ButtonHelper.BuildButton(
-                (entryModel != null && entryModel.VenueLink != null) ? entryModel.VenueLink.ButtonText : string.Empty,
-                buttonUrl,
-                "pink-button"
-                )
-                )
-    </div>
-</div>
 }
 else
 {

@@ -9,7 +9,7 @@
     padding-left: 0;
     padding-right: 0;
     padding-top:0;
-    background: var(--cream);
+    background: var(--white);
 }
 
 /* ====== 2) Left column content ====== */
@@ -17,7 +17,7 @@
 .left-col-text p,
 .left-col-text a {
     margin: 0;
-    padding: 0rem 0rem 4rem 0rem;
+    padding: 0rem 0rem 2rem 0rem;
     display: inline-block;/* each element on its own line */
     margin-bottom: 10px;
     width:100%;
@@ -30,6 +30,7 @@
 .form-field-label {
     color:var(--shade-black);
     font-size:1.8rem;
+    font-weight:bold;
 }
 
 /* ====== 3) Desktop layout ====== */

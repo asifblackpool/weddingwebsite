@@ -51,6 +51,10 @@
     border-bottom: solid 1px grey;
 }
 
+.accordion .accordion-item:first-child {
+    border-bottom: solid 0px grey;
+}
+
 /* First span (text block) */
 .accordion-header span:first-child {
     display: block;

@@ -33,7 +33,7 @@
     <!-- Hero Banner -->
     <div class="hero-banner">
         <div class="hero-banner-information psuedo-wrapper">
-            <h2 class="hero-title">@entryModel.HeroHeading</h2>
+            <h2 class="hero-title text-center">@entryModel.HeroHeading</h2>
             <p class="hero-text">@entryModel.HeroText</p>
             @if (entryModel.CTALinks != null)
             {
@@ -54,8 +54,9 @@
 
 
     <!--Explore our Venues (section) -->
-    <div class="venues-section psuedo-wrapper">
-        <h2 class="block-title">Explore our venues</h2>
+    <div id="venue-outer-wrapper" class="outer-full-wrapper">
+        <div class="venues-section psuedo-wrapper">
+        <h2 class="block-title text-center">Explore our venues</h2>
         <div class="row three-column-container" >
             <div class="col feature-area-details">
                 <h3 class="sub-title-bold">@entryModel.FeatureElementHeader</h3>
@@ -93,11 +94,13 @@
             </div>
         </div>
     </div>
+    </div>
 
 
     <!--Stories (Section)-->
-
-    @await Html.PartialAsync("../shared/_story-three-col-box.cshtml")
+    <div id="stories-outer-wrapper" class="outer-full-wrapper">
+        @await Html.PartialAsync("../shared/_story-three-col-box.cshtml")
+    </div>
 
 }
 else

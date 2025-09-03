@@ -42,8 +42,8 @@
 
 
 
-<div class="custom-container">
-    <h2 class="block-title">Real stories</h2>
+<div class="custom-container" style="background-color:#FCF6ED;">
+    <h2 class="block-title" style="text-align:center">Real stories</h2>
     <div class="three-columns">
         @foreach (var item in blogEntries)
         {
@@ -57,7 +57,7 @@
                                                                                                                                                                                                        : string.Empty)" />
             </div>
             <div class="stories-information">
-                <h2>@item.PageTitle</h2>
+                    <h3 style="color:#3E3E3E; text-align:center;">@item.PageTitle</h3>
                 <p>@item.GetFirstParagraph?.LimitWordsWithQuotations(45)</p>
                 <button onclick="window.location.href='@String.Format("{0}", item.FriendlyUrlPath)'"
                     class="white-button width-button-stories">Find out more</button>

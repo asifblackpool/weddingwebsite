@@ -34,7 +34,7 @@
     border: 0px solid black !important;
     display: flex;
     flex-direction: column;
-    background-color: #F9FAFA;
+    background-color: #FFF; /* #F9FAFA; */
     padding-top: 1rem;
 }
 

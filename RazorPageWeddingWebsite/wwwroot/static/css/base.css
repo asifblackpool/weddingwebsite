@@ -5,19 +5,19 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--freight-text);
+    font-family: var(--baskerville-text);
     font-weight: 400;
 }
 
 body, p, li, span {
-    font-family: var(--font-body);
+    font-family: var(--freight-text);
     color:var(--shade-black);
     font-weight: 400;
 }
 
 body {
 
-    background-color: var(--cream);
+    background-color: var(--white);
     width: var(--full-width);
     border: solid 0px red;
     font-size:1.8rem;
@@ -86,9 +86,9 @@ body {
     font-size:1em
 }
 
-    .with-arrow:hover {
-        color: hotpink; /* shaft + arrowhead change color */
-    }
+.with-arrow:hover {
+    color: hotpink; /* shaft + arrowhead change color */
+}
 
 .arrow {
     display: inline-block;
@@ -147,7 +147,7 @@ a.pink-button {
     padding:0rem 1rem 1rem 0rem;
 }
 
-.h2-title, h2.heading-level-2 {
+.h2-title, h2.heading-level-2, h2 {
     color: var(--pink);
     font-size: var(--h2);
     line-height: var(--h2-line-height);
@@ -155,7 +155,7 @@ a.pink-button {
     padding: 2rem 1rem 2rem 0rem;
 }
 
-h3.heading-level-3 {
+h3.heading-level-3, h3 {
     color: var(--pink);
     font-size: var(--h3);
     line-height: var(--h3-line-height);
@@ -163,7 +163,7 @@ h3.heading-level-3 {
     padding: 2rem 1rem 2rem 0rem;
 }
 
-h4.heading-level-4 {
+h4.heading-level-4, h4+ {
     color: var(--pink);
     font-size: var(--h4);
     line-height: var(--h4-line-height);
