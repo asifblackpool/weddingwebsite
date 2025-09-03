@@ -1,3 +1,17 @@
-﻿div.image-strip-container {
+﻿.image-strip-container {
+    display: flex; /* force columns in one row */
+    gap: 0; /* no gap unless you want spacing */
     padding-bottom:3rem;
+}
+
+.image-strip-container .image-box {
+    flex: 1; /* equal width columns */
+    display: flex; /* ensure image fills box */
+    align-items: stretch; /* align images evenly */
+}
+
+.image-strip-container .image-box img {
+    display: block; /* prevents baseline issues */
+    width: 100%; /* scale to container width */
+    height: auto; /* keep aspect ratio */
 }

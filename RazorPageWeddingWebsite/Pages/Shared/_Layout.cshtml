@@ -80,6 +80,7 @@
         </div>
     </footer>
     <script type="text/javascript" src="~/static/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/static/js/services/utilityservices.js"></script>
     <script type="text/javascript" src="~/static/js/services/accordionservices.js"></script>
     <script type="text/javascript" src="~/static/js/services/equalheightservices.js"></script>
     <script type="text/javascript" src="~/static/js/services/formservices.js"></script>
@@ -96,6 +97,7 @@
             // Only run formservices on pages with /contact in the URL
             if (window.location.pathname.toLowerCase().includes('/contact')) {
                 formservices.init();
+                utilityservices.replaceCommasInParagraph(".left-col-text p:nth-of-type(4)");
             }
 
             // Or with custom selector

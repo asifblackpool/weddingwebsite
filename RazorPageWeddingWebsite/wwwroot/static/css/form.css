@@ -25,7 +25,28 @@
 
 .left-col-text a {
     display:inline;
+    position:relative;
 }
+
+.left-col-text p:not(:first-of-type) {
+    background-repeat: no-repeat;
+    background-position-x: 0px;
+    background-position-y: 3px;
+    background-size: 20px 20px;
+    padding-left: 30px;
+}
+
+.left-col-text p:nth-of-type(2) {
+    background-image: url('/static/images/contact-form/email.png');
+
+}
+.left-col-text p:nth-of-type(3) {
+    background-image: url('/static/images/contact-form/telephone.png');
+}
+.left-col-text p:nth-of-type(4) {
+    background-image: url('/static/images/contact-form/address.png');
+}
+
 
 .form-field-label {
     color:var(--shade-black);

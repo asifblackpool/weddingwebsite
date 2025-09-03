@@ -226,6 +226,10 @@ p > a, li > a {
     color: var(--shade-black);
 }
 
+p:empty {
+    display: none; /* hide empty paragraphs */
+}
+
 
 
 
