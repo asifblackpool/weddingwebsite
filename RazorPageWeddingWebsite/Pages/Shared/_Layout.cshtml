@@ -29,7 +29,9 @@
         </div>
     </header>
     <main>
-        <div class="outer-full-wrapper"><div id="chain">&nbsp;</div></div>
+        <div class="outer-full-wrapper">
+            <div id="chain">&nbsp;</div>
+        </div>
         @await Component.InvokeAsync("Breadcrumb")
         @await Component.InvokeAsync("Title")
         @RenderBody()
@@ -54,7 +56,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-12 change-position-footer">
                     <ul class="footer-list">
                         <li><a href="https://www.blackpool.gov.uk/Accessibility.aspx">Accessibility</a></li>
                         <li><a href="@string.Format("{0}stories", Constants.WebsiteConstants.SITE_VIEW_PATH)">Contact
@@ -67,8 +69,9 @@
                     </ul>
 
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <p style="color:#fff;">A big thank you to our photographers who have contributed to the website and our marketing
+                <div class="col-lg-4 col-md-4 col-sm-12 change-position-footer">
+                    <p style="color:#fff;">A big thank you to our photographers who have contributed to the website and
+                        our marketing
                         materials</p>
                     <ul class="footer-list">
                         <li>
@@ -93,6 +96,8 @@
             accordionservices.init();
             equalheightservices.init();
             headerservices.init();
+            utilityservices.removeEmptyHeadings();
+            utilityservices.initAnchorLinks();
 
             // Only run formservices on pages with /contact in the URL
             if (window.location.pathname.toLowerCase().includes('/contact')) {

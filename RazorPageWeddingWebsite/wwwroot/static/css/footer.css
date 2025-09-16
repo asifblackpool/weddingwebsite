@@ -24,3 +24,75 @@ ul.footer-list > li > a {
     font-size: var(--text-base);
     text-decoration:none;
 }
+
+@media (max-width: 576px) {
+    /* General footer styles */
+    .footer-container {
+
+        padding: 20px;
+    }
+
+    .footer-title {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    /* Ensure rows stack naturally */
+    .footer-container .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* Force columns to take full width on mobile */
+    .footer-container .col-lg-4,
+    .footer-container .col-md-4,
+    .footer-container .col-sm-12,
+    .footer-container .col-md-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center; /* center all text and content */
+        margin-bottom: 20px;
+    }
+
+    /* Footer lists */
+    .footer-container .footer-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-container .footer-list li {
+        margin-bottom: 8px;
+    }
+
+    .footer-container .footer-list a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /* Logo */
+    .footer-logo {
+        max-width: 180px;
+        margin: 0 auto 10px auto;
+        display: block;
+    }
+
+    /* Social icons — force to bottom, full width, centered */
+    .footer-container .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 2rem;
+        width: 100%;
+        position: relative;
+        top:39rem;
+    }
+
+    .change-position-footer {
+        position:relative;
+        top:-10rem;
+    }
+
+    
+
+}
