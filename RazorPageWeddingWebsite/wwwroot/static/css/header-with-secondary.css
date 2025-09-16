@@ -167,3 +167,18 @@ h1.home>a.home-link {
         transform: translateY(-50%) rotate(180deg);
     }
 }
+
+@media (max-width: 576px) {
+
+    header {
+        padding-left:15px;
+        padding-right:15px;
+        height:129px;
+    }
+    h1.home {
+        font-size: 24px;
+        line-height:24px;
+        position:relative;
+        top:35px;
+    }
+}

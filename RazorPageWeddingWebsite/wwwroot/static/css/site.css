@@ -190,3 +190,66 @@ div.venue-image>img {
 @media only screen and (min-width: 768px) {}
 
 @media only screen and (min-width: 1024px) {}
+
+@media (max-width: 576px) {
+
+    body, p, li, span {
+        font-size:16px;
+    }
+
+    .nav-container {
+        display:none;
+    }
+
+    .outer-full-wrapper {
+        padding-left:15px !important;
+        padding-right:15px !important;
+    }
+
+    .outer-full-wrapper:first-of-type {
+        border:solid 0px red;
+        padding-left:0px!important;
+        padding-right:0px !important;
+    }
+
+    .venues-section {
+        padding-top:20px;
+    }
+
+    h2.block-title {
+        font-size:var(--h2);
+    }
+
+    .pink-button, .white-button {
+        font-size:16px;
+        min-width: 165px;
+    }
+
+     div.hero-banner {
+        border-left:solid transparent 10px;
+        border-right:solid transparent 10px;
+
+    }
+
+    .hero-banner-information {
+        padding-top:1em;
+    }
+
+    .hero-title {
+        font-size: 44px;
+        line-height: 1em;
+        text-align: left !important;
+        font-weight: normal;
+        padding-top: 0em;
+    }
+
+    .hero-text, .venue-text {
+        font-size: 0.89em;
+        padding-bottom: 15px;
+    }
+
+    .hero-banner-information > .pink-button {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+}

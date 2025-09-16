@@ -230,6 +230,19 @@ p:empty {
     display: none; /* hide empty paragraphs */
 }
 
+@media (max-width: 576px) {
+
+    .sub-title-bold {
+        text-align: center;
+    }
+
+    .pink-button {
+        text-align: center;
+    }
+
+ .
+}
+
 
 
 
