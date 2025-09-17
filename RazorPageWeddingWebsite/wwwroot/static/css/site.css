@@ -36,7 +36,7 @@ div.outer-full-wrapper{
 div#stories-outer-wrapper {
     background-color:var(--cream);
     padding-top:2rem;
-    padding-bottom:2rem;
+    padding-bottom:5rem;
 }
 
 main,
@@ -124,7 +124,7 @@ ul.shade-black ul li {
     /* font style should be baskerville*/
     color: var(--plain-black);
     font-size: 6.6rem;
-    font-weight: bold;
+    font-weight: 400;
     padding-bottom: 2rem;
 
 }
@@ -132,7 +132,7 @@ ul.shade-black ul li {
 .hero-text,
 .venue-text {
     color: var(--plain-black);
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     padding-bottom: 2rem;
 }
 

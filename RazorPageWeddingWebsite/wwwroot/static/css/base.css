@@ -13,6 +13,7 @@ body, p, li, span {
     font-family: var(--freight-text);
     color:var(--shade-black);
     font-weight: 400;
+    font-size:var(--text-base);
 }
 
 body {
@@ -104,8 +105,13 @@ body {
     color: var(--white);
     border-radius: 30px;
     padding: 1rem;
-    min-width: 170px;
+    min-width: 177px;
     border: solid 1px transparent;
+    font-family:var(--freight-text);
+    font-size:var(--text-base);
+    font-weight:700;
+    line-height:1.8rem;
+    height:50px;
 }
 
 .pink-button:hover {
@@ -126,10 +132,13 @@ a.pink-button {
     color: var(--pink);
     border-radius: 30px;
     padding: 1rem;
-    min-width: 174.5px;
+    min-width: 205px;
+    height:50px;
     border: solid 2px var(--pink);
-    display:inline-block;
-    text-decoration:none;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: var(--freight-text);
 }
 
 .white-button:hover {
@@ -161,6 +170,7 @@ h3.heading-level-3, h3 {
     line-height: var(--h3-line-height);
     text-align: left;
     padding: 2rem 1rem 2rem 0rem;
+    font-family:var(--freight-text);
 }
 
 h4.heading-level-4, h4+ {
@@ -195,6 +205,8 @@ h4.heading-level-4, h4+ {
     text-align: left;
     padding-bottom: 2rem;
     font-weight: bold;
+    font-family:var(--freight-text);
+
 }
 
 .venues-list {

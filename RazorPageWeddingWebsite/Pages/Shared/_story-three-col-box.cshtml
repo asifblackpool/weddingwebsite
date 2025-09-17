@@ -43,7 +43,7 @@
 
 
 <div class="custom-container" style="background-color:#FCF6ED;">
-    <h2 class="block-title" style="text-align:center">Real stories</h2>
+    <h2 class="block-title" style="text-align:center;">Real stories</h2>
     <div class="three-columns">
         @foreach (var item in blogEntries)
         {
@@ -57,7 +57,7 @@
                                                                                                                                                                                                        : string.Empty)" />
             </div>
             <div class="stories-information">
-                    <h3 style="color:#3E3E3E; text-align:center;">@item.PageTitle</h3>
+                    <h3 style="color:#3E3E3E; text-align:center;font-weight:700;">@item.PageTitle</h3>
                 <p>@item.GetFirstParagraph?.LimitWordsWithQuotations(45)</p>
                 <button onclick="window.location.href='@String.Format("{0}", item.FriendlyUrlPath)'"
                     class="white-button width-button-stories">Find out more</button>
@@ -68,7 +68,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="center-container">
-                <button onclick="window.location.href='@storiesUrl'" class="pink-button width-button-stories">View all real stories</button>
+                <button onclick="window.location.href='@storiesUrl'" class="pink-button width-button-stories" style="min-width:205px !important;">View all real stories</button>
             </div>
         </div>
     </div>

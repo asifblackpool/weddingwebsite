@@ -7,7 +7,7 @@
 
     div.promotion-text > p {
 
-        font-size: 2.2em;
+        font-size: 1.8rem;
     }
 }
 
@@ -24,7 +24,6 @@
     /* #f1f1f1; */
     padding: 2rem;
     min-height: 450px;
-    border-radius: 8px;
     width:33.33%;
     background-color:var(--white);
 }
