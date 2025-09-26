@@ -39,14 +39,8 @@
             {
                 <button onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CTALinks).Url)'"
                     class="pink-button with-arrow flex-left">
-                    &nbsp;&nbsp;&nbsp;@entryModel.CTALinks.ButtonText?.Trim()
-                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg"
-                         width="20" height="13" viewBox="0 0 20 13" fill="none">
-                        <!-- Shaft: slightly extended to meet arrowhead tip -->
-                        <line x1="5" y1="6.345" x2="18.75" y2="6.345" stroke="currentColor" stroke-width="1" />
-                        <!-- Arrowhead -->
-                        <line x1="13.5" y1="0" x2="20" y2="6.345" stroke="currentColor" stroke-width="1" />
-                        <line x1="13.5" y1="12.69" x2="20" y2="6.345" stroke="currentColor" stroke-width="1" />
+                    <span>@entryModel.CTALinks.ButtonText?.Trim()</span>
+                    <img src="/static/images/general/arrow-right.svg" alt="arrow" />
                 </button>
             }
         </div>
@@ -80,7 +74,7 @@
             </div>
             <div class="col feature-area-image-box">
                 <div class="promotion-area-venue-image"
-                     onclick="window.location.href='@String.Format("{0}", entryModel.PromotionalBannerUri)'">
+                     onclick="window.location.href='@String.Format("{0}", entryModel.PromotionalBannerUri)'" style="cursor:pointer;">
                     <img src="@string.Format("{0}", entryModel.PromotionalBannerImage != null
                                                          ? ImageHelper.GetImageUrl(entryModel.PromotionalBannerImage)
                                                          : string.Empty)" alt="@string.Format("{0}", entryModel.PromotionalBannerImage != null

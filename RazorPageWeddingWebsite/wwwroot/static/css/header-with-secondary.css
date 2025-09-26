@@ -31,6 +31,11 @@ h1.home>a.home-link {
     position: relative;
 }
 
+.mobile-menu-toggle {
+    display: none;
+
+}
+
 .nav-list {
     display: flex;
     justify-content: space-between;
@@ -125,7 +130,6 @@ h1.home>a.home-link {
 }
 
 /* Caret styles */
-/* Caret styles */
 .caret {
     display: inline-block;
     width: 6px;
@@ -137,15 +141,15 @@ h1.home>a.home-link {
     padding: 3px; /* adjust size */
     transform: rotate(45deg); /* default: arrow pointing down */
     transition: transform 0.3s ease;
-    position:relative;
-    top:-3px;
+    position: relative;
+    top: -3px;
 }
 
 /* Rotate on hover/active */
 .has-panel:hover .caret {
     transform: rotate(-135deg); /* arrow pointing up */
     border-color: black; /* stays black */
-    top:2px;
+    top: 2px;
 }
 /* Adjust link padding to accommodate caret */
 .has-panel>a {
@@ -156,29 +160,121 @@ h1.home>a.home-link {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .caret {
+    .mobile-caret1 {
         position: absolute;
-        right: 10px;
-        top: 50%;
+        right: -6px;
+        top: 53%;
         transform: translateY(-50%);
     }
 
-    .has-panel:hover .caret {
-        transform: translateY(-50%) rotate(180deg);
+    .mobile-caret {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-left: 8px;
+        vertical-align: middle;
+        border: solid black;
+        border-width: 0 2px 2px 0; /* creates arrow shape */
+        padding: 3px; /* adjust size */
+        transform: rotate(45deg); /* default: arrow pointing down */
+        transition: transform 0.3s ease;
+        position: relative;
+        top: -3px;
     }
+
+    div.active > .mobile-caret {
+        border: none;
+        transform: rotate(0deg);
+   
+    }
+    
+
+    .has-panel:hover .caret {
+        transform: translateY(-50%) rotate(-135deg);
+        top:6px;
+    }
+
+    /* Default downward arrow */
+    .mobile-caret1::after {
+        content: "▼"; /* Unicode down arrow */
+        font-size: 1.2rem;
+        margin-left: 6px;
+        display: inline-block;
+        transition: transform 0.3s ease, content 0.3s ease;
+    }
+
+    /* When active (e.g. menu is open, change to X) */
+    div.active > .mobile-caret::after {
+        content: "✕"; /* Cross symbol */
+        font-size: 1.8rem;
+        margin-left: 6px;
+        position: relative;
+        top: -10px;
+        left: -13px;
+    }
+
 }
 
 @media (max-width: 576px) {
 
     header {
-        padding-left:15px;
-        padding-right:15px;
-        height:129px;
+        padding-left: 15px;
+        padding-right: 15px;
+        height: 129px;
     }
+
     h1.home {
         font-size: 24px;
-        line-height:24px;
-        position:relative;
-        top:35px;
+        line-height: 24px;
+        position: relative;
+        top: 35px;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        padding: 10px 15px;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        text-align: right;
+        position: relative;
+        left: -2px;
+    }
+
+    .nav-list {
+        display:none;
+        flex-direction: column;
+        background: #fff;
+        height: auto;
+        z-index: 1000;
+        position: relative;
+        min-width:320px;
+        padding:5rem 0rem;
+    }
+
+    .nav-item {
+        border-top: 1px solid #444;
+        width:80%;
+        text-align:left;
+    }
+
+    .nav-item a {
+        padding: 12px;
+    }
+
+    /* Hover-panel becomes accordion style */
+    .nav-item.has-panel .hover-panel {
+       
+        background: #222;
+        padding-left: 15px;
+        display:none;
+    }
+
+    .nav-item.has-panel.open .hover-panel {
+        display: contents;
+    }
+
+    div.panel-content {
+        margin-left:40px;
     }
 }

@@ -24,6 +24,10 @@
         @if (children != null && children.Count > 0)
         {
             <nav class="nav-container">
+                <!-- Mobile menu toggle -->
+                <div class="mobile-menu-toggle">
+                    Menu <span class="mobile-caret"></span>
+                </div>
                 <ul class="nav-list hover-panel-menu">
                     @foreach (var item in children)
                     {
