@@ -67,7 +67,7 @@
     font-size:1.8em;
 }
 
-/* Second span (arrow block) */
+/* Second span+++++++++++++++++++++++++++++++++++++++++++++++ (arrow blo+ck) */
 span.arrow {
     display: block;
     width: 90%;
@@ -87,4 +87,32 @@ span.arrow {
 span.arrow strong {
     font-weight:normal;
     font-size:2.2rem;
+}
+
+@media (max-width: 576px) {
+    .accordion-header span:first-child {
+        display: table;
+        padding-top:1.5rem;
+    }
+
+    .accordion-item { 
+        border-bottom: solid 0px; 
+        margin-bottom:20px;
+    }
+
+   
+    .accordion-item.active > div {
+
+        margin-top: 3rem;
+    }
+
+    .accordion .accordion-item:last-child {
+
+        padding-bottom: 2rem;
+    }
+
+    span.arrow {
+        margin-bottom: 0rem;
+    }
+
 }

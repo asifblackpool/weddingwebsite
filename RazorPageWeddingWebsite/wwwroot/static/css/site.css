@@ -208,6 +208,14 @@ div.venue-image>img {
 
 @media (max-width: 576px) {
 
+    .container, 
+    .content-container,
+    .breadcrumb-container, 
+    .header-wrapper {
+        padding-left:15px !important;
+        padding-right:15px !important;
+    }
+
     body, p, li, span {
         font-size:16px;
     }
@@ -266,5 +274,21 @@ div.venue-image>img {
     .hero-banner-information > .pink-button {
         text-align: left;
         padding-bottom: 10px;
+    }
+
+    ul.shade-black ul li {
+        margin:1rem;
+    }
+
+    p.shade-black {
+        margin-bottom:3rem;
+    }
+
+    p.card-text {
+        margin-bottom:3rem !important;
+    }
+
+    .image-text-component .col-md-6 {
+        flex: unset;
     }
 }

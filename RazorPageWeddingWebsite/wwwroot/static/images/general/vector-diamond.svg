@@ -1,3 +1,12 @@
-<svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.25 5L5.88 0.619995L10.51 5L5.88 9.38L1.25 5Z" stroke="#CDD2D5" stroke-width="0.9" stroke-miterlimit="300"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10.57 10">
+  <!-- Generator: Adobe Illustrator 29.7.0, SVG Export Plug-In . SVG Version: 2.1.1 Build 138)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #cdd2d5;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M5.28,10L0,5,5.28,0l5.29,5-5.29,5ZM1.31,5l3.98,3.76,3.97-3.76-3.97-3.76-3.98,3.76Z"/>
 </svg>

@@ -65,4 +65,20 @@
     }
 }
 
+@media (max-width: 576px) {
+
+    .custom-grid .col-md-4 {
+        padding-right: calc(1.5 * var(--column-gap));
+        padding-left: calc(1.5 * var(--column-gap));
+        margin-bottom: var(--row-gap);
+    }
+
+    /* Card styling */
+    .fixed-height-card {
+ 
+        padding-top: 0rem;
+    }
+
+}
+
 

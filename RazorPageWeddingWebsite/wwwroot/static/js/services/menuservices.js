@@ -41,7 +41,7 @@
                  menuToggle.classList.remove("active");
                  closeSubMenu();
              }
-             //menuCaret.textContent = isOpen ? "▼" : "✕"; // caret swap
+         
          });
 
          // Submenu toggles
@@ -52,7 +52,7 @@
                      _parent = link.parentElement;
                      const caret = link.querySelector(".caret");
                      _parent.classList.toggle("open");
-                     //caret.textContent = parent.classList.contains("open") ? "✕" : "▼";
+                     
                  }
              });
          });

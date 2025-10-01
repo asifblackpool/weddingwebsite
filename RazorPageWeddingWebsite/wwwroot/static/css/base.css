@@ -227,6 +227,7 @@ h4.heading-level-4, h4+ {
 
 .pad-bottom-default {
     padding-bottom: var(--space-lg);
+    margin-bottom:0rem !important;
 }
 
 p.lead-paragraph {
@@ -252,7 +253,28 @@ p:empty {
         text-align: center;
     }
 
- .
+    a.pink-button {
+        line-height:2.4rem;
+        margin:2rem 0rem;
+    }
+
+    h1.regular-header {
+        padding-top: 0rem;
+        padding-bottom:4rem;
+    }
+
+    p.lead-paragraph {
+        font-size: var(--text-base);
+        margin-bottom: 3rem;
+    }
+
+    .venues-list > a {
+        text-align:left;
+    }
+
+    div.img-container > img {
+        width:100%;
+    }
 }
 
 
