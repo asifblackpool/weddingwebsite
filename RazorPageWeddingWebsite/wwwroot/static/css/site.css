@@ -13,6 +13,7 @@
 @import './social-media.css';
 @import './quotation.css';
 @import './imagestrip.css';
+@import './map.css';
 @import './footer.css';
 
 
@@ -201,6 +202,11 @@ div.venue-image>img {
     flex: 1; /* ensure both take equal width */
 }
 
+.txt-align-responsive { 
+    text-align:center !important;
+
+}
+
 
 @media only screen and (min-width: 768px) {}
 
@@ -290,5 +296,9 @@ div.venue-image>img {
 
     .image-text-component .col-md-6 {
         flex: unset;
+    }
+
+    .txt-align-responsive {
+        text-align: left !important;
     }
 }

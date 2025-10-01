@@ -31,18 +31,18 @@
             {
                 if (properties?.Level != null && properties?.Level == 1)
                 {
-                    <h1 class="h1-title">@objItem?.TextValue</h1>
+                    <h1 class="h1-title txt-align-responsive">@objItem?.TextValue</h1>
                 }
 
                 if (properties?.Level != null && properties?.Level == 1)
                 {
-                    <h2 class="h2-title">@objItem?.TextValue</h2>
+                    <h2 class="h2-title txt-align-responsive">@objItem?.TextValue</h2>
                 }
 
                 //default value
                 if (properties == null)
                 {
-                    <h1 class="h1-title">@objItem?.TextValue</h1>
+                    <h1 class="h1-title txt-align-responsive">@objItem?.TextValue</h1>
                 }
             }
         }
@@ -50,7 +50,7 @@
         if (item.ClassName == typeof(CanvasParagraph).Name)
         {
             CanvasParagraph objItem = SerializationHelper.Deseralize(item);
-            <p class="pad-bottom-default shade-black" >@objItem.Value</p>
+            <p class="pad-bottom-default shade-black txt-align-responsive" >@objItem.Value</p>
 
         }
 

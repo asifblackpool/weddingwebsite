@@ -26,7 +26,7 @@
             <nav class="nav-container">
                 <!-- Mobile menu toggle -->
                 <div class="mobile-menu-toggle">
-                    Menu <span class="mobile-caret"></span>
+                    <span class="mobile-caret"></span>  Menu
                 </div>
                 <ul class="nav-list hover-panel-menu">
                     @foreach (var item in children)
@@ -38,8 +38,8 @@
                             if (count == 0 && subchildren.Count > 0)
                             {
                                 <li class="nav-item has-panel">
-                                    <a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName <span
-                                            class="caret"></span></a>
+                                    <a href="@NavigationLinkHelper.GetLinkUrl(item.Path)">@item.DisplayName</a>
+                                    <span class="caret"></span>
                                     <div class="hover-panel">
                                         <div class="panel-content">
                                             <h3 style="display:none;">@string.Format("Our {0}", item.DisplayName)</h3>
