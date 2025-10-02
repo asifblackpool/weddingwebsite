@@ -24,16 +24,17 @@
                 <div class="col-md-4">
                     <div class="card fixed-height-card text-center">
                         <img class="card-img-top" src="@string.Format("{0}", item.GetFirstImage != null
-                                                                                          ? ImageHelper.GetImageUrl(item.GetFirstImage)
-                                                                                          : string.Empty)" alt="@string.Format("{0}", item.GetFirstImage != null
-                                                                                                 ? item.GetFirstImage.Value?.AltText
-                                                                                                 : string.Empty)" />
+                                                                                                                                            ? ImageHelper.GetImageUrl(item.GetFirstImage)
+                                                                                                                                            : string.Empty)" alt="@string.Format("{0}", item.GetFirstImage != null
+                                                                                                                                                                                                            ? item.GetFirstImage.Value?.AltText
+                                                                                                                                                                                                            : string.Empty)" />
                 <div class="card-body">
                     <h5 class="card-title">@item.PageTitle</h5>
                     <p class="card-text">@item?.GetFirstParagraph?.LimitWordsWithQuotations(45)</p>
                 </div>
                 <div class="card-footer bg-transparent">
-                    <a href="@String.Format("{0}", item?.FriendlyUrlPath)" class="white-button width-button-stories">Find out more</a>
+                    <a href="@String.Format("{0}", item?.FriendlyUrlPath)"
+                        class="white-button width-button-stories">Find out more</a>
                 </div>
             </div>
         </div>
@@ -43,17 +44,28 @@
 }
 
 <style type="text/css">
-  main {
-      max-width:100%;
-  }
-  body,main { background-color: #FCF6ED !important;}
-  main > #chain {
-      background-color:#FCF6ED;
-  }
+    main {
+        max-width: 100%;
+    }
 
-  .header-wrapper {
+    body,
+    main {
+        background-color: #FCF6ED !important;
+    }
+
+    main>#chain {
+        background-color: #FCF6ED;
+    }
+
+    .header-wrapper {
         max-width: 1288px;
         margin: auto;
-    
-  }
+
+    }
+
+    @@media (max-width: 576px) {
+        .txt-align-responsive {
+            text-align: center !important;
+        }
+    }
 </style>
