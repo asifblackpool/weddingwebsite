@@ -47,3 +47,23 @@
     color:var(--plain-black);
     text-decoration: underline;
 }
+
+/* Small screens: use horizontal scroll instead of wrapping */
+@media (max-width: 576px) {
+    .breadcrumb {
+        flex-wrap: nowrap; /* keep on one line */
+        overflow-x: auto; /* enable scrolling */
+        white-space: nowrap; /* prevent wrapping */
+        -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+    }
+
+    .breadcrumb li {
+        flex: 0 0 auto; /* keep items side by side */
+    }
+
+        /* Make sure the last/current item is never truncated */
+    .breadcrumb li:last-child a {
+        max-width: none;
+        font-weight: bold; /* highlight current page */
+    }
+}

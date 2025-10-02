@@ -26,18 +26,18 @@ main {
 
 div#venue-outer-wrapper,
 div#stories-outer-wrapper,
-div.outer-full-wrapper{
+div.outer-full-wrapper {
     width: 100%;
-    height:auto;
-    margin:0;
-    padding:0;
-    background-color:white;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-color: white;
 }
 
 div#stories-outer-wrapper {
-    background-color:var(--cream);
-    padding-top:2rem;
-    padding-bottom:5rem;
+    background-color: var(--cream);
+    padding-top: 2rem;
+    padding-bottom: 5rem;
 }
 
 main,
@@ -46,7 +46,7 @@ main,
 .footer-container,
 .psuedo-wrapper,
 .custom-container,
-.container{
+.container {
     max-width: 1288px;
     margin: 0 auto;
     width: 100%;
@@ -54,19 +54,22 @@ main,
     height: 100%;
 }
 
-main > div > #chain {
+main>div>#chain {
     background-image: url('/static/images/general/vector-diamond.svg');
-    background-position: top 8px left 0; /* 5px gap from top, 0 from left */
-    background-size: 12px 10px; /* 100% width, 10px height */
+    background-position: top 8px left 0;
+    /* 5px gap from top, 0 from left */
+    background-size: 12px 10px;
+    /* 100% width, 10px height */
     background-repeat: repeat-x;
-    padding-top: 20px; /* Creates space for content below image */
-    height:10px;
-    background-color:transparent;
-    
+    padding-top: 20px;
+    /* Creates space for content below image */
+    height: 10px;
+    background-color: transparent;
+
 }
 
 .content-container {
-    padding-bottom:3rem;
+    padding-bottom: 3rem;
 }
 
 .footer-container {
@@ -98,16 +101,16 @@ footer {
 }
 
 ul.shade-black {
-  padding-bottom:0rem;
+    padding-bottom: 0rem;
 }
 
 ul.shade-black ul li {
-    list-style:disc;
-    padding-left: 0; 
-    margin-left: 0; 
-    left:0px;
-    position:relative;
-    margin:20px;
+    list-style: disc;
+    padding-left: 0;
+    margin-left: 0;
+    left: 0px;
+    position: relative;
+    margin: 20px;
 }
 
 /* home page related */
@@ -142,7 +145,7 @@ ul.shade-black ul li {
     max-width: 460px;
 }
 
-button.with-arrow > span {
+button.with-arrow>span {
     text-align: center;
     display: inline-block;
     max-width: 100px;
@@ -150,9 +153,9 @@ button.with-arrow > span {
     color: #fff;
 }
 
-button.with-arrow > img {
-    position:relative;
-    left:-20px;
+button.with-arrow>img {
+    position: relative;
+    left: -20px;
     top 1px;
 }
 
@@ -195,15 +198,17 @@ div.venue-image>img {
 
 .image-text-component.row {
     display: flex;
-    gap: 30px; /* 30px only between children */
+    gap: 30px;
+    /* 30px only between children */
 }
 
 .image-text-component .col-md-6 {
-    flex: 1; /* ensure both take equal width */
+    flex: 1;
+    /* ensure both take equal width */
 }
 
-.txt-align-responsive { 
-    text-align:center !important;
+.txt-align-responsive {
+    text-align: center !important;
 
 }
 
@@ -214,54 +219,56 @@ div.venue-image>img {
 
 @media (max-width: 576px) {
 
-    .container, 
+    .container,
     .content-container,
-    .breadcrumb-container, 
+    .breadcrumb-container,
     .header-wrapper {
-        padding-left:15px !important;
-        padding-right:15px !important;
+        padding-left: calc(2.4 * var(--space-md)) !important;
+        padding-right: calc(2.4 * var(--space-md)) !important;
     }
 
-    body, p, li, span {
-        font-size:16px;
+    body,
+    p,
+    li,
+    span {
+        font-size: 16px;
     }
 
-    .nav-container {
-       
-    }
+    .nav-container {}
 
     .outer-full-wrapper {
-        padding-left:15px !important;
-        padding-right:15px !important;
+        padding-left: calc(2.4 * var(--space-md)) !important;
+        padding-right:calc(2.4 * var(--space-md)) !important;
     }
 
     .outer-full-wrapper:first-of-type {
-        border:solid 0px red;
-        padding-left:0px!important;
-        padding-right:0px !important;
+        border: solid 0px red;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
 
     .venues-section {
-        padding-top:20px;
+        padding-top: 20px;
     }
 
     h2.block-title {
-        font-size:var(--h2);
+        font-size: var(--h2);
     }
 
-    .pink-button, .white-button {
-        font-size:16px;
+    .pink-button,
+    .white-button {
+        font-size: 16px;
         min-width: 165px;
     }
 
-     div.hero-banner {
-        border-left:solid transparent 10px;
-        border-right:solid transparent 10px;
+    div.hero-banner {
+        border-left: solid transparent 10px;
+        border-right: solid transparent 10px;
 
     }
 
     .hero-banner-information {
-        padding-top:1em;
+        padding-top: 1em;
     }
 
     .hero-title {
@@ -272,26 +279,27 @@ div.venue-image>img {
         padding-top: 0em;
     }
 
-    .hero-text, .venue-text {
+    .hero-text,
+    .venue-text {
         font-size: 0.89em;
         padding-bottom: 15px;
     }
 
-    .hero-banner-information > .pink-button {
+    .hero-banner-information>.pink-button {
         text-align: left;
         padding-bottom: 10px;
     }
 
     ul.shade-black ul li {
-        margin:1rem;
+        margin: 1rem;
     }
 
     p.shade-black {
-        margin-bottom:3rem;
+        margin-bottom: 3rem;
     }
 
     p.card-text {
-        margin-bottom:3rem !important;
+        margin-bottom: 3rem !important;
     }
 
     .image-text-component .col-md-6 {

@@ -5,7 +5,7 @@
         gap: 30px;
     }
 
-    div.promotion-text > p {
+    div.promotion-text>p {
 
         font-size: 1.8rem;
     }
@@ -24,8 +24,8 @@
     /* #f1f1f1; */
     padding: 2rem;
     min-height: 450px;
-    width:33.33%;
-    background-color:var(--white);
+    width: 33.33%;
+    background-color: var(--white);
 }
 
 div.stories-img {
@@ -47,8 +47,8 @@ div.stories-img>img {
 
 div.stories-information {
     text-align: center;
-    display:inline-flex;
-    flex-direction:column;
+    display: inline-flex;
+    flex-direction: column;
 }
 
 div.stories-information>h2 {
@@ -58,13 +58,13 @@ div.stories-information>h2 {
 
 div.stories-information>p {
     text-align: center;
-    display:inline-block;
-    flex-grow:1;
+    display: inline-block;
+    flex-grow: 1;
 }
 
 div.stories-information>button {
     text-align: center;
-    margin:auto;
+    margin: auto;
 }
 
 div.center-container {
@@ -76,39 +76,43 @@ div.center-container {
 
 @media (max-width: 576px) {
 
-  .sub-title-bold {
-      text-align:center;
-      padding-top:0em;
-  }
+    .sub-title-bold {
+        text-align: center;
+        padding-top: 0em;
+    }
 
-  div.three-column-container {
-      text-align:center;
-  }
+    div.three-column-container {
+        text-align: center;
+    }
 
-  div.three-column-container > .col {
-      flex:unset;
-      margin-bottom:0px;
-      background-color:#fff;
-      padding:10px 0px 10px 0px;
-  }
+    div.three-column-container>.col {
+        flex: unset;
+        margin-bottom: 0px;
+        background-color: #fff;
+        padding: 10px 0px 10px 0px;
+    }
 
-  .col {
-      margin-bottom:0px;
-  }
+    .col {
+        margin-bottom: 0px;
+    }
 
-  div.stories-information > h3 {
-      font-weight:bold;
-      font-size:20px;
-  }
+    div.stories-information>h3 {
+        font-weight: bold;
+        font-size: 20px;
+    }
 
-  div.promotion-text > p {
-      margin:0 0.5em;
-      padding-bottom:15px;
-      font-size:16px;
-  }
+    div.stories-information>p {
+        margin-bottom: 3rem;
+    }
 
-  .column-box {
-    width: 100%;
-  }
+    div.promotion-text>p {
+        margin: 0 0.5em;
+        padding-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .column-box {
+        width: 100%;
+    }
 
 }

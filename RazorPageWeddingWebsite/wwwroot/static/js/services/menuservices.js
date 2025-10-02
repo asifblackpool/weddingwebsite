@@ -14,6 +14,7 @@ const menuservices = (function () {
     _main = null;
     _homeTitle = null;
 
+
     var setupCaret = function (caret) {
 
     };
@@ -22,7 +23,7 @@ const menuservices = (function () {
     var closeSubMenu = function () {
         if (_parent && _parent.classList.contains("open")) {
             _parent.classList.toggle("open");
-            if (_nearestLink) { _nearestLink.style.color }
+            if (_nearestLink) { _nearestLink.style.color = ""; }
         }
     };
 
@@ -50,6 +51,7 @@ const menuservices = (function () {
                 menuToggle.classList.add("active");
                 _main.style.opacity = "0.1";
                 _homeTitle.style.opacity = "0.3";
+
                 navList.style.paddingBottom = (_main.offsetHeight - navList.offsetHeight) + "px";
             }
             else {
@@ -57,6 +59,7 @@ const menuservices = (function () {
                 menuToggle.classList.remove("active");
                 _main.style.opacity = "1";
                 _homeTitle.style.opacity = "1";
+                navList.style.paddingBottom = "0px";
                 closeSubMenu();
             }
 
