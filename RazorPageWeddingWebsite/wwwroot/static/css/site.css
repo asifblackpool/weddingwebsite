@@ -183,12 +183,17 @@ div.promotion-area-venue-image>img {
     object-fit: cover;
 }
 
+div.promotion-area-venue-image:hover {
+    filter:brightness(0.5) contrast(1.05);
+    transition:filter 0.3s ease;
+}
+
 div.promotion-text {
     position: absolute;
     color: var(--white);
     width: 100%;
     text-align: center;
-    top: 3rem;
+    top: 0rem;
 }
 
 div.venue-image>img {

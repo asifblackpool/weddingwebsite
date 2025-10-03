@@ -142,7 +142,7 @@ a.pink-button {
 }
 
 .white-button:hover {
-    background: var(--pink);
+    background: var(--pink-damped);
     color: var(--white);
     border: solid 2px var(--white);
 }
