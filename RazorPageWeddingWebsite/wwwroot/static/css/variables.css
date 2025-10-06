@@ -1,6 +1,6 @@
 ﻿:root {
-    --freight-text: 'Freight Text Pro', serif;
-    --baskerville-text: 'Baskerville', serif;
+    --freight-text: 'freight-text-pro', serif;
+    --baskerville-text: 'baskerville', serif;
     --dark-blue: #041C2C;
     --white: #FFF;
     --offwhite: #FCF6ED;
@@ -10,8 +10,8 @@
     --plain-black: #000;
     --shade-black: #3E3E3E;
     --subtle-dark:
-    /* Spacing */
-    --space-sm: 0.5rem;
+        /* Spacing */
+        --space-sm: 0.5rem;
     --space-md: 1rem;
     --space-lg: 2rem;
     /* Font sizes */
@@ -39,13 +39,12 @@
     --button-width-200: 205px;
 }
 
-@media only screen and (max-width: 1024px) {
-}
+@media only screen and (max-width: 1024px) {}
 
 @media only screen and (max-width: 768px) {
 
     :root {
-     
+
         /* Spacing */
         --space-sm: 0.5rem;
         --space-md: 1rem;
@@ -53,7 +52,7 @@
         /* Font sizes */
         --text-sm: 1.2rem;
         --text-base: 1.6rem;
-        --text-medium:1.8rem;
+        --text-medium: 1.8rem;
         --text-lg: 2rem;
         --text-xl: 2.4rem;
         /*Html fonts*/
@@ -65,8 +64,6 @@
         --h1-line-height: 5.0rem;
         --h2-line-height: 3.8rem;
         --h3-line-height: 2.4rem;
-  
+
     }
 }
-
-

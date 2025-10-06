@@ -56,12 +56,12 @@ main,
 
 main>div>#chain {
     background-image: url('/static/images/general/vector-diamond.svg');
-    background-position: top 8px left 0;
+    background-position: bottom;
     /* 5px gap from top, 0 from left */
-    background-size: 12px 10px;
+    background-size: 10px 10px;
     /* 100% width, 10px height */
     background-repeat: repeat-x;
-    padding-top: 20px;
+    padding-top: 5px;
     /* Creates space for content below image */
     height: 10px;
     background-color: transparent;
@@ -184,8 +184,8 @@ div.promotion-area-venue-image>img {
 }
 
 div.promotion-area-venue-image:hover {
-    filter:brightness(0.5) contrast(1.05);
-    transition:filter 0.3s ease;
+    filter: brightness(0.5) contrast(1.05);
+    transition: filter 0.3s ease;
 }
 
 div.promotion-text {
@@ -243,7 +243,7 @@ div.venue-image>img {
 
     .outer-full-wrapper {
         padding-left: calc(2.4 * var(--space-md)) !important;
-        padding-right:calc(2.4 * var(--space-md)) !important;
+        padding-right: calc(2.4 * var(--space-md)) !important;
     }
 
     .outer-full-wrapper:first-of-type {
