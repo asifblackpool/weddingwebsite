@@ -1,69 +1,84 @@
-﻿@import './variables.css';
+﻿.breadcrumb-container {
+    padding-bottom: 6rem;
+}
 
 .breadcrumb {
+
+    font-size: 16px;
+    line-height: 1.25;
+    margin: 2rem 0rem 1rem 0rem;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    padding: 3rem 0rem;
-    margin-bottom: 1rem;
-    list-style: none;
-    background-color: transparent;
-    border-radius: 0.25rem;
-    font-size: 1.8rem;
-    color:var(--shade-black);
+    /* allows wrapping on mobile */
+    gap: 0.25rem;
 }
 
-.breadcrumb-item {
+.breadcrumb li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    /* <-- key line: aligns › to top */
+
 }
 
-/* Separator between items */
-.breadcrumb-item + .breadcrumb-item::before {
-    display: inline-block;
-    padding: 0 0.8rem;
-    color: var(--shade-black); /* Gray separator */
-    content: "|"; /* Default separator */
-    font-family: "Font Awesome 5 Free" !important; /* If using Font Awesome */
-    position:relative;
-    top:-0.25rem;
-}
-
-.breadcrumb-item.active {
-    color: #6c757d; /* Gray text for current page */
-}
-
-.breadcrumb-item a {
+/* Separator */
+.breadcrumb li+li::before {
+    content: "|" !important;
     color: var(--shade-black);
+    margin: 0 0.4rem 0 0;
+    line-height: 1;
+    /* tighter spacing */
+    position: relative;
+    top: 0.15em;
+    /* subtle vertical adjustment */
+}
+
+/* Links */
+.breadcrumb a {
+
     text-decoration: none;
-    transition: color 0.15s ease-in-out;
-    text-transform: lowercase;
 }
 
-.breadcrumb-item a::first-letter {
-    text-transform:uppercase;
+.breadcrumb a:hover,
+.breadcrumb a:focus {
+    text-decoration: none;
+    color: grey;
 }
 
-.breadcrumb-item a:hover {
-    color:var(--plain-black);
-    text-decoration: underline;
+/* Current page (no link) */
+.breadcrumb li:last-child {
+    color: var(--shade-black);
 }
 
-/* Small screens: use horizontal scroll instead of wrapping */
-@media (max-width: 576px) {
+/* Mobile view */
+@media (max-width: 640px) {
+
+    .breadcrumb-container {
+        padding-bottom: 30px;
+    }
+
     .breadcrumb {
-        flex-wrap: nowrap; /* keep on one line */
-        overflow-x: auto; /* enable scrolling */
-        white-space: nowrap; /* prevent wrapping */
-        -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+        font-size: 14px;
+        margin: 0.75rem 0;
+    }
+
+    .breadcrumb ol {
+        gap: 0.15rem;
     }
 
     .breadcrumb li {
-        flex: 0 0 auto; /* keep items side by side */
+        line-height: 1.4;
+        align-items: flex-start;
+        /* ensure consistency */
     }
 
-        /* Make sure the last/current item is never truncated */
-    .breadcrumb li:last-child a {
-        max-width: none;
-        font-weight: bold; /* highlight current page */
+    .breadcrumb li+li::before {
+        top: 0.2em;
+        /* fine-tune for smaller font size */
     }
 }

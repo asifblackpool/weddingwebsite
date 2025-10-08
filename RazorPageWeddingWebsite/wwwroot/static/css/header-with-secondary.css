@@ -1,8 +1,10 @@
 ﻿@import './variables.css';
 
 
-.header-container, .navigation-container, .nav-container {
-    height:155px;
+.header-container,
+.navigation-container,
+.nav-container {
+    height: 155px;
 }
 
 div.navigation-container {
@@ -77,6 +79,7 @@ h1.home>a.home-link {
 
 .hover-panel-menu a:hover {
     background: transparent;
+    text-decoration: underline;
 }
 
 /* Hover panel styles */
@@ -238,21 +241,23 @@ h1.home>a.home-link {
 
 @media (max-width: 576px) {
 
-   
+
 
     header {
         padding-left: calc(2.4 * var(--space-md)) !important;
         padding-right: calc(2.4 * var(--space-md)) !important;
-        min-height:125px !important;
+        min-height: 125px !important;
     }
 
-    .header-container, .navigation-container, .nav-container {
+    .header-container,
+    .navigation-container,
+    .nav-container {
         height: 125px;
     }
 
     .nav-container {
-        height:100px !important;
-        border:solid 0px red;
+        height: 100px !important;
+        border: solid 0px red;
     }
 
     h1.home {
@@ -273,7 +278,7 @@ h1.home>a.home-link {
         left: -2px;
         float: right;
         max-width: 125px;
-        top:20px;
+        top: 20px;
     }
 
     .nav-list {

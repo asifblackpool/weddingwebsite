@@ -54,18 +54,36 @@ namespace RazorPageWeddingWebsite.Helpers
             return string.Join(" ", words.Take(maxWords)) + suffix;
         }
 
-        public static string LimitWordsWithQuotations(this string text, int maxWords, string suffix = " ...")
+        public static string LimitWordsWithQuotations(this string text, int maxWords, int maxCharacters, string suffix = " ...")
         {
-            if (string.IsNullOrWhiteSpace(text) || maxWords <= 0)
+            if (string.IsNullOrWhiteSpace(text) || maxWords <= 0 || maxCharacters <= 0)
                 return string.Empty;
 
             var words = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var builder = new List<string>();
+            int currentLength = 0;
 
-            if (words.Length <= maxWords)
-                return string.Format("\"{0}\"", text);
+            foreach (var word in words.Take(maxWords))
+            {
+                // +1 for space between words
+                int wordLengthWithSpace = word.Length + (builder.Count > 0 ? 1 : 0);
 
-            return string.Format("\"{0}\"", string.Join(" ", words.Take(maxWords))) + suffix;
+                // stop if adding this word exceeds the max characters
+                if (currentLength + wordLengthWithSpace > maxCharacters)
+                    break;
+
+                builder.Add(word);
+                currentLength += wordLengthWithSpace;
+            }
+
+            var limitedText = string.Join(" ", builder);
+
+            // if no truncation happened, don't append suffix
+            bool truncated = limitedText.Length < text.Length;
+
+            return $"\"{limitedText}{(truncated ? suffix : "")}\"";
         }
+
 
 
         public static string? RemoveFileExtension(this string path, FILE_Extension extensiontype)

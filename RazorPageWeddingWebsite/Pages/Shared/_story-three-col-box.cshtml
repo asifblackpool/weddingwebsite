@@ -50,15 +50,15 @@
             <div class="flex-fill column-box">
                 <div class="stories-img">
                     <img src="@string.Format("{0}", item.GetFirstImage != null
-                                            ? ImageHelper.GetImageUrl(item.GetFirstImage) 
-                                            : string.Empty)"
+                                                                                                                       ? ImageHelper.GetImageUrl(item.GetFirstImage) 
+                                                                                                                       : string.Empty)"
                     alt="@string.Format("{0}", item.GetFirstImage != null
-                                                                                                                                                                                                    ? item.GetFirstImage.Value?.AltText
-                                                                                                                                                                                                       : string.Empty)" />
+                                                                                                                                                                                                                                                                ? item.GetFirstImage.Value?.AltText
+                                                                                                                                                                                                                                                                   : string.Empty)" />
             </div>
             <div class="stories-information">
-                    <h3 style="color:#3E3E3E; text-align:center;font-weight:700;">@item.PageTitle</h3>
-                <p>@item.GetFirstParagraph?.LimitWordsWithQuotations(45)</p>
+                <h3 style="color:#3E3E3E; text-align:center;font-weight:700;">@item.PageTitle</h3>
+                <p>@item.GetFirstParagraph?.LimitWordsWithQuotations(25, maxCharacters: 135)</p>
                 <button onclick="window.location.href='@String.Format("{0}", item.FriendlyUrlPath)'"
                     class="white-button width-button-stories">Find out more</button>
             </div>
@@ -68,7 +68,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="center-container">
-                <button onclick="window.location.href='@storiesUrl'" class="pink-button width-button-stories" style="min-width:205px !important;">View all real stories</button>
+                <button onclick="window.location.href='@storiesUrl'" class="pink-button width-button-stories"
+                    style="min-width:205px !important;">View all real stories</button>
             </div>
         </div>
     </div>

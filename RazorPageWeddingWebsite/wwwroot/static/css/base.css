@@ -1,19 +1,28 @@
 ﻿@import './variables.css';
 
 html {
-    font-size: 62.5%;  /* 1rem = 10px */
+    font-size: 62.5%;
+    /* 1rem = 10px */
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--baskerville-text);
     font-weight: 400;
 }
 
-body, p, li, span {
+body,
+p,
+li,
+span {
     font-family: var(--freight-text);
-    color:var(--shade-black);
+    color: var(--shade-black);
     font-weight: 400;
-    font-size:var(--text-base);
+    font-size: var(--text-base);
 }
 
 body {
@@ -21,7 +30,7 @@ body {
     background-color: var(--white);
     width: var(--full-width);
     border: solid 0px red;
-    font-size:1.8rem;
+    font-size: 1.8rem;
 }
 
 .row {
@@ -41,16 +50,16 @@ body {
 }
 
 .text-left {
-    text-align:left !important;
+    text-align: left !important;
 }
 
 .text-center {
-    text-align:center !important;
+    text-align: center !important;
 }
 
 .venues-section {
-    padding-bottom:0rem;
-    padding-top:4rem;
+    padding-bottom: 0rem;
+    padding-top: 4rem;
 }
 
 .flex-left {
@@ -62,19 +71,21 @@ body {
 
 .with-arrow1 {
     position: relative;
-    padding-right: 2rem; /* make space for the arrow */
+    padding-right: 2rem;
+    /* make space for the arrow */
     font-size: 16px;
     cursor: pointer;
-    background-color:transparent; /* pink example */
+    background-color: transparent;
+    /* pink example */
     color: white;
     padding: 10px 20px !important;
-    gap:2px;
-    text-align:center;
+    gap: 2px;
+    text-align: center;
 }
 
 .with-arrow {
     color: white;
-    background-color:transparent;
+    background-color: transparent;
     border: none;
     border-radius: 8px;
     padding: 1em 2em;
@@ -84,11 +95,12 @@ body {
     align-items: center;
     gap: 0.5em;
     transition: color 0.3s ease;
-    font-size:1em
+    font-size: 1em
 }
 
 .with-arrow:hover {
-    color: hotpink; /* shaft + arrowhead change color */
+    color: hotpink;
+    /* shaft + arrowhead change color */
 }
 
 .arrow {
@@ -107,24 +119,24 @@ body {
     padding: 1rem;
     min-width: 177px;
     border: solid 1px transparent;
-    font-family:var(--freight-text);
-    font-size:var(--text-base);
-    font-weight:700;
-    line-height:1.8rem;
-    height:50px;
+    font-family: var(--freight-text);
+    font-size: var(--text-base);
+    font-weight: 700;
+    line-height: 1.8rem;
+    height: 50px;
 }
 
 .pink-button:hover {
     background: var(--white);
     color: var(--pink);
-    border:solid 2px var(--pink)
+    border: solid 2px var(--pink)
 }
 
 a.pink-button {
     display: inline-block;
     text-align: center;
     margin: 3rem 0px;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 .white-button {
@@ -133,7 +145,7 @@ a.pink-button {
     border-radius: 30px;
     padding: 1rem;
     min-width: 205px;
-    height:50px;
+    height: 50px;
     border: solid 2px var(--pink);
     display: inline-block;
     text-decoration: none;
@@ -147,16 +159,20 @@ a.pink-button {
     border: solid 2px var(--white);
 }
 
-.block-title, .h1-title, h1.regular-header {
+.block-title,
+.h1-title,
+h1.regular-header {
     color: var(--pink);
-    font-size:var(--h1);
-    font-weight:normal;
-    line-height:var(--h1-line-height);
-    text-align:left;
-    padding:0rem 1rem 1rem 0rem;
+    font-size: var(--h1);
+    font-weight: normal;
+    line-height: var(--h1-line-height);
+    text-align: left;
+    padding: 0rem 1rem 5rem 0rem;
 }
 
-.h2-title, h2.heading-level-2, h2 {
+.h2-title,
+h2.heading-level-2,
+h2 {
     color: var(--pink);
     font-size: var(--h2);
     line-height: var(--h2-line-height);
@@ -164,16 +180,18 @@ a.pink-button {
     padding: 2rem 1rem 2rem 0rem;
 }
 
-h3.heading-level-3, h3 {
+h3.heading-level-3,
+h3 {
     color: var(--pink);
     font-size: var(--h3);
     line-height: var(--h3-line-height);
     text-align: left;
     padding: 2rem 1rem 2rem 0rem;
-    font-family:var(--freight-text);
+    font-family: var(--freight-text);
 }
 
-h4.heading-level-4, h4+ {
+h4.heading-level-4,
+h4+ {
     color: var(--pink);
     font-size: var(--h4);
     line-height: var(--h4-line-height);
@@ -194,8 +212,8 @@ h4.heading-level-4, h4+ {
     font-size: var(--h3);
     line-height: var(--h3-line-height);
     text-align: left;
-    padding-bottom:2rem;  
-    font-weight:normal;
+    padding-bottom: 2rem;
+    font-weight: normal;
 }
 
 .sub-title-bold {
@@ -205,42 +223,44 @@ h4.heading-level-4, h4+ {
     text-align: left;
     padding-bottom: 2rem;
     font-weight: bold;
-    font-family:var(--freight-text);
+    font-family: var(--freight-text);
 
 }
 
 .venues-list {
-    display:block;
+    display: block;
 }
 
-.venues-list > a {
-    display:grid;
-    color:#000;
-    text-align:center;
-    font-size:1.8rem;
-    padding-bottom:1.8rem;
+.venues-list>a {
+    display: grid;
+    color: #000;
+    text-align: center;
+    font-size: 1.8rem;
+    padding-bottom: 1.8rem;
 }
 
 .img-container {
-    padding:30px 0px;
+    padding: 30px 0px;
 }
 
 .pad-bottom-default {
     padding-bottom: var(--space-lg);
-    margin-bottom:0rem !important;
+    margin-bottom: 0rem !important;
 }
 
 p.lead-paragraph {
-    font-size:var(--text-xl);
-    margin-bottom:5rem;
+    font-size: var(--text-xl);
+    margin-bottom: 5rem;
 }
 
-p > a, li > a {
+p>a,
+li>a {
     color: var(--shade-black);
 }
 
 p:empty {
-    display: none; /* hide empty paragraphs */
+    display: none;
+    /* hide empty paragraphs */
 }
 
 @media (max-width: 576px) {
@@ -254,13 +274,13 @@ p:empty {
     }
 
     a.pink-button {
-        line-height:2.4rem;
-        margin:2rem 0rem;
+        line-height: 2.4rem;
+        margin: 2rem 0rem;
     }
 
     h1.regular-header {
         padding-top: 0rem;
-        padding-bottom:4rem;
+        padding-bottom: 4rem;
     }
 
     p.lead-paragraph {
@@ -268,15 +288,11 @@ p:empty {
         margin-bottom: 3rem;
     }
 
-    .venues-list > a {
-        text-align:left;
+    .venues-list>a {
+        text-align: left;
     }
 
-    div.img-container > img {
-        width:100%;
+    div.img-container>img {
+        width: 100%;
     }
 }
-
-
-
-
