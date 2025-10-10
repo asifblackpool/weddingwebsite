@@ -30,11 +30,11 @@
 .breadcrumb li+li::before {
     content: "|" !important;
     color: var(--shade-black);
-    margin: 0 0.4rem 0 0;
-    line-height: 1;
+    margin: 0 0 0 0;
+    line-height: 0.5rem;
     /* tighter spacing */
     position: relative;
-    top: 0.15em;
+    top: 0.4em;
     /* subtle vertical adjustment */
 }
 
