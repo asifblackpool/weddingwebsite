@@ -61,12 +61,8 @@ h1.home>a.home-link {
     font-weight: 500;
 }
 
-.nav-item a:hover {}
 
 /* Base styles */
-.hover-panel-menu {}
-
-.hover-panel-menu li {}
 
 .hover-panel-menu a {
     display: block;
