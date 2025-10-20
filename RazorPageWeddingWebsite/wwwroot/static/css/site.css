@@ -47,14 +47,14 @@ main,
 .psuedo-wrapper,
 .custom-container,
 .container {
-    max-width: 1068px;
+    max-width: 1288px;
     margin: 0 auto;
     width: 100%;
     border: solid 0px black;
     height: 100%;
 }
 
-main>div>#chain {
+#chain {
     background-image: url('/static/images/general/vector-diamond.svg');
     background-position: bottom;
     /* 5px gap from top, 0 from left */

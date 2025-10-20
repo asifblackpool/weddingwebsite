@@ -50,36 +50,38 @@
     <!--Explore our Venues (section) -->
     <div id="venue-outer-wrapper" class="outer-full-wrapper">
         <div class="venues-section psuedo-wrapper">
-        <h2 class="block-title text-center">Explore our venues</h2>
-        <div class="row three-column-container" >
-            <div class="col feature-area-details">
-                <h3 class="sub-title-bold">@entryModel.FeatureElementHeader</h3>
-                <p class="venue-text">@entryModel.FeatureElementText</p>
-                @if (entryModel.CtaLinks1 != null)
-                {
-                    <button onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CtaLinks1).Url)'"
+            <h2 class="block-title text-center">Explore our venues</h2>
+            <div class="row three-column-container">
+                <div class="col feature-area-details">
+                    <h3 class="sub-title-bold">@entryModel.FeatureElementHeader</h3>
+                    <p class="venue-text">@entryModel.FeatureElementText</p>
+                    @if (entryModel.CtaLinks1 != null)
+                    {
+                        <button
+                            onclick="window.location.href='@String.Format("{0}", new CtaLinkHelper(entryModel.CtaLinks1).Url)'"
                             class="pink-button">
-                        @entryModel.CtaLinks1.ButtonText
-                    </button>
-                }
-            </div>
-            <div class="col feature-area-image-box">
-                <div class="feature-area-venue-image">
-                    <img src="@string.Format("{0}", entryModel.FeatureImage != null
-                                                             ? ImageHelper.GetImageUrl(entryModel.FeatureImage)
-                                                             : string.Empty)" alt="@string.Format("{0}", entryModel.FeatureImage != null
-                                                                                         ? entryModel.FeatureImage.AltText
-                                                                                         : string.Empty)" />
+                            @entryModel.CtaLinks1.ButtonText
+                        </button>
+                    }
+                </div>
+                <div class="col feature-area-image-box">
+                    <div class="feature-area-venue-image">
+                        <img src="@string.Format("{0}", entryModel.FeatureImage != null
+                                                                                          ? ImageHelper.GetImageUrl(entryModel.FeatureImage)
+                                                                                          : string.Empty)" alt="@string.Format("{0}", entryModel.FeatureImage != null
+                                                                                                                                                                       ? entryModel.FeatureImage.AltText
+                                                                                                                                                                       : string.Empty)" />
                 </div>
             </div>
             <div class="col feature-area-image-box">
                 <div class="promotion-area-venue-image"
-                     onclick="window.location.href='@String.Format("{0}", entryModel.PromotionalBannerUri)'" style="cursor:pointer;">
+                    onclick="window.location.href='@String.Format("{0}", entryModel.PromotionalBannerUri)'"
+                    style="cursor:pointer;">
                     <img src="@string.Format("{0}", entryModel.PromotionalBannerImage != null
-                                                         ? ImageHelper.GetImageUrl(entryModel.PromotionalBannerImage)
-                                                         : string.Empty)" alt="@string.Format("{0}", entryModel.PromotionalBannerImage != null
-                                                                                         ? entryModel.PromotionalBannerImage.AltText
-                                                                                         : string.Empty)" />
+                                                                                  ? ImageHelper.GetImageUrl(entryModel.PromotionalBannerImage)
+                                                                                  : string.Empty)" alt="@string.Format("{0}", entryModel.PromotionalBannerImage != null
+                                                                                                                                                                   ? entryModel.PromotionalBannerImage.AltText
+                                                                                                                                                                   : string.Empty)" />
                     <div class="promotion-text">
                         <h3 class="sub-title text-center" style="color:#fff;">@entryModel.PromotionalBannerTitle</h3>
                         <p style="color:#fff;">@entryModel.PromotionalBannerText</p>
@@ -88,7 +90,7 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
 
     <!--Stories (Section)-->
@@ -101,3 +103,10 @@ else
 {
     <strong>Homepage not being loaded (entry not found) ..</strong>
 }
+
+<style type="text/css">
+    main {
+        max-width: 1068px !important;
+        border: solid;
+    }
+</style>

@@ -23,7 +23,7 @@
 {
     @try
     {
-  
+
         @await Component.InvokeAsync("Canvas", entryModel.GetSerialisedCanvas())
     }
     catch (Exception ex)
@@ -37,3 +37,9 @@ else
 {
     <h1>Ceremonies details pages not found </h1>
 }
+
+<style type="text/css">
+    main {
+        max-width: 1068px !important;
+    }
+</style>

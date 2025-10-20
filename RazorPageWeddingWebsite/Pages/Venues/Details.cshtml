@@ -16,13 +16,13 @@
         title = (entryModel?.PageTitle != null) ? entryModel?.PageTitle : entryModel?.Title;
     }
 
-    //sanity check 
+    //sanity check
     if (buttonUrl == "#")
     {
         buttonUrl = (entryModel?.VenueLink != null) ? entryModel.VenueLink.ExternalURL : buttonUrl;
     }
 
- 
+
 }
 
 @if (entryModel != null)
@@ -33,25 +33,26 @@
             <div class="col-md-6">
                 <div class="venue-image">
                     <img src="@string.Format("{0}", entryModel.VenueImage != null
-                                                             ? ImageHelper.GetImageUrl(entryModel.VenueImage)
-                                                             : string.Empty)" alt="@string.Format("{0}", entryModel.VenueImage != null
-                                                                                             ? entryModel.VenueImage.AltText
-                                                                                             : string.Empty)" />
+                                                                                                               ? ImageHelper.GetImageUrl(entryModel.VenueImage)
+                                                                                                               : string.Empty)"
+                    alt="@string.Format("{0}", entryModel.VenueImage != null
+                                                                                                                                                                                               ? entryModel.VenueImage.AltText
+                                                                                                                                                                                               : string.Empty)" />
             </div>
         </div>
-            <div class="col-md-6">
-                <h2 class="venue-title">@entryModel.PageTitle</h2>
-                <p class="pad-bottom-default shade-black">@entryModel.IntroductionText</p>
-                @Html.Raw(
+        <div class="col-md-6">
+            <h2 class="venue-title">@entryModel.PageTitle</h2>
+            <p class="pad-bottom-default shade-black">@entryModel.IntroductionText</p>
+            @Html.Raw(
                         ButtonHelper.BuildButton(
                         (entryModel != null && entryModel.VenueLink != null) ? entryModel.VenueLink.ButtonText : string.Empty,
                         buttonUrl,
                         "pink-button"
                         )
                         )
-            </div>
         </div>
     </div>
+</div>
 }
 else
 {
@@ -59,8 +60,12 @@ else
 }
 
 <style type="text/css">
-
     /* override when on venues details page */
-    h1.regular-header { display:none;}
+    h1.regular-header {
+        display: none;
+    }
 
+    main {
+        max-width: 1068px !important;
+    }
 </style>
