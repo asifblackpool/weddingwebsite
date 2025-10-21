@@ -54,6 +54,10 @@ main,
     height: 100%;
 }
 
+.breadcrumb-container {
+    max-width: 1066px !important;
+}
+
 #chain {
     background-image: url('/static/images/general/vector-diamond.svg');
     background-position: bottom;
